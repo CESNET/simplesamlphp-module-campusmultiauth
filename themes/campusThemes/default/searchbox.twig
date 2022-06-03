@@ -1,0 +1,134 @@
+{% if configuration.priority is not defined %}
+    {% set configuration = configuration|merge({'priority': 'secondary'}) %}
+{% endif %}
+
+<div id="idps-form-div" class="list-group text-left">
+    <form id="idps-form" action="{{ currentUrl }}" method="post">
+        <label for="searchbox"
+            {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                class="color-{{ configuration.priority }} text-bold"
+            {% else %}
+                {% if configuration.priority == 'primary' %}
+                    class="text-dark text-bold"
+                {% else %}
+                    class="text-muted text-bold"
+                {% endif %}
+            {% endif %}>{% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
+            {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
+            {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
+            {% else %}{{ '{campusMultiauth:searchbox_title}'|trans }}
+            {% endif %}</label>
+        <input type="text" name="suggest" id="searchbox" value=""
+            {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                class="inp-text js-suggest searchbox-input input-height selectized color-border-{{ configuration.priority }}"
+            {% else %}
+                {% if configuration.priority == 'primary' %}
+                    class="border border-2 border-dark input-height"
+                {% else %}
+                    class="border border-2 border-muted input-height"
+                {% endif %}
+            {% endif %}>
+
+        {% if cookie_idpentityid is not null %}
+            {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                <div class="box-vcards-list__item box-vcard--compact searchbox-result side-padding-zero">
+                    <button class="preferred-idp" type="submit">
+                        <div class="box-vcards-list__inner side-padding-zero">
+                            <p class="box-vcards-list__img center">
+                                <img src="{{ cookie_institution_img }}" style="height: 50px; width: 50px; object-fit: cover; object-position: left"/>
+                            </p>
+                            <div class="box-vcards-list__content u-pb-0 u-pt-0 u-pr-0 u-pl-10">
+                                {% if attribute(cookie_institution_name, currentLanguage) is defined %}{{ attribute(cookie_institution_name, currentLanguage) }}{% else %}{{ cookie_institution_name.en}}{% endif %}
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            {% else %}
+                <button class="list-group-item list-group-item-action d-flex align-items-center">
+                    <span style="margin-bottom: 0">
+                        <img src="{{ cookie_institution_img }}" style="height: 50px; width: 50px; object-fit: cover; object-position: left" alt=""/>
+                    </span>
+                    <span style="margin-left: 24px">
+                        {% if attribute(cookie_institution_name, currentLanguage) is defined %}{{ attribute(cookie_institution_name, currentLanguage) }}{% else %}{{ cookie_institution_name.en}}{% endif %}
+                    </span>
+                 </button>
+            {% endif %}
+        {% endif %}
+
+        <input type="hidden" id="idpentityid-searchbox" name="idpentityid-searchbox"{% if cookie_idpentityid is defined%} value="{{ cookie_idpentityid }}" {% endif %}/>
+        <input type="hidden" id="institution-name" name="institution-name"{% if  cookie_institution_name is defined%} value="{{ cookie_institution_name | json_encode }}" {% endif %}/>
+        <input type="hidden" id="institution-img" name="institution-img"{% if cookie_institution_img is defined%} value="{{ cookie_institution_img }}" {% endif %}/>
+
+        <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
+        <input type="hidden" id="source" name="source" value="default-sp" />
+    </form>
+</div>
+
+{% if idps == null %}
+
+<div id="idps-form-nojs-div" class="list-group">
+    <form id="idps-form-nojs" action="{{ currentUrl }}" method="post">
+        <label for="q" class="color-{{ configuration.priority }}">{% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
+            {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
+            {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
+            {% else %}{{ '{campusMultiauth:searchbox_title}'|trans }}
+            {% endif %}</label>
+        <span class="inp-fix inp-icon inp-icon--after">
+            <input id="q" name="q" class="inp-text" type="text" placeholder="{% if attribute(configuration.placeholder, currentLanguage) is defined %}{{ attribute(configuration.placeholder, currentLanguage) }}{% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}{{ configuration.placeholder | first }}{% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}{{ configuration.placeholder }}{% else %}{{ '{campusMultiauth:searchbox_placeholder}'|trans }}{% endif %}">
+            <span class="icon icon-search"></span>
+        </span>
+
+        <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
+    </form>
+</div>
+
+{% else %}
+    <div id="idps-form-nojs-div" class="list-group div-nojs">
+        <form id="idps" action="{{ currentUrl }}" method="post">
+            {% for idp in idps.items %}
+                <button class="metaentry list-group-item" type="submit" name="idpentityid" value="{{ idp.idpentityid }}">
+                    <div class="box-vcards-list__item box-vcard--compact searchbox-result side-padding-zero">
+                        <div class="box-vcards-list__inner side-padding-zero">
+                            <p class="box-vcards-list__img center">
+                                <img src="{{ idp.image }}" style="height: 50px; width: 50px; object-fit: cover; object-position: left">
+                            </p>
+                            <div class="box-vcards-list__content u-pb-0 u-pt-0 u-pr-0 u-pl-10">
+                                {% if attribute(idp.text, currentLanguage) is defined %}
+                                    {{ attribute(idp.text, currentLanguage) }}
+                                {% else %}
+                                    {{ idp.text.en }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            {% endfor %}
+
+            <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
+            <input type="hidden" id="source" name="source" value="default-sp" />
+        </form>
+    </div>
+{% endif %}
+
+<script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/searchbox.js"></script>
+
+<script>
+    let placeholderText = {% if attribute(configuration.placeholder, currentLanguage) is defined %}
+                              '{{ attribute(configuration.placeholder, currentLanguage) }}'
+                          {% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}
+                              '{{ configuration.placeholder | first }}'
+                          {% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}
+                              '{{ configuration.placeholder }}'
+                          {% else %}
+                              '{{ '{campusMultiauth:searchbox_placeholder}'|trans }}'
+                          {% endif %};
+
+    let framework = {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                        'muni_jvs'
+                    {% else %}
+                        'bootstrap'
+                    {% endif %}
+
+    let language = '{{ currentLanguage }}';
+    let componentIndex = '{{ component_index }}';
+</script>

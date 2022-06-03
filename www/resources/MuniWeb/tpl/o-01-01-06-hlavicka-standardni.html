@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<!--[if lte IE 9]>    <html lang="cs" class="old-browser no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="cs" class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="cs" class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Hlavičky | MUNI</title>
+		<link rel="stylesheet" href="../css/style.css" media="screen" />
+		<link rel="stylesheet" href="../css/print.css" media="print" />
+		<link rel="shortcut icon" href="../img/favicon.ico" />
+		<script>
+			document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+		</script>
+		<!-- <script src="../js/modernizr-custom.js" type="text/javascript"></script> -->
+		<script src="//maps.muni.cz/munimap/ics/map/lib/lib.js" type="text/javascript"></script>
+
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@muni_cz">
+		<meta name="twitter:title" content="Hlavičky">
+		<meta name="twitter:description" content="Description here">
+		<meta name="twitter:image" content="../img/social/twitter.png"> 
+		<!-- Open Graph data -->
+		<meta property="og:title" content="Hlavičky" />
+		<meta property="og:url" content="http://www.muni.com/" /> 		<meta property="og:description" content="Description here" />
+		<meta property="og:image" content="../img/social/facebook.png" />
+		<meta property="og:site_name" content="Masarykova univerzita" />
+
+		<!-- soubory pro dokumentaci -->
+		<link rel="stylesheet" href="../css/documentation.css" media="screen" />
+		<!-- / soubory pro dokumentaci -->
+
+		<!-- Hotjar Tracking Code for http://muni2017.superkoderi.cz/ -->
+		<script>
+		(function(h,o,t,j,a,r){
+		h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		h._hjSettings={hjid:429927,hjsv:5};
+		a=o.getElementsByTagName('head')[0];
+		r=o.createElement('script');r.async=1;
+		r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		a.appendChild(r);
+		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+		</script>
+	</head>
+	<body>
+		<p class="menu-accessibility">
+			<a title="Přejít k obsahu (Klávesová zkratka: Alt + 2)" accesskey="2" href="#main">Přejít k obsahu</a>
+			<span class="hide">|</span>
+			<a href="#menu-main">Přejít k hlavnímu menu</a>
+			<span class="hide">|</span>
+			<a href="#form-search">Přejít k vyhledávání</a>
+		</p>
+
+		
+		
+	<br /><br />
+
+	<div class="sk-annot--main">
+		<h1>
+			<strong>01.01</strong>
+			Hlavičky - standardní - logo až k hornímu okraji
+		</h1>
+		<p>
+			<strong>Zdrojové CSS:</strong> /src/css/organism/_header.scss<br />
+			<strong>Zdrojové JS:</strong><br />
+			/src/js/components/header.coffee<br />
+			/src/js/components/headerMenu.coffee
+		</p>
+	</div>
+
+	<div class="sk-example">
+		<div class="row-main">
+			<div class="sk-annot">
+				<h2 class="sk-annot__title">Jen se sekundárním menu</h2>
+			</div>
+			<div class="sk-example__comment">
+				<p>
+					Výchozí organismus s hlavičkou. Slouží pro něj div.header.
+				</p>
+				<p>
+					 <strong>Logo je zde vloženo bez horního odsazeni.</strong> K tomuto účelu slouží modifikátor <em>.header__logo--no-margin</em>
+					 aplikovaný na <em>.header__logo</em>.
+				</p>
+				<p>
+					Pro tuto komponentu existují dvě varianty – responzivní a neresponzivní. Problém je v tom, že v mobilní verzi je
+					standardní odsazení loga od horního okraje menší, než v desktopové verzi. Pokud je však logo až u horního okraje, tato
+					mezera se u něj nemá jak projevit. Pokud je použité logo možné shora oříznout a posunout ho na mobilu nahoru tak, aby 
+					mělo správnou pozici, je možné tohoto docílit modifikátorem <em>header__logo--no-margin--crop</em>.
+				</p>
+				<p>
+					Variantu je možné využít např. pro logo s ukrajinskou vlajkou (o vygenerování tohoto loga je možné požádat webcentrum@ics.muni.cz).
+				</p>
+			</div>
+		</div>
+		<div class="sk-example__content u-mb-50">
+			<header class="header header--nav-under">
+	<div class="row-main">
+
+		<div class="header__wrap">
+							<p class="header__logo header__logo--no-margin header__logo--no-margin--crop" role="banner">
+			
+				<a href="#">
+											<svg width="228" height="50" viewBox="0 0 228 50"><rect x="0" y="0" width="9" height="48" style="fill:#3a75c3 !important"></rect>
+<rect x="9" y="0" width="9" height="48" style="fill:#f9dd17 !important"></rect><path fill="#0000dc" d="M33.94,21l0,26.6l4.14,0l0,-26.6zm4.29,0l2.59,26.6l1.4,0l-2.58,-26.6zm6.73,0l-2.58,26.6l1.4,0l2.59,-26.6zm1.56,0l0,26.6l4.18,0l0,-26.6zm15.69,0l0,20.48c0,3.57,3.23,6.35,6.69,6.35c3.46,0,6.69,-2.78,6.69,-6.35l0,-20.48l-4.18,0l0,20.33c0,1.44,-1.29,2.47,-2.51,2.47c-1.22,0,-2.51,-1.03,-2.51,-2.47l0,-20.33zm26.26,0l0,26.6l4.18,0l0,-26.6zm4.33,0l3.95,26.6l1.45,0l-3.95,-26.6zm5.55,0l0,26.6l4.18,0l0,-26.6zm18.05,25.12l0,1.48l11.36,0l0,-1.48l-3.61,0l0,-23.64l3.61,0l0,-1.48l-11.36,0l0,1.48l3.57,0l0,23.64z"></path><path fill="#0000dc" d="M157.53,31.69l0,-10.68l-3.54,0l-1.55,4.9c-0.4,1.29,-0.76,2.63,-1.04,3.93l-0.03,0c-0.29,-1.3,-0.65,-2.64,-1.06,-3.93l-1.54,-4.9l-3.54,0l0,10.68l2.11,0l0,-5.31c0,-1.34,-0.03,-2.67,-0.09,-4l0.03,0c0.35,1.3,0.74,2.63,1.15,3.92l1.69,5.39l2.52,0l1.7,-5.39c0.4,-1.29,0.79,-2.62,1.13,-3.92l0.03,0c-0.06,1.33,-0.09,2.66,-0.09,4l0,5.31zm5.23,-7.86c-2.17,0,-3.22,1.17,-3.29,2.62l2.03,0c0.03,-0.72,0.48,-1.15,1.26,-1.15c0.74,0,1.25,0.39,1.25,1.35l0,0.27c-0.48,0.03,-1.34,0.12,-1.91,0.21c-2.2,0.34,-2.95,1.18,-2.95,2.43c0,1.32,0.98,2.31,2.6,2.31c1.04,0,1.9,-0.39,2.47,-1.2l0.03,0c0,0.37,0.03,0.7,0.1,1.02l1.9,0c-0.14,-0.51,-0.22,-1.13,-0.22,-2.09l0,-2.76c0,-1.99,-1.11,-3.01,-3.27,-3.01zm1.25,4.65c0,0.69,-0.07,1.09,-0.44,1.45c-0.3,0.3,-0.76,0.44,-1.19,0.44c-0.74,0,-1.13,-0.39,-1.13,-0.96c0,-0.62,0.36,-0.9,1.23,-1.05c0.45,-0.08,1.08,-0.14,1.53,-0.17zm6.81,-4.65c-1.89,0,-3.15,0.97,-3.15,2.34c0,1.77,1.36,2.07,2.64,2.4c1.19,0.31,1.75,0.45,1.75,1.11c0,0.45,-0.37,0.73,-1.1,0.73c-0.87,0,-1.34,-0.43,-1.34,-1.2l-2.13,0c0,1.85,1.31,2.72,3.42,2.72c2.07,0,3.36,-0.96,3.36,-2.39c0,-1.86,-1.5,-2.2,-2.86,-2.56c-1.16,-0.3,-1.64,-0.44,-1.64,-0.98c0,-0.43,0.36,-0.7,1.04,-0.7c0.75,0,1.19,0.33,1.19,1.11l2.02,0c0,-1.7,-1.21,-2.58,-3.2,-2.58zm8.23,0c-2.17,0,-3.22,1.17,-3.3,2.62l2.04,0c0.03,-0.72,0.48,-1.15,1.26,-1.15c0.74,0,1.25,0.39,1.25,1.35l0,0.27c-0.48,0.03,-1.34,0.12,-1.91,0.21c-2.2,0.34,-2.95,1.18,-2.95,2.43c0,1.32,0.97,2.31,2.59,2.31c1.05,0,1.91,-0.39,2.48,-1.2l0.03,0c0,0.37,0.03,0.7,0.1,1.02l1.89,0c-0.13,-0.51,-0.21,-1.13,-0.21,-2.09l0,-2.76c0,-1.99,-1.11,-3.01,-3.27,-3.01zm1.25,4.65c0,0.69,-0.08,1.09,-0.44,1.45c-0.3,0.3,-0.76,0.44,-1.2,0.44c-0.73,0,-1.12,-0.39,-1.12,-0.96c0,-0.62,0.36,-0.9,1.23,-1.05c0.45,-0.08,1.08,-0.14,1.53,-0.17zm8.02,-4.53c-0.9,0,-1.57,0.37,-2.08,1.2l-0.03,0l0,-1.08l-1.93,0l0,7.62l2.1,0l0,-3.6c0,-1.5,0.68,-2.31,1.97,-2.31c0.21,0,0.43,0.03,0.66,0.07l0,-1.81c-0.2,-0.06,-0.48,-0.09,-0.69,-0.09zm8.48,0.12l-2.16,0l-0.83,2.55c-0.34,1.05,-0.62,2.13,-0.88,3.19l-0.03,0c-0.24,-1.06,-0.52,-2.14,-0.84,-3.19l-0.78,-2.55l-2.25,0l2.16,6.19c0.3,0.86,0.36,1.1,0.36,1.38c0,0.75,-0.55,1.24,-1.39,1.24c-0.32,0,-0.61,-0.05,-0.82,-0.13l0,1.68c0.32,0.08,0.72,0.12,1.1,0.12c1.9,0,2.86,-0.67,3.63,-2.82zm8.19,7.62l-3.21,-4.11l2.89,-3.51l-2.36,0l-2.47,3.07l-0.03,0l0,-6.13l-2.09,0l0,10.68l2.09,0l0,-3.57l0.03,0l2.55,3.57zm3.89,-7.86c-2.39,0,-3.9,1.57,-3.9,4.05c0,2.47,1.51,4.05,3.9,4.05c2.38,0,3.9,-1.58,3.9,-4.05c0,-2.48,-1.52,-4.05,-3.9,-4.05zm0,1.62c1.03,0,1.69,0.94,1.69,2.43c0,1.48,-0.66,2.43,-1.69,2.43c-1.04,0,-1.7,-0.95,-1.7,-2.43c0,-1.49,0.66,-2.43,1.7,-2.43zm9.52,6.24l2.57,-7.62l-2.19,0l-0.89,3c-0.31,1.08,-0.6,2.19,-0.84,3.3l-0.03,0c-0.24,-1.11,-0.52,-2.22,-0.84,-3.3l-0.88,-3l-2.19,0l2.56,7.62zm6.27,-7.86c-2.17,0,-3.22,1.17,-3.3,2.62l2.04,0c0.03,-0.72,0.48,-1.15,1.26,-1.15c0.74,0,1.25,0.39,1.25,1.35l0,0.27c-0.48,0.03,-1.34,0.12,-1.91,0.21c-2.2,0.34,-2.95,1.18,-2.95,2.43c0,1.32,0.97,2.31,2.59,2.31c1.05,0,1.91,-0.39,2.48,-1.2l0.03,0c0,0.37,0.03,0.7,0.1,1.02l1.89,0c-0.13,-0.51,-0.21,-1.13,-0.21,-2.09l0,-2.76c0,-1.99,-1.11,-3.01,-3.27,-3.01zm1.25,4.65c0,0.69,-0.08,1.09,-0.44,1.45c-0.3,0.3,-0.76,0.44,-1.2,0.44c-0.73,0,-1.12,-0.39,-1.12,-0.96c0,-0.62,0.36,-0.9,1.23,-1.05c0.45,-0.08,1.08,-0.14,1.53,-0.17z"></path><path fill="#0000dc" d="M147.75,49.87c0.97,0,1.74,-0.46,2.24,-1.14l0.02,0l0,0.96l1.97,0l0,-7.62l-2.1,0l0,4.08c0,1.38,-0.63,2.07,-1.5,2.07c-0.82,0,-1.34,-0.52,-1.34,-1.68l0,-4.47l-2.1,0l0,4.68c0,2.07,1.1,3.12,2.81,3.12zm10.5,-7.98c-0.97,0,-1.74,0.46,-2.24,1.14l-0.02,0l0,-0.96l-1.97,0l0,7.62l2.1,0l0,-4.08c0,-1.38,0.63,-2.07,1.5,-2.07c0.82,0,1.34,0.52,1.34,1.68l0,4.47l2.1,0l0,-4.68c0,-2.07,-1.1,-3.12,-2.81,-3.12zm6.87,-1.08l0,-1.8l-2.1,0l0,1.8zm0,8.88l0,-7.62l-2.1,0l0,7.62zm6.21,0l2.56,-7.62l-2.19,0l-0.88,3c-0.32,1.08,-0.6,2.19,-0.84,3.3l-0.03,0c-0.24,-1.11,-0.53,-2.22,-0.84,-3.3l-0.89,-3l-2.19,0l2.57,7.62zm6.69,-1.24c-0.9,0,-1.67,-0.56,-1.73,-2.14l5.48,0c0,-0.84,-0.08,-1.42,-0.24,-1.95c-0.48,-1.54,-1.77,-2.53,-3.53,-2.53c-2.38,0,-3.78,1.74,-3.78,3.99c0,2.43,1.4,4.11,3.8,4.11c2.02,0,3.34,-1.16,3.64,-2.55l-2.14,0c-0.11,0.61,-0.66,1.07,-1.5,1.07zm-0.02,-5.14c0.84,0,1.53,0.53,1.67,1.68l-3.33,0c0.16,-1.15,0.81,-1.68,1.66,-1.68zm9.36,-1.36c-0.9,0,-1.57,0.37,-2.08,1.2l-0.03,0l0,-1.08l-1.94,0l0,7.62l2.1,0l0,-3.6c0,-1.5,0.69,-2.31,1.98,-2.31c0.21,0,0.42,0.03,0.66,0.07l0,-1.81c-0.21,-0.06,-0.48,-0.09,-0.69,-0.09zm7.5,1.83l0,-1.71l-6.12,0l0,1.65l3.59,0l0,0.03l-3.74,4.23l0,1.71l6.42,0l0,-1.65l-3.88,0l0,-0.03zm3.69,-2.97l0,-1.8l-2.1,0l0,1.8zm0,8.88l0,-7.62l-2.1,0l0,7.62zm5.46,-1.58c-0.72,0,-0.99,-0.33,-0.99,-1.16l0,-3.32l1.46,0l0,-1.56l-1.46,0l0,-1.98l-2.1,0l0,1.98l-1.23,0l0,1.56l1.23,0l0,3.69c0,1.77,0.77,2.47,2.52,2.47c0.36,0,0.83,-0.06,1.11,-0.15l0,-1.6c-0.13,0.05,-0.34,0.07,-0.54,0.07zm4.92,-6.28c-2.17,0,-3.22,1.17,-3.3,2.62l2.04,0c0.03,-0.72,0.48,-1.15,1.26,-1.15c0.74,0,1.25,0.39,1.25,1.35l0,0.27c-0.48,0.03,-1.34,0.12,-1.91,0.21c-2.2,0.34,-2.95,1.18,-2.95,2.43c0,1.32,0.97,2.31,2.59,2.31c1.05,0,1.91,-0.39,2.48,-1.2l0.03,0c0,0.37,0.03,0.71,0.1,1.02l1.89,0c-0.13,-0.51,-0.21,-1.13,-0.21,-2.09l0,-2.76c0,-1.99,-1.11,-3.01,-3.27,-3.01zm1.25,4.65c0,0.69,-0.08,1.09,-0.44,1.45c-0.3,0.3,-0.76,0.44,-1.2,0.44c-0.73,0,-1.12,-0.39,-1.12,-0.96c0,-0.62,0.36,-0.9,1.23,-1.05c0.45,-0.08,1.08,-0.14,1.53,-0.16z"></path><desc>Masarykova univerzita</desc></svg>					
+				</a>
+							</p>
+			
+			<div class="header__side">
+				<form id="form-search" action="?" class="header__search" role="search">
+					<fieldset>
+						<p>
+							<label for="search" class="header__search__label icon icon-search"><span class="vhide">Vyhledávání</span></label>
+							<span class="inp-fix inp-icon inp-icon--after">
+								<input type="text" name="search" id="search" class="inp-text" placeholder="Hledat..." />
+								<button type="submit" class="btn-icon icon icon-search">
+									<span class="vhide">Vyhledat</span>
+								</button>
+							</span>
+						</p>
+					</fieldset>
+				</form>
+
+									<nav class="menu-lang menu-lang--select" aria-label="Výběr jazyka">
+						<p class="menu-lang__selected">
+							<a href="#" class="menu-lang__selected__link">
+								English
+							</a>
+						</p>
+						<p class="menu-lang__popup">
+							<a href="#" class="menu-lang__popup__link">
+								German
+							</a>
+							<a href="#" class="menu-lang__popup__link">
+								Spain
+							</a>
+							<a href="#" class="menu-lang__popup__link">
+								Česky
+							</a>
+						</p>
+					</nav>
+				
+
+				
+				
+				
+				<nav class="menu-mobile"  aria-label="Mobilní hlavní menu">
+					<div class="menu-mobile__wrap">
+						<div class="row-main">
+							<ul class="menu-mobile__list">
+								<li class="menu-mobile__item">
+									<a href="#" class="menu-mobile__link menu-mobile__link--search">
+										<span class="icon icon-search"></span>
+									</a>
+								</li>
+								<li class="menu-mobile__item">
+									<a href="#" class="menu-mobile__link menu-mobile__link--lang">
+										EN
+									</a>
+								</li>
+								<li class="menu-mobile__item">
+									<a href="#" class="menu-mobile__link menu-mobile__link--burger">
+										<span class="menu-mobile__burger"><span></span></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<nav id="menu-main" class="menu-primary"  aria-label="Hlavní navigace">
+		<div class="menu-primary__holder">
+			<div class="row-main">
+				<div class="menu-primary__wrap">
+										<ul class="menu-primary__list">
+						<li class="menu-primary__item with-subbox">
+							<span class="menu-primary__links">
+								<a href="#" class="menu-primary__link">
+									<span class="menu-primary__inner">Spolupráce</span>
+									<span class="icon icon-angle-down"></span>
+								</a>
+								<a href="#" class="menu-primary__toggle icon icon-angle-down" aria-hidden="true"></a>
+							</span>
+							<div class="menu-subbox">
+								<a href="#" class="menu-subbox__close icon icon-chevron-left" aria-hidden="true"></a>
+								<div class="grid">
+									<div class="grid__cell size--m--4-12 size--l--3-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											O nás
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<ul class="menu-subbox__list">
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item A</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item B</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item C</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item D</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item E</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="grid__cell size--m--4-12 size--l--3-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											<a href="#" class="menu-subbox__title__link">Kariéra na MUNI</a>
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<ul class="menu-subbox__list">
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item A</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item B</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item C</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item D</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item E</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="grid__cell size--m--4-12 size--l--3-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											<a href="#" class="menu-subbox__title__link">Lidé a pracoviště</a>
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<ul class="menu-subbox__list">
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item A</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item B</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item C</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item D</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item E</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="grid__cell size--m--4-12 size--l--3-12 menu-subbox__toggle">
+										<a href="/vyzkum/vyzkumna-temata" class="box-article-grid u-mb-0">
+											<p class="box-article-grid__img">
+											<img alt="Témata, ve kterých jsme vynikající" src="http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=278" srcset="http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=278 278w,http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=477 477w" sizes="(min-width:1240px) 278px,(min-width:1024px) calc((100vw - 30px) * 0.5 - 20px),(min-width:768px) calc((100vw - 10px) * 0.5 - 20px),calc((100vw - 10px) * 1 - 20px)">
+											</p>
+											<div class="box-article-grid__content" style="min-height: 93px;">
+													<h2 class="box-article-grid__title">Témata, ve kterých jsme vynikající</h2>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="menu-primary__item with-submenu">
+							<span class="menu-primary__links">
+								<a href="#" class="menu-primary__link is-active">
+									<span class="menu-primary__inner">Chci studovat</span>
+									<span class="icon icon-angle-down"></span>
+								</a>
+								<a href="#" class="menu-primary__toggle icon icon-angle-down" aria-hidden="true"></a>
+							</span>
+							<div class="menu-submenu">
+								<ul class="menu-submenu__list">
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Odkaz na root kategorii</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link">Submenu item 2</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link is-active">Submenu item 3</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link">Submenu item 4</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link">Submenu item 5</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link menu-submenu__link--external">
+											Submenu item 6
+											<span class="icon icon-external-link"></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="menu-primary__item with-submenu">
+							<span class="menu-primary__links">
+								<a href="#" class="menu-primary__link">
+									<span class="menu-primary__inner">Výzkum</span>
+									<span class="icon icon-angle-down"></span>
+								</a>
+								<a href="#" class="menu-primary__toggle icon icon-angle-down" aria-hidden="true"></a>
+							</span>
+							<div class="menu-submenu">
+								<ul class="menu-submenu__list">
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Odkaz na root kategorii</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Submenu item 2</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link is-active">Submenu item 3</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Submenu item 4</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Submenu item 5</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Submenu item 6</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="menu-primary__item with-subbox">
+							<span class="menu-primary__links">
+								<a href="#" class="menu-primary__link">
+									<span class="menu-primary__inner">O nás</span>
+									<span class="icon icon-angle-down"></span>
+								</a>
+								<a href="#" class="menu-primary__toggle icon icon-angle-down" aria-hidden="true"></a>
+							</span>
+							<div class="menu-subbox">
+								<a href="#" class="menu-subbox__close icon icon-chevron-left" aria-hidden="true"></a>
+								<div class="grid">
+									<div class="grid__cell size--m--9-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											Univerzitní IT služby
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<div class="grid">
+												<div class="grid__cell size--m--6-12 size--l--4-12">
+													<ul class="icon-ul icon-ul--spec">
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-wifi"></i>Sítě a Wi-Fi
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-info-circle"></i>Informační systémy
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-lock-alt"></i>Účty, hlea, ID karty
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-circle-notch"></i>Uživatelská podpora
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-mail-bulk"></i>E-mail, spolupráce, Office 365
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-phone-square"></i>Telefonování, audio, video
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="grid__cell size--m--6-12 size--l--4-12">
+													<ul class="icon-ul icon-ul--spec">
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-wifi"></i>Tiskové služby a bankovníky
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-book"></i>Knihovny a nakladatelství
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-check-square"></i>PC studovny a učebny
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-map"></i>MAPY a GIS
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-book"></i>Výuka a vzdělávání
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-keyboard"></i>Sofrware a hardware
+															</a>
+														</li>
+													</ul>
+												</div>
+												<div class="grid__cell size--m--6-12 size--l--4-12">
+													<ul class="icon-ul icon-ul--spec">
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-browser"></i>Web, hosting, propagace
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-server"></i>Datová uložiště
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-shield-check"></i>Informační bezpečnost
+															</a>
+														</li>
+														<li>
+															<a href="#">
+																<i class="icon-li icon icon-cloud"></i>Cloud a náročné výpočty
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="grid__cell size--m--3-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											Služby podle skupin
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<ul class="list-blank">
+												<li>
+													<a href="#" class="text-icon">
+														<span class="text-icon__icon text-icon__icon--bg bg-blue-dark">
+															<span class="icon icon-filter"></span>
+														</span>
+														<span class="text-icon__label">Student</span>
+													</a>
+												</li>
+												<li>
+													<a href="#" class="text-icon">
+														<span class="text-icon__icon text-icon__icon--bg">V</span>
+														<span class="text-icon__label">Vědec</span>
+													</a>
+												</li>
+												<li>
+													<a href="#" class="text-icon">
+														<span class="text-icon__icon text-icon__icon--bg">ZA</span>
+														<span class="text-icon__label">Zaměstnanec</span>
+													</a>
+												</li>
+												<li>
+													<a href="#" class="text-icon">
+														<span class="text-icon__icon text-icon__icon--bg bg-violet">DI</span>
+														<span class="text-icon__label">Uživatelé se specifickými potřebami</span>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="menu-primary__item with-subbox">
+							<span class="menu-primary__links">
+								<a href="#" class="menu-primary__link">
+									<span class="menu-primary__inner">O Univerzitě</span>
+									<span class="icon icon-angle-down"></span>
+								</a>
+								<a href="#" class="menu-primary__toggle icon icon-angle-down" aria-hidden="true"></a>
+							</span>
+							<div class="menu-subbox">
+								<a href="#" class="menu-subbox__close icon icon-chevron-left" aria-hidden="true"></a>
+								<div class="grid">
+									<div class="grid__cell size--m--4-12 size--l--3-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											Item group
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<ul class="menu-subbox__list">
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item A</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item B</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item C</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item D</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item E</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="grid__cell size--m--4-12 size--l--3-12 menu-subbox__toggle">
+										<p class="menu-subbox__title with-subitems">
+											<a href="#" class="menu-subbox__title__link">Item group</a>
+											<a href="#" class="menu-subbox__title__toggle icon icon-angle-down"></a>
+										</p>
+										<div class="menu-subbox__box">
+											<ul class="menu-subbox__list">
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item A</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item B</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item C</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item D</a>
+												</li>
+												<li class="menu-subbox__item">
+													<a href="#" class="menu-subbox__link">Menu item E</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="grid__cell size--m--4-12 size--l--3-12">
+										<a href="/vyzkum/vyzkumna-temata" class="box-article-grid u-mb-0">
+											<p class="box-article-grid__img">
+											<img alt="Témata, ve kterých jsme vynikající" src="http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=278" srcset="http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=278 278w,http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=477 477w" sizes="(min-width:1240px) 278px,(min-width:1024px) calc((100vw - 30px) * 0.5 - 20px),(min-width:768px) calc((100vw - 10px) * 0.5 - 20px),calc((100vw - 10px) * 1 - 20px)">
+											</p>
+											<div class="box-article-grid__content" style="min-height: 93px;">
+													<h2 class="box-article-grid__title">Témata, ve kterých jsme vynikající</h2>
+											</div>
+										</a>
+									</div>
+									<div class="grid__cell size--m--4-12 size--l--3-12">
+										<a href="/vyzkum/vyzkumna-temata" class="box-article-grid u-mb-0">
+											<p class="box-article-grid__img">
+											<img alt="Témata, ve kterých jsme vynikající" src="http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=278" srcset="http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=278 278w,http://www-test.muni.cz/media/21551/dsc_2066.jpg?mode=crop&amp;center=0.5,0.5&amp;rnd=131348408180000000&amp;heightratio=0.5&amp;width=477 477w" sizes="(min-width:1240px) 278px,(min-width:1024px) calc((100vw - 30px) * 0.5 - 20px),(min-width:768px) calc((100vw - 10px) * 0.5 - 20px),calc((100vw - 10px) * 1 - 20px)">
+											</p>
+											<div class="box-article-grid__content" style="min-height: 93px;">
+													<h2 class="box-article-grid__title">Témata, ve kterých jsme vynikající</h2>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="menu-primary__item with-submenu">
+							<span class="menu-primary__links">
+								<a href="#" class="menu-primary__link">
+									<span class="menu-primary__inner">Chci studovat</span>
+									<span class="icon icon-angle-down"></span>
+								</a>
+								<a href="#" class="menu-primary__toggle icon icon-angle-down" aria-hidden="true"></a>
+							</span>
+							<div class="menu-submenu">
+								<ul class="menu-submenu__list">
+									<li class="menu-submenu__item">
+										<a href="https://muni.cz" class="menu-submenu__link">Odkaz na root kategorii</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link">Submenu item 2</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link is-active">Submenu item 3</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link">Submenu item 4</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link">Submenu item 5</a>
+									</li>
+									<li class="menu-submenu__item">
+										<a href="#" class="menu-submenu__link menu-submenu__link--external">
+											Submenu item 6
+											<span class="icon icon-external-link"></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<!-- <li class="menu-primary__item">
+							<a href="#" class="menu-primary__link">
+								O nás
+							</a>
+						</li> -->
+											</ul>
+				
+									<ul class="menu-header-secondary">
+						<li class="menu-header-secondary__item">
+							<a href="#" class="menu-header-secondary__link is-active">Studenti</a>
+						</li>
+						<li class="menu-header-secondary__item">
+							<a href="#" class="menu-header-secondary__link">Absolventi</a>
+						</li>
+											</ul>
+							</div>
+		</div>
+		<a href="#" class="menu-primary__title">
+			<span></span>
+			&nbsp;
+		</a>
+		<div class="menu-primary__main-toggle" aria-hidden="true"></div>
+		</div>
+	</nav>
+
+	<nav class="menu-secondary menu-secondary--white"  aria-label="Vedlejší navigace">
+		<div class="row-main">
+			<div class="menu-secondary__wrap">
+				<ul class="menu-secondary__list js-scroll-nav">
+					<li class="menu-secondary__item">
+						<a href="#" class="menu-secondary__link is-active">
+							Úvod
+							<span class="icon icon-angle-down"></span>
+						</a>
+						<div class="menu-secondary__submenu">
+							<ul class="menu-secondary__submenu__list">
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 11</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 12</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link is-active">Submenu item 13</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 14</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 15</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="menu-secondary__item">
+						<a href="#" class="menu-secondary__link">
+							Proč MUNI
+							<span class="icon icon-angle-down"></span>
+						</a>
+						<div class="menu-secondary__submenu">
+							<ul class="menu-secondary__submenu__list">
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 21</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 22</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link is-active">Submenu item 23</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 24</a>
+								</li>
+								<li class="menu-secondary__submenu__item">
+									<a href="#" class="menu-secondary__submenu__link">Submenu item 25</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="menu-secondary__item">
+						<a href="#" class="menu-secondary__link">Nabídka oborů</a>
+					</li>
+					<li class="menu-secondary__item">
+						<a href="#" class="menu-secondary__link">Přijímačky</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	</header>
+
+		</div>
+	</div>
+
+		
+		<script src="../js/jquery.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+			App.run({})
+		</script>
+		<!-- soubory pro dokumentaci -->
+		<link rel="stylesheet" href="../css/documentation.css" media="screen" />
+		<script src="../js/documentation.js"></script>
+		<script src="../js/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+		<!-- / soubory pro dokumentaci -->
+			</body>
+</html>

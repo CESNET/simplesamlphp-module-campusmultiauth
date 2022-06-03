@@ -1,0 +1,56 @@
+msgid "{campusMultiauth:wrong_user_pass}"
+msgstr "Chybné uživatelské jméno nebo heslo!"
+
+msgid "{campusMultiauth:password}"
+msgstr "Heslo"
+
+msgid "{campusMultiauth:login_title}"
+msgstr "Přihlášení"
+
+msgid "{campusMultiauth:remember}"
+msgstr "Zapamatovat si mě"
+
+msgid "{campusMultiauth:login}"
+msgstr "Přihlásit"
+
+msgid "{campusMultiauth:sign_in_with}"
+msgstr "Přihlásit přes"
+
+msgid "{campusMultiauth:sign_in_another_identity}"
+msgstr "Přihlášení přes cizí identitu"
+
+msgid "{campusMultiauth:or}"
+msgstr "nebo"
+
+msgid "{campusMultiauth:lang_selection}"
+msgstr "Výběr jazyka"
+
+msgid "{campusMultiauth:mobile_lang_selection}"
+msgstr "Výběr jazyka mobil"
+
+msgid "{campusMultiauth:username_label}"
+msgstr "Uživatelské jméno"
+
+msgid "{campusMultiauth:username_placeholder}"
+msgstr "Uživatelské jméno"
+
+msgid "{campusMultiauth:password_label}"
+msgstr "Heslo"
+
+msgid "{campusMultiauth:password_placeholder}"
+msgstr "Heslo"
+
+msgid "{campusMultiauth:searchbox_title}"
+msgstr "Přihlášení přes jinou instituci"
+
+msgid "{campusMultiauth:searchbox_placeholder}"
+msgstr "Začněte psát název instituce"
+
+msgid "{campusMultiauth:individualIdentities_title}"
+msgstr "Přihlášení přes instituci nebo sociální síť"
+
+msgid "{campusMultiauth:more_options}"
+msgstr "Více možností"
+
+msgid "{campusMultiauth:wrong_username_or_password}"
+msgstr "Špatné uživatelské jméno nebo heslo."

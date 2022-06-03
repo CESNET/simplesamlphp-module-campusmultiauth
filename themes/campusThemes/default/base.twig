@@ -1,0 +1,60 @@
+{% spaceless %}
+    <!DOCTYPE html>
+    <html lang="{{ currentLanguage }}" xml:lang="{{ currentLanguage }}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <title>{{ pagetitle }}</title>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/js/standalone/selectize.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/font_awesome/css/all.css" />
+        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/css/selectize.css" />
+
+        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+            <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/MuniWeb/css/style{% if wayf_config.muni_faculty is defined%}-{{ wayf_config.muni_faculty }}{% endif %}.css" />
+        {% else %}
+            <link href="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
+        {% endif %}
+
+        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/campus_idp.css" />
+        <meta name="robots" content="noindex, nofollow">
+        {% block preload %}{% endblock %}
+    </head>
+    <body id="{{ templateId }}">
+        {% block header %}{% include "_header.twig" %}{% endblock %}
+        <div style="width: 100%; text-align: center">
+            {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                <div class="window-jvs">
+            {% else %}
+                <div class="window">
+            {% endif %}
+                <h3 class="margin-bottom-12 {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}header-text-jvs{% else %}header-text{% endif%}">
+                    <b>{{ '{campusMultiauth:login_title}'|trans }}</b>
+                </h3>
+                {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                    <div id="content-jvs">
+                        <div class="wrap-jvs">
+                {% else %}
+                    <div id="content">
+                        <div class="wrap">
+                {% endif %}
+                        {% block contentwrapper %}{% block content %}{% endblock %}{% endblock contentwrapper %}
+                    </div>
+                </div>
+        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+            </div>
+        </div>
+        {% endif %}
+        {% block footer %}{% include "_footer.twig" %}{% endblock %}
+        {% if wayf_config.css_framework is not defined or wayf_config.css_framework != 'muni_jvs' %}
+            </div>
+        </div>
+        {% endif %}
+        {% block postload %}{% endblock %}
+    </body>
+    </html>
+{% endspaceless %}

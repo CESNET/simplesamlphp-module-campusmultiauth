@@ -1,0 +1,48 @@
+{#{% extends "../modules/campusMultiauth/templates/base.twig" %}#}
+{% extends "base.twig" %}
+
+{% block content %}
+
+    {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+        <div class="grid">
+            <div class="grid__cell size--m--2-4 wrap-col">
+    {% else %}
+        <div class="row">
+            <div class="col-md-6 wrap-col">
+    {% endif %}
+
+            {% for component_configuration in wayf_config.components %}
+                {% if component_configuration.name == 'local_login' %}
+                    {{ include('local-login.twig', {configuration: component_configuration}) }}
+                {% elseif component_configuration.name == 'individual_identities' %}
+                    {{ include('individual-identities.twig', {configuration: component_configuration}) }}
+                {% elseif component_configuration.name == 'searchbox' %}
+                    {{ include('searchbox.twig', {configuration: component_configuration, component_index: loop.index0}) }}
+                {% endif %}
+
+                {% if component_configuration.end_col is defined and component_configuration.end_col %}
+                    </div>
+                    {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+                        <div class="grid__cell size--m--2-4 wrap-col">
+                    {% else %}
+                        <div class="col-md-6 wrap-col">
+                    {% endif %}
+                {% endif %}
+
+                {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) %}
+                    <div class="hrline color-secondary">
+                        <span>{{ '{campusMultiauth:or}'|trans }}</span>
+                    </div>
+                {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
+                    <div class="hrline last-col-component color-secondary">
+                        <span>{{ '{campusMultiauth:or}'|trans }}</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize_conf.js"></script>
+
+{% endblock %}

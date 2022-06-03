@@ -12,7 +12,10 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "simplesamlphp/composer-module-installer": "~1.0",
-    "simplesamlphp/simplesamlphp": "^1.19"
+    "simplesamlphp/simplesamlphp": "^1.19",
+    "twig/twig": "^1.43 || ^2.0",
+    "league/commonmark": "^1.0",
+    "ext-intl": "^8.0"
   },
   "config": {
     "allow-plugins": {
