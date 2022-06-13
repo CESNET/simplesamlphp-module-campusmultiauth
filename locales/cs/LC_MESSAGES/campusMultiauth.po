@@ -54,3 +54,6 @@ msgstr "Více možností"
 
 msgid "{campusMultiauth:wrong_username_or_password}"
 msgstr "Špatné uživatelské jméno nebo heslo."
+
+msgid "{campusMultiauth:search_button}"
+msgstr "Vyhledat"

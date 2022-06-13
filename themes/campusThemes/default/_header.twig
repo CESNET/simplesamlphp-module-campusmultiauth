@@ -16,6 +16,16 @@
                                     </a>
                                 {% endif %}
                             </p>
+                            <p class="menu-lang__popup">
+                                {% for langKey, langName in wayf_config.languages %}
+                                    {% if langKey != currentLanguage and currentUrl ~ "&language=" ~ langKey %}
+                                        <a href="{{ currentUrl ~ "?language=" ~ langKey }}{%- for name, value in queryParams %}{{ "&" ~ name ~ "=" ~ value }}{%- endfor %}"
+                                           rel="alternate" hreflang="{{ langKey }}" lang="{{ langKey }}" class="menu-lang__popup__link">
+                                            {{ langName }}
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
                         </nav>
                     {% else %}
                         <nav class="menu-lang" aria-label="{{ '{campusMultiauth:lang_selection}'|trans }}">
@@ -61,10 +71,10 @@
         <div class="header-container">
             {% if wayf_config.languages | length > 2 %}
                 <div class="dropdown mobile-language language-bar-margin">
-                    <a id="dropdown-language" class="btn btn-secondary dropdown-toggle text-primary" href="#" role="button">
+                    <a id="dropdown-language-mobile" class="btn btn-secondary dropdown-toggle text-primary bg-white border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ currentLanguage | upper }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-language">
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-language-mobile">
                         {% for langKey, langName in wayf_config.languages %}
                             {% if langKey != currentLanguage %}
                                 <li>
@@ -77,14 +87,14 @@
                     </ul>
                 </div>
                 <div class="dropdown desktop-language language-bar-margin">
-                    <a id="dropdown-language" class="btn btn-secondary dropdown-toggle text-primary" href="#" role="button">
+                    <a id="dropdown-language-desktop" class="btn btn-secondary dropdown-toggle text-primary bg-white border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {% if attribute(wayf_config.languages, currentLanguage) is defined %}
                             {{ attribute(wayf_config.languages, currentLanguage) }}
                         {% else %}
                             {{ currentLanguage | upper }}
                         {% endif %}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown-language">
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-language-desktop">
                         {% for langKey, langName in wayf_config.languages %}
                             {% if langKey != currentLanguage %}
                                 <li>

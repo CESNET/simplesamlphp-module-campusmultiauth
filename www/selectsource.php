@@ -4,6 +4,7 @@ use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\BadRequest;
 use SimpleSAML\Logger;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\campusMultiauth\Auth\Source\Campusidp;
 use SimpleSAML\XHTML\Template;
@@ -17,12 +18,16 @@ empty($_REQUEST['AuthState']) ? $authStateId = $_POST['authstate'] : $authStateI
 $state = State::loadState($authStateId, Campusidp::STAGEID_USERPASS);
 
 if (array_key_exists('source', $_POST)) {
-    if (array_key_exists('idpentityid-searchbox', $_POST)) {
-        $state['saml:idp'] = $_POST['idpentityid-searchbox'];
+    if (array_key_exists('searchbox', $_POST)) {
+        $state['saml:idp'] = $_POST['searchbox'];
 
-        Campusidp::setCookie(Campusidp::COOKIE_IDP_ENTITY_ID, $_POST['idpentityid-searchbox']);
-        Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_NAME, $_POST['institution-name']);
-        Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_IMG, $_POST['institution-img']);
+        $metadataStorageHandler = MetaDataStorageHandler::getMetadataHandler();
+        $metadata = $metadataStorageHandler->getList();
+
+        Campusidp::setCookie(Campusidp::COOKIE_IDP_ENTITY_ID, $_POST['searchbox']);
+        Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_NAME, json_encode($metadata[$_POST['searchbox']]['name']));
+        Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_IMG, Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]));
+        Campusidp::setCookie(Campusidp::COOKIE_COMPONENT_INDEX, $_POST['componentIndex']);
 
         Campusidp::delegateAuthentication($_POST['source'], $state);
     } elseif (array_key_exists('idpentityid', $_POST)) {
@@ -62,7 +67,7 @@ $idps = null;
 if (!empty($_POST['q'])) {
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusMultiauth/idpSearch.php?q=' . $_POST['q']));
+    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusMultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $idps = json_decode(curl_exec($ch));
@@ -77,9 +82,11 @@ $t->data['authstate'] = $authStateId;
 $t->data['currentUrl'] = htmlentities($_SERVER['PHP_SELF']);
 $t->data['wayf_config'] = $wayfConfig;
 $t->data['idps'] = $idps;
+$t->data['no_js_display_index'] = $_POST['componentIndex'];
 $t->data['cookie_idpentityid'] = Campusidp::getCookie(Campusidp::COOKIE_IDP_ENTITY_ID);
 $t->data['cookie_institution_name'] = json_decode(Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_NAME), true);
 $t->data['cookie_institution_img'] = Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_IMG);
+$t->data['cookie_component_index'] = Campusidp::getCookie(Campusidp::COOKIE_COMPONENT_INDEX);
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
 

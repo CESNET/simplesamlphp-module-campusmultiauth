@@ -3,6 +3,7 @@
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module\campusMultiauth\Auth\Source\Campusidp;
 
 header('Content-type: application/json');
 
@@ -91,7 +92,7 @@ foreach ($metadata as $entityid => $idpentry) {
 $filteredData = [];
 
 foreach ($metadata as $entityid => $idpentry) {
-    if (is_array($idpentry['name'])) {
+    if (!empty($idpentry['name']) && is_array($idpentry['name'])) {
         foreach ($idpentry['name'] as $key => $value) {
             if (str_contains($transliterator->transliterate($value), $transliterator->transliterate($searchTerm))) {
                 $filteredData[$entityid] = $idpentry;
@@ -100,7 +101,7 @@ foreach ($metadata as $entityid => $idpentry) {
         }
     }
 
-    if (!in_array($idpentry, $filteredData) && is_array($idpentry['description'])) {
+    if (!in_array($idpentry, $filteredData) && !empty($idpentry['description']) && is_array($idpentry['description'])) {
         foreach ($idpentry['description'] as $key => $value) {
             if (str_contains($transliterator->transliterate($value), $transliterator->transliterate($searchTerm))) {
                 $filteredData[$entityid] = $idpentry;
@@ -109,7 +110,7 @@ foreach ($metadata as $entityid => $idpentry) {
         }
     }
 
-    if (!in_array($idpentry, $filteredData) && is_array($idpentry['url'])) {
+    if (!in_array($idpentry, $filteredData) && !empty($idpentry['url']) && is_array($idpentry['url'])) {
         foreach ($idpentry['url'] as $key => $value) {
             if (str_contains(strtolower($value), strtolower($searchTerm))) {
                 $filteredData[$entityid] = $idpentry;
@@ -123,26 +124,12 @@ $data['items'] = [];
 
 foreach ($filteredData as $entityid => $idpentry) {
     $item['idpentityid'] = $entityid;
-    $item['text'] = $idpentry['name'];
+    $item['image'] = Campusidp::getMostSquareLikeImg($idpentry);
 
-    if (!empty($idpentry['UIInfo']['Logo'])) {
-        if (1 === count($idpentry['UIInfo']['Logo'])) {
-            $item['image'] = $idpentry['UIInfo']['Logo'][0]['url'];
-        } else {
-            $logoSizeRatio = 1; // impossible value
-            $candidateLogoUrl = null;
-
-            foreach ($idpentry['UIInfo']['Logo'] as $logo) {
-                $ratio = abs($logo['height'] - $logo['width']) / ($logo['height'] + $logo['width']);
-
-                if ($ratio < $logoSizeRatio) { // then we found more square-like logo
-                    $logoSizeRatio = $ratio;
-                    $candidateLogoUrl = $logo['url'];
-                }
-            }
-
-            $item['image'] = $candidateLogoUrl;
-        }
+    if (!empty($idpentry['name'][$_GET['language']])) {
+        $item['text'] = $idpentry['name'][$_GET['language']];
+    } else {
+        $item['text'] = $idpentry['name']['en'];
     }
 
     $data['items'][] = $item;

@@ -25,6 +25,7 @@ class Campusidp extends Source
     public const COOKIE_IDP_ENTITY_ID = 'idpentityid';
     public const COOKIE_INSTITUTION_NAME = 'institution_name';
     public const COOKIE_INSTITUTION_IMG = 'institution_img';
+    public const COOKIE_COMPONENT_INDEX = 'component_index';
     public const COOKIE_USERNAME = 'username';
     public const COOKIE_PASSWORD = 'password';
 
@@ -138,6 +139,33 @@ class Campusidp extends Source
         ];
 
         Utils\HTTP::setCookie($prefixedName, $value, $params, false);
+    }
+
+    public static function getMostSquareLikeImg($idpentry)
+    {
+        if (!empty($idpentry['UIInfo']['Logo'])) {
+            if (1 === count($idpentry['UIInfo']['Logo'])) {
+                $item['image'] = $idpentry['UIInfo']['Logo'][0]['url'];
+            } else {
+                $logoSizeRatio = 1; // impossible value
+                $candidateLogoUrl = null;
+
+                foreach ($idpentry['UIInfo']['Logo'] as $logo) {
+                    $ratio = abs($logo['height'] - $logo['width']) / ($logo['height'] + $logo['width']);
+
+                    if ($ratio < $logoSizeRatio) { // then we found more square-like logo
+                        $logoSizeRatio = $ratio;
+                        $candidateLogoUrl = $logo['url'];
+                    }
+                }
+
+                $item['image'] = $candidateLogoUrl;
+            }
+
+            return $item['image'];
+        } else {
+            return '';
+        }
     }
 
     public function logout(&$state)

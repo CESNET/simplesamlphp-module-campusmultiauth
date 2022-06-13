@@ -18,6 +18,10 @@ html, body {
     padding-right: 5%;
 }
 
+.full-width {
+    width: 100%;
+}
+
 .input {
     width: 100%;
 }
@@ -36,7 +40,7 @@ html, body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.preferred-item-button {
+.text-center {
     text-align: center;
 }
 
@@ -50,6 +54,11 @@ html, body {
 
 .btn-individual-identity-jvs {
     width: 100%;
+}
+
+.btn-more-options {
+    width: 160px;
+    margin-top: -24px;
 }
 
 .btn-individual-identity {
@@ -134,6 +143,15 @@ html, body {
 .idp-text {
     margin-bottom: 0;
     margin-left: 25px;
+}
+
+.margin-left-24 {
+    margin-left: 24px;
+}
+
+.layout {
+    width: 100%;
+    text-align: center;
 }
 
 .local-password-btn-wrap {
@@ -246,17 +264,25 @@ html, body {
     line-height: 3.3;
     display: block;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 10px;
     padding-right: 11px;
     text-rendering: auto;
     font-variant: normal;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
+    border-color: rgba(0, 0, 0, 0);
 }
 
 .input-height {
     line-height: 28px;
+}
+
+.img-searchbox {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    object-position: left;
 }
 
 .preferred-idp {
@@ -272,6 +298,10 @@ html, body {
 .mobile-language {
     margin: 12px 36px 12px 0;
     text-align: right;
+}
+
+.footer {
+    padding: 0 18px 0 36px;
 }
 
 .footer-jvs {
@@ -331,7 +361,7 @@ html, body {
     width: 100%;
 }
 
-#idps-form-div {
+.idps-form-div {
     display: none;
     margin-top: 0;
     margin-bottom: 24px;
@@ -341,10 +371,6 @@ html, body {
     width: 100%;
     margin-top: 0;
     margin-bottom: 24px;
-}
-
-#q {
-    width: 100%;
 }
 
 #more-options {

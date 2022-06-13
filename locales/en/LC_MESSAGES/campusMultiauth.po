@@ -54,3 +54,6 @@ msgstr "More options"
 
 msgid "{campusMultiauth:wrong_username_or_password}"
 msgstr "Wrong username or password."
+
+msgid "{campusMultiauth:search_button}"
+msgstr "Search"
