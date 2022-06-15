@@ -34,16 +34,20 @@ if (array_key_exists('source', $_POST)) {
         $state['saml:idp'] = $_POST['idpentityid'];
         Campusidp::delegateAuthentication($_POST['source'], $state);
     } elseif (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)) {
-        if (
-            array_key_exists('remember_me', $_POST) &&
-            $_POST['remember_me'] === 'Yes' &&
-            Configuration::getInstance()->getBoolean('session.rememberme.enable', false)
-        ) {
-            Campusidp::setCookie(Campusidp::COOKIE_USERNAME, $_POST['username']);
-            Campusidp::setCookie(Campusidp::COOKIE_PASSWORD, $_POST['password']);
-        }
+        if (empty($_POST['username']) || empty($_POST['password'])) {
+            $_REQUEST['wrongUserPass'] = true;
+        } else {
+            if (
+                array_key_exists('remember_me', $_POST) &&
+                $_POST['remember_me'] === 'Yes' &&
+                Configuration::getInstance()->getBoolean('session.rememberme.enable', false)
+            ) {
+                Campusidp::setCookie(Campusidp::COOKIE_USERNAME, $_POST['username']);
+                Campusidp::setCookie(Campusidp::COOKIE_PASSWORD, $_POST['password']);
+            }
 
-        Campusidp::delegateAuthentication($_POST['source'], $state);
+            Campusidp::delegateAuthentication($_POST['source'], $state);
+        }
     }
 }
 
@@ -82,7 +86,8 @@ $t->data['authstate'] = $authStateId;
 $t->data['currentUrl'] = htmlentities($_SERVER['PHP_SELF']);
 $t->data['wayf_config'] = $wayfConfig;
 $t->data['idps'] = $idps;
-$t->data['no_js_display_index'] = $_POST['componentIndex'];
+$t->data['no_js_display_index'] = !empty($_POST['componentIndex']) ? $_POST['componentIndex'] : null;
+$t->data['user_pass_source_name'] = $state[Campusidp::USER_PASS_SOURCE_NAME];
 $t->data['cookie_idpentityid'] = Campusidp::getCookie(Campusidp::COOKIE_IDP_ENTITY_ID);
 $t->data['cookie_institution_name'] = json_decode(Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_NAME), true);
 $t->data['cookie_institution_img'] = Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_IMG);

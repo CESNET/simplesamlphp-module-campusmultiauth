@@ -135,7 +135,7 @@
         {% endif %}
     </div>
     <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
-    <input type="hidden" id="source" name="source" value="campus-userpass" />
+    <input type="hidden" id="source" name="source" value="{{ user_pass_source_name }}" />
 </form>
 
 {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs'  %}

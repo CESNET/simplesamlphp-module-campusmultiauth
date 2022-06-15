@@ -7,10 +7,12 @@ namespace SimpleSAML\Module\campusMultiauth\Auth\Source;
 use Exception;
 use SimpleSAML\Auth;
 use SimpleSAML\Auth\Source;
+use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
@@ -20,7 +22,7 @@ class Campusidp extends Source
     public const STAGEID_USERPASS = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
     public const SOURCESID = '\SimpleSAML\Module\campusidp\Auth\Source\Campusidp.SourceId';
     public const SESSION_SOURCE = 'campusMultiauth:selectedSource';
-    public const WAYF_CONFIG = 'wayf_config';
+    public const USER_PASS_SOURCE_NAME = 'userPassSourceName';
     public const COOKIE_PREFIX = 'campusidp_';
     public const COOKIE_IDP_ENTITY_ID = 'idpentityid';
     public const COOKIE_INSTITUTION_NAME = 'institution_name';
@@ -30,12 +32,14 @@ class Campusidp extends Source
     public const COOKIE_PASSWORD = 'password';
 
     private $sources;
-    private $wayfConfig;
+    private $userPassSourceName;
 
 
     public function __construct($info, $config)
     {
         parent::__construct($info, $config);
+
+        $this->userPassSourceName = !empty($config['userPassSourceName']) ? $config['userPassSourceName'] : 'campus-userpass';
 
         if (!array_key_exists('sources', $config)) {
             throw new Exception('The required "sources" config option was not found');
@@ -66,10 +70,10 @@ class Campusidp extends Source
     {
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
-        $state[self::WAYF_CONFIG] = $this->wayfConfig;
+        $state[self::USER_PASS_SOURCE_NAME] = $this->userPassSourceName;
 
         // Save the $state array, so that we can restore if after a redirect
-        $id = Auth\State::saveState($state, self::STAGEID_USERPASS);
+        $id = State::saveState($state, self::STAGEID_USERPASS);
 
         /* Redirect to the select source page. We include the identifier of the
          * saved state array as a parameter to the login form
@@ -106,7 +110,33 @@ class Campusidp extends Source
         );
 
         try {
-            $as->authenticate($state);
+            if (!empty($_POST['username']) && !empty($_POST['password']) && is_subclass_of($as, '\SimpleSAML\Module\core\Auth\UserPassBase')) {
+                $state[UserPassBase::AUTHID] = $authId;
+
+                try {
+                    UserPassBase::handleLogin(
+                        State::saveState($state, UserPassBase::STAGEID),
+                        $_POST['username'],
+                        $_POST['password']
+                    );
+                } catch (\SimpleSAML\Error\Error $e) {
+                    if ($e->getMessage() === 'WRONGUSERPASS') {
+                        $id = State::saveState($state, self::STAGEID_USERPASS);
+                        $url = Module::getModuleURL('campusMultiauth/selectsource.php');
+                        $params = [
+                            'AuthState' => $id,
+                            'wrongUserPass' => true
+                        ];
+
+                        Utils\HTTP::redirectTrustedURL($url, $params);
+                    } else {
+                        throw $e;
+                    }
+                }
+
+            } else {
+                $as->authenticate($state);
+            }
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);
         } catch (Exception $e) {

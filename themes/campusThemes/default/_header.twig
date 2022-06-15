@@ -1,4 +1,4 @@
-{% if wayf_config.languages is not defined %}
+{% if wayf_config is defined and wayf_config.languages is not defined %}
     {% set wayf_config = wayf_config|merge({'languages': {'en': 'English'}}) %}
 {% endif %}
 
@@ -66,7 +66,7 @@
             <img src="{% if wayf_config.logo is defined %}{{ wayf_config.logo }}{% endif %}" class="header-img-jvs" alt="{% if wayf_config.name is defined %}{{ wayf_config.name }}{% endif %}"/>
         </div>
     </header>
-{% else %}
+{% elseif wayf_config is defined %}
     <header class="header border-top border-primary border-5">
         <div class="header-container">
             {% if wayf_config.languages | length > 2 %}
