@@ -57,7 +57,7 @@
 
         <input type="hidden" id="componentIndex" name="componentIndex" value="{{ component_index }}" />
         <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
-        <input type="hidden" id="source" name="source" value="default-sp" />
+        <input type="hidden" id="source" name="source" value="{{ sp_source_name }}" />
     </form>
 </div>
 
@@ -139,7 +139,7 @@
             {% endfor %}
 
             <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
-            <input type="hidden" id="source" name="source" value="default-sp" />
+            <input type="hidden" id="source" name="source" value="{{ sp_source_name }}" />
         </form>
     </div>
 {% endif %}

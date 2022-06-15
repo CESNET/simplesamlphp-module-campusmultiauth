@@ -88,6 +88,7 @@ $t->data['wayf_config'] = $wayfConfig;
 $t->data['idps'] = $idps;
 $t->data['no_js_display_index'] = !empty($_POST['componentIndex']) ? $_POST['componentIndex'] : null;
 $t->data['user_pass_source_name'] = $state[Campusidp::USER_PASS_SOURCE_NAME];
+$t->data['sp_source_name'] = $state[Campusidp::SP_SOURCE_NAME];
 $t->data['cookie_idpentityid'] = Campusidp::getCookie(Campusidp::COOKIE_IDP_ENTITY_ID);
 $t->data['cookie_institution_name'] = json_decode(Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_NAME), true);
 $t->data['cookie_institution_img'] = Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_IMG);

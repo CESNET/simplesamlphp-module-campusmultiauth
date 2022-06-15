@@ -23,6 +23,7 @@ class Campusidp extends Source
     public const SOURCESID = '\SimpleSAML\Module\campusidp\Auth\Source\Campusidp.SourceId';
     public const SESSION_SOURCE = 'campusMultiauth:selectedSource';
     public const USER_PASS_SOURCE_NAME = 'userPassSourceName';
+    public const SP_SOURCE_NAME = 'spSourceName';
     public const COOKIE_PREFIX = 'campusidp_';
     public const COOKIE_IDP_ENTITY_ID = 'idpentityid';
     public const COOKIE_INSTITUTION_NAME = 'institution_name';
@@ -33,37 +34,48 @@ class Campusidp extends Source
 
     private $sources;
     private $userPassSourceName;
+    private $spSourceName;
 
 
     public function __construct($info, $config)
     {
         parent::__construct($info, $config);
 
-        $this->userPassSourceName = !empty($config['userPassSourceName']) ? $config['userPassSourceName'] : 'campus-userpass';
-
-        if (!array_key_exists('sources', $config)) {
-            throw new Exception('The required "sources" config option was not found');
-        }
-
         $this->sources = [];
 
-        $sources = $config['sources'];
-        foreach ($sources as $source => $info) {
-            $class_ref = [];
-            if (array_key_exists('AuthnContextClassRef', $info)) {
-                $ref = $info['AuthnContextClassRef'];
-                if (is_string($ref)) {
-                    $class_ref = [$ref];
-                } else {
-                    $class_ref = $ref;
-                }
-            }
+        $this->userPassSourceName = !empty($config['userPassSource']['name']) ? $config['userPassSource']['name'] : 'campus-userpass';
 
-            $this->sources[] = [
-                'source' => $source,
-                'AuthnContextClassRef' => $class_ref,
-            ];
+        $userPassClassRef = [];
+        if (!empty($config['userPassSource']['AuthnContextClassRef'])) {
+            $ref = $config['userPassSource']['AuthnContextClassRef'];
+            if (is_string($ref)) {
+                $userPassClassRef = [$ref];
+            } else {
+                $userPassClassRef = $ref;
+            }
         }
+
+        $this->sources[] = [
+            'source' => $this->userPassSourceName,
+            'AuthnContextClassRef' => $userPassClassRef,
+        ];
+
+        $this->spSourceName = !empty($config['spSource']['name']) ? $config['spSource']['name'] : 'default-sp';
+
+        $spClassRef = [];
+        if (!empty($config['spSource']['AuthnContextClassRef'])) {
+            $ref = $config['spSource']['AuthnContextClassRef'];
+            if (is_string($ref)) {
+                $spClassRef = [$ref];
+            } else {
+                $spClassRef = $ref;
+            }
+        }
+
+        $this->sources[] = [
+            'source' => $this->spSourceName,
+            'AuthnContextClassRef' => $spClassRef,
+        ];
     }
 
     public function authenticate(&$state)
@@ -71,6 +83,7 @@ class Campusidp extends Source
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
         $state[self::USER_PASS_SOURCE_NAME] = $this->userPassSourceName;
+        $state[self::SP_SOURCE_NAME] = $this->spSourceName;
 
         // Save the $state array, so that we can restore if after a redirect
         $id = State::saveState($state, self::STAGEID_USERPASS);
