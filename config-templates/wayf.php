@@ -48,10 +48,15 @@ $config = [
                 'cs' => 'Vyhledejte např. CEITEC',
                 'en' => 'Search e.g. CEITEC'
             ],
-            'include' => [], // identity providers to include
+            'include' => [ // identity providers to include
+                'upstream_idps' => [],
+                'tags' => [],
+                'registration_authorities' => []
+            ],
             'exclude' => [ // identity providers to exclude
-                'https://idp2.ics.muni.cz/idp/shibboleth',
-                'https://whoami.cesnet.cz/idp/shibboleth'
+                'upstream_idps' => [],
+                'tags' => [],
+                'registration_authorities' => []
             ],
         ],
         2 => [
@@ -86,6 +91,8 @@ $config = [
     ],
     'css_framework' => 'muni_jvs', // which framework to use; muni_jvs / bootstrap 5 (default)
     'logo' => 'https://ip-147-251-124-162.flt.cloud.muni.cz/logos/muni2.png', // logo of the institution
+    'name' => 'MUNI', // alt for the logo
+    'muni_faculty' => 'econ', // only if muni_jvs framework is set, which faculty style to use
     'footer' => [
         'format' => 'HTML', // HTML / markdown / text (default)
         'sections' => [  // dictionary; length of each section must divide 12 (bootstrap) or 4 (jvs)
