@@ -32,7 +32,7 @@ Of course, both authsources must be defined in authsources.php file. When the co
 
 ## Login page configuration
 
-The second part of the configuration is setting up the login page itself. While configuring the login page, it's highly recommended to follow our suggestions (***TODO link***). To configure the login page, you need to create a new configuration file `wayf.php`. In this file, there are following options available:
+The second part of the configuration is setting up the login page itself. While doing that, it's highly recommended to follow our suggestions (***TODO link***). To configure the login page, you need to create a new configuration file `wayf.php`. In this module, there is an example configuration available at `config-templates/wayf.php`. In configuration file, there are following options available:
 
 `css_framework` - if set to `muni_jvs`, the login page displays in MUNI framework. Otherwise, Bootstrap 5 is used.
 
