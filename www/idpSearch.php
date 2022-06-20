@@ -40,7 +40,7 @@ if (
 
         if (!empty($searchBox['include']['registration_authorities']) && empty($filteredMetadata[$entityid])) {
             foreach ($searchBox['include']['registration_authorities'] as $registrationAuthority) {
-                if ($registrationAuthority === $idpentry['RegistrationInfo']['registrationAuthority']) {
+                if (!empty($idpentry['RegistrationInfo']['registrationAuthority']) && $idpentry['RegistrationInfo']['registrationAuthority'] === $registrationAuthority) {
                     $filteredMetadata[$entityid] = $idpentry;
                     break;
                 }
@@ -128,8 +128,12 @@ foreach ($filteredData as $entityid => $idpentry) {
 
     if (!empty($idpentry['name'][$_GET['language']])) {
         $item['text'] = $idpentry['name'][$_GET['language']];
-    } else {
+    } elseif (!empty($item['text'] = $idpentry['name']['en'])) {
         $item['text'] = $idpentry['name']['en'];
+    } elseif (reset($idpentry['name'])) {
+        $item['text'] = reset($idpentry['name']);
+    } else {
+        $item['text'] = 'undefined';
     }
 
     $data['items'][] = $item;
