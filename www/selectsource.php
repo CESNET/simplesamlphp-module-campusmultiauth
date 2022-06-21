@@ -17,12 +17,29 @@ if (!array_key_exists('AuthState', $_REQUEST) && !array_key_exists('authstate', 
 empty($_REQUEST['AuthState']) ? $authStateId = $_POST['authstate'] : $authStateId = $_REQUEST['AuthState'];
 $state = State::loadState($authStateId, Campusidp::STAGEID_USERPASS);
 
+$metadataStorageHandler = MetaDataStorageHandler::getMetadataHandler();
+$metadata = $metadataStorageHandler->getList();
+
+if (array_key_exists('aarc_idp_hint', $state)) {
+    $parts = explode('?', urldecode($state['aarc_idp_hint']), 2);
+
+    if (!empty($metadata[$parts[0]])) {
+        $state['saml:idp'] = $parts[0];
+        Campusidp::delegateAuthentication($state[Campusidp::SP_SOURCE_NAME], $state);
+    }
+}
+
+if (array_key_exists('idphint', $state)) {
+    $parts = explode(',', $state['idphint']);
+        if (count($parts) == 1) {
+            $state['saml:idp'] = urldecode($parts[0]);
+            Campusidp::delegateAuthentication($state[Campusidp::SP_SOURCE_NAME], $state);
+        }
+}
+
 if (array_key_exists('source', $_POST)) {
     if (array_key_exists('searchbox', $_POST)) {
         $state['saml:idp'] = $_POST['searchbox'];
-
-        $metadataStorageHandler = MetaDataStorageHandler::getMetadataHandler();
-        $metadata = $metadataStorageHandler->getList();
 
         Campusidp::setCookie(Campusidp::COOKIE_IDP_ENTITY_ID, $_POST['searchbox']);
         Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_NAME, json_encode($metadata[$_POST['searchbox']]['name']));

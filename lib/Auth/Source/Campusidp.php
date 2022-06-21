@@ -80,6 +80,14 @@ class Campusidp extends Source
 
     public function authenticate(&$state)
     {
+        if (array_key_exists('aarc_idp_hint', $_REQUEST)) {
+            $state['aarc_idp_hint'] = $_REQUEST['aarc_idp_hint'];
+        }
+
+        if (array_key_exists('idphint', $_REQUEST)) {
+            $state['idphint'] = $_REQUEST['idphint'];
+        }
+
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
         $state[self::USER_PASS_SOURCE_NAME] = $this->userPassSourceName;
