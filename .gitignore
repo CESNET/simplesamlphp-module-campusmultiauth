@@ -1,0 +1,6 @@
+www/resources/bootstrap/css/*
+!www/resources/bootstrap/css/bootstrap.min.css
+!www/resources/bootstrap/css/bootstrap.min.css.map
+www/resources/bootstrap/js/*
+!www/resources/bootstrap/js/bootstrap.bundle.min.js
+!www/resources/bootstrap/js/bootstrap.bundle.min.js.map
