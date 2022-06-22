@@ -17,6 +17,9 @@
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
             <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/MuniWeb/css/style{% if wayf_config.muni_faculty is defined%}-{{ wayf_config.muni_faculty }}{% endif %}.css" />
             <script src="/{{baseurlpath}}module.php/campusMultiauth/resources/MuniWeb/js/app.js"></script>
+            <script>
+                App.run({})
+            </script>
         {% else %}
             <link href="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
             <script src="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
