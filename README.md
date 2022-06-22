@@ -24,7 +24,7 @@ Let's look at the configuration options:
 
 `campusMultiauth:campusidp` defines which module and authentication source to use. This is the only mandatory option.
 
-`userPassSource` is an authentication source to use to authentication with a username and password. If the name is not set, `campus-userpass` is used as a default option.
+`userPassSource` is an authentication source to use to authentication with a username and password. For easy integration with any identity provider supporting [ECP](http://docs.oasis-open.org/security/saml/Post2.0/saml-ecp/v2.0/saml-ecp-v2.0.html), see [simplesamlphp-module-campususerpass](https://github.com/melanger/simplesamlphp-module-campususerpass). If the name is not set, `campus-userpass` is used as a default option.
 
 `spSource` is an authentication source to use to authentication with an external identity provider. If the name is no set, `default-sp` is used as a default option.
 
@@ -38,9 +38,9 @@ The second part of the configuration is setting up the login page itself. While 
 
 `muni_faculty` - relevant only if the `css_framework` is set to `muni_jvs`. The value can be set to a concrete faculty (see ***TODO*** link) which results in the change of framework's main colors (based on a chosen faculty).
 
-`logo` - the main institution logo in top of the login page.
+`logo` - URL to a main institution logo which is displayed in top of the login page.
 
-`name` - used as an alt for the logo.
+`name` - used as an alternative text for the logo.
 
 `languages` - map of supported languages. The format is language code by [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) as the key and whole language name as the value (e.g. `'en' => 'English'`). If not defined, the only supported language is English.
 
@@ -116,4 +116,4 @@ Each identity is a map with the following possible options:
 
 `logo` - identity provider's logo, displayed on a left side of the button as a square.
 
-`background_color` - background around the logo. Defined as a hex color code.
+`background_color` - background around the logo. Defined as a [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
