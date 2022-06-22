@@ -13,3 +13,7 @@ www/resources/selectize/js/standalone/*.js
 www/resources/selectize/less
 www/resources/selectize/scss
 www/resources/selectize/vendor
+www/resources/MuniWeb/ajax
+www/resources/MuniWeb/img/illust
+www/resources/MuniWeb/img/social
+www/resources/MuniWeb/tpl
