@@ -9,20 +9,21 @@
         <title>{{ pagetitle }}</title>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/js/standalone/selectize.js"></script>
+        <script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/js/standalone/selectize.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/font_awesome/css/all.css" />
-        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/css/selectize.css" />
 
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+            <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/css/selectize.css" />
             <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/MuniWeb/css/style{% if wayf_config.muni_faculty is defined%}-{{ wayf_config.muni_faculty }}{% endif %}.css" />
             <script src="/{{baseurlpath}}module.php/campusMultiauth/resources/MuniWeb/js/app.js"></script>
             <script>
                 App.run({})
             </script>
         {% else %}
-            <link href="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap-5.0.2-dist/css/bootstrap.css" rel="stylesheet">
-            <script src="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+            <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize/css/selectize.bootstrap5.css" />
+            <link href="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <script src="/{{baseurlpath}}module.php/campusMultiauth/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
         {% endif %}
 
         <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusMultiauth/resources/campus_idp.css" />
