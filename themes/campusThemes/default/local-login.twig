@@ -93,25 +93,19 @@
                 {% else %}{{ '{campusmultiauth:password_placeholder}'|trans }}
                 {% endif %}">
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-                <button id="toggle-password-jvs" class="btn-icon icon icon-eye color-{{ configuration.priority }}" type="button"></button>
+                <button id="toggle-password" class="btn-icon icon icon-eye color-{{ configuration.priority }}" type="button"></button>
             </span>
         {% else %}
-            {% if configuration.priority == 'primary' %}
-                <button id="toggle-password" class="btn border border-2 border-dark rounded-end" type="button">
+                <button id="toggle-password" class="btn border border-2 {% if configuration.priority == 'primary' %}border-dark{% else %}border-muted{% endif %} rounded-end" type="button">
                     <i class="fas fa-eye"></i>
                 </button>
-            {% else %}
-                <button id="toggle-password" class="btn border border-2 border-muted rounded-end" type="button">
-                    <i class="fas fa-eye"></i>
-                </button>
-            {% endif %}
         </div>
         {% endif %}
     </div>
 
     <div class="margin-bottom-24 text-left">
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-            <label class="inp-item inp-item--checkbox{" for="remember_me">
+            <label class="inp-item inp-item--checkbox" for="remember_me">
                 <input id="remember_me" type="checkbox" name="remember_me" value="Yes">
                 <span>{{ '{campusmultiauth:remember}'|trans }}</span>
             </label>
@@ -137,29 +131,3 @@
     <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
     <input type="hidden" id="source" name="source" value="{{ user_pass_source_name }}" />
 </form>
-
-{% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs'  %}
-    <script>
-        const togglePassword = document.querySelector("#toggle-password-jvs");
-        const password = document.querySelector("#password");
-
-        togglePassword.addEventListener("click", function () {
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-
-            this.classList.toggle("icon-eye-slash");
-        });
-    </script>
-{% else %}
-    <script>
-        const togglePassword = document.querySelector("#toggle-password");
-        const password = document.querySelector("#password");
-
-        togglePassword.addEventListener("click", function () {
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-
-            this.classList.toggle("icon-eye-slash");
-        });
-    </script>
-{% endif %}

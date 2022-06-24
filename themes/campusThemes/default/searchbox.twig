@@ -2,7 +2,7 @@
     {% set configuration = configuration|merge({'priority': 'secondary'}) %}
 {% endif %}
 
-<div class="list-group text-left idps-form-div">
+<div class="list-group text-left idps-form-div d-none vhide">
     <form id="idps-form-{{ component_index }}" action="{{ currentUrl }}" method="post">
         <label for="searchbox"
             {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
@@ -143,39 +143,3 @@
         </form>
     </div>
 {% endif %}
-
-<script type="text/javascript" src="/{{baseurlpath}}module.php/campusmultiauth/resources/searchbox.js"></script>
-
-<script>
-    if (typeof indexes === 'undefined') {
-        var indexes = [{{ component_index }}];
-    } else {
-        indexes.push({{ component_index }});
-    }
-
-    var placeholderText = {% if attribute(configuration.placeholder, currentLanguage) is defined %}
-                              '{{ attribute(configuration.placeholder, currentLanguage) }}'
-                          {% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}
-                              '{{ configuration.placeholder | first }}'
-                          {% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}
-                              '{{ configuration.placeholder }}'
-                          {% else %}
-                              '{{ '{campusmultiauth:searchbox_placeholder}'|trans }}'
-                          {% endif %};
-
-    if (typeof placeholderTexts === 'undefined') {
-        var placeholderTexts = [placeholderText];
-    } else {
-        placeholderTexts.push(placeholderText);
-    }
-
-
-    var framework = {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-        'muni_jvs'
-    {% else %}
-        'bootstrap'
-    {% endif %}
-
-    var language = '{{ currentLanguage }}';
-    var baseUrl = '/' + '{{ baseurlpath }}';
-</script>

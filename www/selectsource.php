@@ -112,6 +112,25 @@ $t->data['cookie_institution_img'] = Campusidp::getCookie(Campusidp::COOKIE_INST
 $t->data['cookie_component_index'] = Campusidp::getCookie(Campusidp::COOKIE_COMPONENT_INDEX);
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
+$t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function($config, $index) {
+    return $config['name'] === 'searchbox' ? $index : null;
+}, $wayfConfig['components'], array_keys($wayfConfig['components'])))));
+$currentLanguage = $t->getTranslator()->getLanguage()->getLanguage();
+$t->data['searchbox_placeholders'] = json_encode(array_map(function($config) use ($currentLanguage) {
+    if ($config['name'] !== 'searchbox') {
+        return null;
+    }
+    if (isset($config['placeholder'][$currentLanguage])) {
+        return $config['placeholder'][$currentLanguage];
+    }
+    if (!empty($config['placeholder']) && is_array($config['placeholder'])) {
+        return reset($config['placeholder']);
+    }
+    if (!empty($config['placeholder'])) {
+        return $config['placeholder'];
+    }
+    return null;
+}, $wayfConfig['components']));
 
 $t->show();
 exit();

@@ -117,3 +117,11 @@ Each identity is a map with the following possible options:
 `logo` - identity provider's logo, displayed on a left side of the button as a square.
 
 `background_color` - background around the logo. Defined as a [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
+
+## Deployment
+
+The easiest way is to use [docker-campusidp](https://github.com/cesnet/docker-campusidp), which includes this module together with SimpleSAMLphp and PHP-FPM.
+
+### Content security policy
+
+This module uses no third party CSS, JavaScript or fonts, everything is bundled. The only inline CSS is used when you configure `background_color` in the `individual_identities` component.

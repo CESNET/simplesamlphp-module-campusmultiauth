@@ -341,7 +341,7 @@ html, body {
     margin-top: 30px;
 }
 
-#toggle-password-jvs {
+.framework_muni #toggle-password {
     object-fit: contain;
     right: 0;
     top: 0;
@@ -362,7 +362,6 @@ html, body {
 }
 
 .idps-form-div {
-    display: none;
     margin-top: 0;
     margin-bottom: 24px;
 }
