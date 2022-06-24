@@ -15,7 +15,7 @@
     "simplesamlphp/simplesamlphp": "^1.19",
     "twig/twig": "^1.43 || ^2.0",
     "league/commonmark": "^1.0",
-    "ext-intl": "^8.0"
+    "ext-intl": "*"
   },
   "config": {
     "allow-plugins": {
