@@ -7,7 +7,7 @@ Thanks to this module, you can use a saml:SP authentication source together with
 To achieve this, you need to define and configure an authentication source in your authsources.php file. An example configuration is shown below:
 
     'campus-idp' => [
-        'campusMultiauth:Campusidp',
+        'campusmultiauth:Campusidp',
 
         'userPassSource' => [
             'name' => 'campus-userpass',
@@ -22,7 +22,7 @@ To achieve this, you need to define and configure an authentication source in yo
 
 Let's look at the configuration options:
 
-`campusMultiauth:campusidp` defines which module and authentication source to use. This is the only mandatory option.
+`campusmultiauth:campusidp` defines which module and authentication source to use. This is the only mandatory option.
 
 `userPassSource` is an authentication source to use to authentication with a username and password. For easy integration with any identity provider supporting [ECP](http://docs.oasis-open.org/security/saml/Post2.0/saml-ecp/v2.0/saml-ecp-v2.0.html), see [simplesamlphp-module-campususerpass](https://github.com/melanger/simplesamlphp-module-campususerpass). If the name is not set, `campus-userpass` is used as a default option.
 

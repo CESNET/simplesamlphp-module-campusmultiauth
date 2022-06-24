@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\campusMultiauth\Auth\Source;
+namespace SimpleSAML\Module\campusmultiauth\Auth\Source;
 
 use Exception;
 use SimpleSAML\Auth;
@@ -21,7 +21,7 @@ class Campusidp extends Source
     public const AUTHID = '\SimpleSAML\Module\campusidp\Auth\Source\Campusidp.AuthId';
     public const STAGEID_USERPASS = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
     public const SOURCESID = '\SimpleSAML\Module\campusidp\Auth\Source\Campusidp.SourceId';
-    public const SESSION_SOURCE = 'campusMultiauth:selectedSource';
+    public const SESSION_SOURCE = 'campusmultiauth:selectedSource';
     public const USER_PASS_SOURCE_NAME = 'userPassSourceName';
     public const SP_SOURCE_NAME = 'spSourceName';
     public const COOKIE_PREFIX = 'campusidp_';
@@ -99,7 +99,7 @@ class Campusidp extends Source
         /* Redirect to the select source page. We include the identifier of the
          * saved state array as a parameter to the login form
          */
-        $url = Module::getModuleURL('campusMultiauth/selectsource.php');
+        $url = Module::getModuleURL('campusmultiauth/selectsource.php');
         $params = ['AuthState' => $id];
 
         Utils\HTTP::redirectTrustedURL($url, $params);
@@ -143,7 +143,7 @@ class Campusidp extends Source
                 } catch (\SimpleSAML\Error\Error $e) {
                     if ($e->getMessage() === 'WRONGUSERPASS') {
                         $id = State::saveState($state, self::STAGEID_USERPASS);
-                        $url = Module::getModuleURL('campusMultiauth/selectsource.php');
+                        $url = Module::getModuleURL('campusmultiauth/selectsource.php');
                         $params = [
                             'AuthState' => $id,
                             'wrongUserPass' => true

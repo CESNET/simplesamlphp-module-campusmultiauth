@@ -6,7 +6,7 @@ use SimpleSAML\Error\BadRequest;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
-use SimpleSAML\Module\campusMultiauth\Auth\Source\Campusidp;
+use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
 use SimpleSAML\XHTML\Template;
 use League\CommonMark\CommonMarkConverter;
 
@@ -88,7 +88,7 @@ $idps = null;
 if (!empty($_POST['q'])) {
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusMultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']));
+    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusmultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $idps = json_decode(curl_exec($ch));
@@ -96,7 +96,7 @@ if (!empty($_POST['q'])) {
 }
 
 $globalConfig = Configuration::getInstance();
-$t = new Template($globalConfig, 'campusMultiauth:selectsource.php');
+$t = new Template($globalConfig, 'campusmultiauth:selectsource.php');
 
 array_key_exists('wrongUserPass', $_REQUEST) ? $t->data['wrongUserPass'] = true : $t->data['wrongUserPass'] = false;
 $t->data['authstate'] = $authStateId;

@@ -62,7 +62,7 @@ $(function () {
                 this.refreshOptions(true);
 
                 $.ajax({
-                    url: baseUrl + "module.php/campusMultiauth/idpSearch.php",
+                    url: baseUrl + "module.php/campusmultiauth/idpSearch.php",
                     type: "GET",
                     dataType: "json",
                     data: {

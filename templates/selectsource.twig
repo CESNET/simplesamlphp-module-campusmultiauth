@@ -1,4 +1,4 @@
-{#{% extends "../modules/campusMultiauth/templates/base.twig" %}#}
+{#{% extends "../modules/campusmultiauth/templates/base.twig" %}#}
 {% extends "base.twig" %}
 
 {% block content %}
@@ -31,11 +31,11 @@
 
                 {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) %}
                     <div class="hrline color-secondary">
-                        <span>{{ '{campusMultiauth:or}'|trans }}</span>
+                        <span>{{ '{campusmultiauth:or}'|trans }}</span>
                     </div>
                 {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
                     <div class="hrline last-col-component color-secondary">
-                        <span>{{ '{campusMultiauth:or}'|trans }}</span>
+                        <span>{{ '{campusmultiauth:or}'|trans }}</span>
                     </div>
                 {% endif %}
             {% endfor %}
@@ -43,6 +43,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/selectize_conf.js"></script>
+    <script type="text/javascript" src="/{{baseurlpath}}module.php/campusmultiauth/resources/selectize_conf.js"></script>
 
 {% endblock %}

@@ -16,7 +16,7 @@
             {% endif %}>{% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
             {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
             {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
-            {% else %}{{ '{campusMultiauth:searchbox_title}'|trans }}
+            {% else %}{{ '{campusmultiauth:searchbox_title}'|trans }}
             {% endif %}</label>
         <input type="text" name="searchbox" id="searchbox-{{ component_index }}" value=""
             {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
@@ -67,17 +67,17 @@
             <label for="idps-form-nojs" class="color-{{ configuration.priority }}">{% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
                 {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
                 {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
-                {% else %}{{ '{campusMultiauth:searchbox_title}'|trans }}
+                {% else %}{{ '{campusmultiauth:searchbox_title}'|trans }}
                 {% endif %}</label>
             <form id="idps-form-nojs" class="form-inline" action="{{ currentUrl }}" method="post">
                 <p class="size--m--4-4 size--l--10-12">
                     <span class="inp-fix">
-                        <input id="q" class="inp-text" type="text" name="q" placeholder="{% if attribute(configuration.placeholder, currentLanguage) is defined %}{{ attribute(configuration.placeholder, currentLanguage) }}{% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}{{ configuration.placeholder | first }}{% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}{{ configuration.placeholder }}{% else %}{{ '{campusMultiauth:searchbox_placeholder}'|trans }}{% endif %}">
+                        <input id="q" class="inp-text" type="text" name="q" placeholder="{% if attribute(configuration.placeholder, currentLanguage) is defined %}{{ attribute(configuration.placeholder, currentLanguage) }}{% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}{{ configuration.placeholder | first }}{% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}{{ configuration.placeholder }}{% else %}{{ '{campusmultiauth:searchbox_placeholder}'|trans }}{% endif %}">
                     </span>
                 </p>
                 <p>
                     <button class="btn btn-primary btn-s nowrap full-width" type="submit">
-                        <span>{{ '{campusMultiauth:search_button}'|trans }}</span>
+                        <span>{{ '{campusmultiauth:search_button}'|trans }}</span>
                     </button>
                 </p>
         {% else %}
@@ -90,16 +90,16 @@
                     {% endif %}>{% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
                     {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
                     {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
-                    {% else %}{{ '{campusMultiauth:searchbox_title}'|trans }}
+                    {% else %}{{ '{campusmultiauth:searchbox_title}'|trans }}
                     {% endif %}</label>
                 <div class="input-group">
-                    <input id="q" name="q" type="text" placeholder="{% if attribute(configuration.placeholder, currentLanguage) is defined %}{{ attribute(configuration.placeholder, currentLanguage) }}{% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}{{ configuration.placeholder | first }}{% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}{{ configuration.placeholder }}{% else %}{{ '{campusMultiauth:searchbox_placeholder}'|trans }}{% endif %}"
+                    <input id="q" name="q" type="text" placeholder="{% if attribute(configuration.placeholder, currentLanguage) is defined %}{{ attribute(configuration.placeholder, currentLanguage) }}{% elseif configuration.placeholder is defined and configuration.placeholder is iterable and configuration.placeholder is not empty %}{{ configuration.placeholder | first }}{% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}{{ configuration.placeholder }}{% else %}{{ '{campusmultiauth:searchbox_placeholder}'|trans }}{% endif %}"
                             {% if configuration.priority == 'primary' %}
                            class="form-control border border-2 border-dark input-height" aria-describedby="submit-search">
                     <button id="submit-search" class="btn btn-primary" type="submit">Button</button>
                     {% else %}
                         class="form-control border border-2 border-muted input-height" aria-describedby="submit-search">
-                        <button id="submit-search" class="btn btn-secondary" type="submit">{{ '{campusMultiauth:search_button}'|trans }}</button>
+                        <button id="submit-search" class="btn btn-secondary" type="submit">{{ '{campusmultiauth:search_button}'|trans }}</button>
                     {% endif %}
                 </div>
         {% endif %}
@@ -144,7 +144,7 @@
     </div>
 {% endif %}
 
-<script type="text/javascript" src="/{{baseurlpath}}module.php/campusMultiauth/resources/searchbox.js"></script>
+<script type="text/javascript" src="/{{baseurlpath}}module.php/campusmultiauth/resources/searchbox.js"></script>
 
 <script>
     if (typeof indexes === 'undefined') {
@@ -160,7 +160,7 @@
                           {% elseif configuration.placeholder is defined and configuration.placeholder is not iterable %}
                               '{{ configuration.placeholder }}'
                           {% else %}
-                              '{{ '{campusMultiauth:searchbox_placeholder}'|trans }}'
+                              '{{ '{campusmultiauth:searchbox_placeholder}'|trans }}'
                           {% endif %};
 
     if (typeof placeholderTexts === 'undefined') {

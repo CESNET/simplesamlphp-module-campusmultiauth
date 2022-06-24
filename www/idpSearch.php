@@ -3,7 +3,7 @@
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module\campusMultiauth\Auth\Source\Campusidp;
+use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
 
 header('Content-type: application/json');
 
