@@ -9,7 +9,7 @@ header('Content-type: application/json');
 
 $index = $_GET['index'];
 
-$config = $wayfConfig = Configuration::getConfig('wayf.php')->toArray();
+$config = Configuration::getConfig('module_campusmultiauth.php')->toArray();
 $searchBox = $config['components'][$index];
 
 $metadataStorageHandler = MetaDataStorageHandler::getMetadataHandler();

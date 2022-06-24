@@ -68,7 +68,7 @@ if (array_key_exists('source', $_POST)) {
     }
 }
 
-$wayfConfig = Configuration::getConfig('wayf.php')->toArray();
+$wayfConfig = Configuration::getConfig('module_campusmultiauth.php')->toArray();
 
 if (!empty($wayfConfig['footer']['format']) && $wayfConfig['footer']['format'] === 'markdown') {
     $converter = new CommonMarkConverter();
