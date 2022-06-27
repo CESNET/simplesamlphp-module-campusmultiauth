@@ -122,6 +122,11 @@ Each identity is a map with the following possible options:
 
 The easiest way is to use [docker-campusidp](https://github.com/cesnet/docker-campusidp), which includes this module together with SimpleSAMLphp and PHP-FPM.
 
+If you want to use non-SAML providers (e.g. OAuth or OIDC), you need to provide a bridge. There are multiple ways possible:
+* deploy a proxy (e.g. [SATOSA](https://github.com/IdentityPython/SATOSA)) which translates other authentication protocols to SAML
+* use SimpleSAMLphp's [OIDC module](https://github.com/simplesamlphp/simplesamlphp-module-oidc/) for OIDC (e.g. Google)
+* use [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2) for OAuth (LinkedIn, ORCid, GitHub...)
+
 ### Content security policy
 
 This module uses no third party CSS, JavaScript or fonts, everything is bundled. The only inline CSS is used when you configure `background_color` in the `individual_identities` component.
