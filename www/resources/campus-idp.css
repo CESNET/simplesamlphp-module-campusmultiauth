@@ -269,8 +269,18 @@ html, body {
     display: none;
 }
 
+.selectize-dropdown:after, .selectize-dropdown:before {
+    display: none;
+}
+
 .input-height {
     line-height: 28px;
+}
+
+.framework_bootstrap5 .list-group-item.active {
+    background-color: #EEEEEE;
+    border-color: #EEEEEE;
+    color: #000000;
 }
 
 .img-searchbox {

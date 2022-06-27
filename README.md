@@ -1,6 +1,6 @@
 # simplesamlphp-module-campusmultiauth
 
-Thanks to this module, you can use a saml:SP authentication source together with another authentication source providing basic auth (discovery service and login form are displayed on a single page).
+Thanks to this module, you can use a saml:SP authentication source together with another authentication source providing basic auth (discovery service and login form are displayed on a single page). This module also supports [aarc_idp_hint](https://zenodo.org/record/4596667/files/AARC-G061-A_specification_for_IdP_hinting.pdf), so you can even skip the login page and be redirected to the targeted identity provider.
 
 ## Theme configuration
 
@@ -55,9 +55,9 @@ The second part of the configuration is setting up the login page itself. While 
 
 `languages` - map of supported languages. The format is language code by [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) as the key and whole language name as the value (e.g. `'en' => 'English'`). If not defined, the only supported language is English.
 
-`footer` - defines a footer of the login page. For further instructions how to configure a footer, see the ***Footer*** section below.
+`footer` - defines a footer of the login page. For further instructions how to configure a footer, see the [Footer](#footer) section below.
 
-`components` - list of components. This is the main part of the login page. Each component represents an authentication possibility for the user. For further instructions how to configure components, see the ***Components*** section below.
+`components` - list of components. This is the main part of the login page. Each component represents an authentication possibility for the user. For further instructions how to configure components, see the [Components](#components) section below.
 
 ### Footer
 
@@ -115,7 +115,7 @@ Here you can specify some identity providers to display them as a list of button
 
 `number_shown` - how many buttons to show. If the count of specified identity providers is higher than this number, then part of identity providers will be hidden and replaced with button which shows them all on click.
 
-`identities` - list of identity providers to display as buttons. Each identity provider has some configuration options available. For further information, see the `identities` section below.
+`identities` - list of identity providers to display as buttons. Each identity provider has some configuration options available. For further information, see the [identities](#identities) section below.
 
 ##### identities
 

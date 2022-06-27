@@ -57,3 +57,6 @@ msgstr "Špatné uživatelské jméno nebo heslo."
 
 msgid "{campusmultiauth:search_button}"
 msgstr "Vyhledat"
+
+msgid "{campusmultiauth:undefined}"
+msgstr "neznámé"
