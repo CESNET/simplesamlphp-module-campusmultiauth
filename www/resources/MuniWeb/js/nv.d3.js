@@ -15,7 +15,7 @@ nv.dom = {}; //DOM manipulation functions
 
 // Node/CommonJS - require D3
 if (typeof(module) !== 'undefined' && typeof(exports) !== 'undefined' && typeof(d3) == 'undefined') {
-    d3 = require('modules/campusMultiauth/www/resources/muni_css/MuniWeb/js/d3');
+    d3 = require('modules/campusmultiauth/www/resources/muni_css/MuniWeb/js/d3');
 }
 
 nv.dispatch = d3.dispatch('render_start', 'render_end');

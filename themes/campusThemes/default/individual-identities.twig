@@ -19,7 +19,7 @@
         {% endif %}>{% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
         {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
         {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
-        {% else %}{{ '{campusMultiauth:individualIdentities_title}'|trans }}
+        {% else %}{{ '{campusmultiauth:individualIdentities_title}'|trans }}
         {% endif %}</div>
 
     {% for idp in configuration.identities %}
@@ -27,8 +27,8 @@
             <div class="margin-bottom-12 {% if loop.index0 >= configuration.number_shown %}idp-hidden vhide{% endif %}">
                 <button class="btn btn-primary btn-border btn-individual-identity-jvs color-{{ configuration.priority }} hover-none-{{ configuration.priority }}" type="submit" name="idpentityid" value="{{ idp.upstream_idp }}">
                     <span class="no-uppercase color-{{ configuration.priority }} individual-identity-span-wrap">
-                        <img class="individual-identity-logo" {% if idp.background_color is defined %}style="background-color: {{ idp.background_color }}{% endif %}" src="{{ idp.logo }}" alt=""/>
-                        <span class="idp-text">{{ '{campusMultiauth:sign_in_with}'|trans }}{{ " " }}{% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}
+                        <img class="individual-identity-logo" {% if idp.background_color is defined %}style="background-color: {{ idp.background_color }}"{% endif %} src="{{ idp.logo }}" alt=""/>
+                        <span class="idp-text">{{ '{campusmultiauth:sign_in_with}'|trans }}{{ " " }}{% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}
                             {% elseif idp.name is defined and idp.name is iterable and idp.name is not empty %}{{ idp.name | first }}
                             {% else %}{{ idp.name }}
                             {% endif %}</span>
@@ -37,8 +37,8 @@
             </div>
         {% else %}
             <button class="btn btn-{{ configuration.priority }} btn-lg btn-individual-identity {% if loop.index0 >= configuration.number_shown %}idp-hidden d-none{% endif %}" type="submit" name="idpentityid" value="{{ idp.upstream_idp }}">
-                <img class="individual-identity-logo" {% if idp.background_color is defined %}style="background-color: {{ idp.background_color }}{% endif %}" src="{{ idp.logo }}" alt=""/>
-                <span class="idp-text">{{ '{campusMultiauth:sign_in_with}'|trans }}{{ " " }}{% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}
+                <img class="individual-identity-logo" {% if idp.background_color is defined %}style="background-color: {{ idp.background_color }}"{% endif %} src="{{ idp.logo }}" alt=""/>
+                <span class="idp-text">{{ '{campusmultiauth:sign_in_with}'|trans }}{{ " " }}{% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}
                     {% elseif idp.name is defined and idp.name is iterable and idp.name is not empty %}{{ idp.name | first }}
                     {% else %}{{ idp.name }}
                     {% endif %}</span>
@@ -53,21 +53,13 @@
 {% if configuration.identities|length > configuration.number_shown %}
     <div class="text-center">
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-            <button id="more-options" class="btn btn-primary btn-s btn-white hover-none-primary" onclick="show()">
-                <span class="no-uppercase padding-zero">{{ '{campusMultiauth:more_options}'|trans }}<span class="btn-icon icon icon-angle-down"></span></span>
+            <button id="more-options" class="btn btn-primary btn-s btn-white hover-none-primary">
+                <span class="no-uppercase padding-zero">{{ '{campusmultiauth:more_options}'|trans }}<span class="btn-icon icon icon-angle-down"></span></span>
             </button>
         {% else %}
-            <button id="more-options" class="btn btn-outline-{{ configuration.priority }} btn-lg btn-individual-identity btn-more-options text-center border-0 text-decoration-underline" type="button" onclick="show()">
-                <span class="no-uppercase padding-zero">{{ '{campusMultiauth:more_options}'|trans }} <i class="fas fa-arrow-down"></i></span>
+            <button id="more-options" class="btn btn-outline-{{ configuration.priority }} btn-lg btn-individual-identity btn-more-options text-center border-0 text-decoration-underline" type="button">
+                <span class="no-uppercase padding-zero">{{ '{campusmultiauth:more_options}'|trans }} <i class="fas fa-arrow-down"></i></span>
             </button>
         {% endif %}
     </div>
 {% endif %}
-
-
-<script>
-    function show() {
-        document.querySelectorAll('.idp-hidden').forEach( function(element) {element.classList.remove({% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}'vhide'{% else %}'d-none'{% endif %})});
-        document.getElementById('more-options').classList.add({% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}'vhide'{% else %}'d-none'{% endif %});
-    }
-</script>

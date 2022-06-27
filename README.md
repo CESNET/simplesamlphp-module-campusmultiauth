@@ -7,7 +7,7 @@ Thanks to this module, you can use a saml:SP authentication source together with
 To achieve this, you need to define and configure an authentication source in your authsources.php file. An example configuration is shown below:
 
     'campus-idp' => [
-        'campusMultiauth:Campusidp',
+        'campusmultiauth:Campusidp',
 
         'userPassSource' => [
             'name' => 'campus-userpass',
@@ -22,7 +22,7 @@ To achieve this, you need to define and configure an authentication source in yo
 
 Let's look at the configuration options:
 
-`campusMultiauth:campusidp` defines which module and authentication source to use. This is the only mandatory option.
+`campusmultiauth:campusidp` defines which module and authentication source to use. This is the only mandatory option.
 
 `userPassSource` is an authentication source to use to authentication with a username and password. For easy integration with any identity provider supporting [ECP](http://docs.oasis-open.org/security/saml/Post2.0/saml-ecp/v2.0/saml-ecp-v2.0.html), see [simplesamlphp-module-campususerpass](https://github.com/melanger/simplesamlphp-module-campususerpass). If the name is not set, `campus-userpass` is used as a default option.
 
@@ -32,7 +32,7 @@ Of course, both authsources must be defined in authsources.php file. When the co
 
 ## Login page configuration
 
-The second part of the configuration is setting up the login page itself. While doing that, it's highly recommended to follow our suggestions (***TODO link***). To configure the login page, you need to create a new configuration file `wayf.php`. In this module, there is an example configuration available at `config-templates/wayf.php`. In configuration file, there are following options available:
+The second part of the configuration is setting up the login page itself. While doing that, it's highly recommended to follow our suggestions (***TODO link***). To configure the login page, you need to create a new configuration file `module_campusmultiauth.php`. In this module, there is an example configuration available at `config-templates/module_campusmultiauth.php`. In configuration file, there are following options available:
 
 `css_framework` - if set to `muni_jvs`, the login page displays in MUNI framework. Otherwise, Bootstrap 5 is used.
 
@@ -117,3 +117,11 @@ Each identity is a map with the following possible options:
 `logo` - identity provider's logo, displayed on a left side of the button as a square.
 
 `background_color` - background around the logo. Defined as a [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
+
+## Deployment
+
+The easiest way is to use [docker-campusidp](https://github.com/cesnet/docker-campusidp), which includes this module together with SimpleSAMLphp and PHP-FPM.
+
+### Content security policy
+
+This module uses no third party CSS, JavaScript or fonts, everything is bundled. The only inline CSS is used when you configure `background_color` in the `individual_identities` component.

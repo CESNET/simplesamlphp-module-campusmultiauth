@@ -3,13 +3,13 @@
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
-use SimpleSAML\Module\campusMultiauth\Auth\Source\Campusidp;
+use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
 
 header('Content-type: application/json');
 
 $index = $_GET['index'];
 
-$config = $wayfConfig = Configuration::getConfig('wayf.php')->toArray();
+$config = Configuration::getConfig('module_campusmultiauth.php')->toArray();
 $searchBox = $config['components'][$index];
 
 $metadataStorageHandler = MetaDataStorageHandler::getMetadataHandler();

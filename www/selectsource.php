@@ -6,7 +6,7 @@ use SimpleSAML\Error\BadRequest;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
-use SimpleSAML\Module\campusMultiauth\Auth\Source\Campusidp;
+use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
 use SimpleSAML\XHTML\Template;
 use League\CommonMark\CommonMarkConverter;
 
@@ -68,7 +68,7 @@ if (array_key_exists('source', $_POST)) {
     }
 }
 
-$wayfConfig = Configuration::getConfig('wayf.php')->toArray();
+$wayfConfig = Configuration::getConfig('module_campusmultiauth.php')->toArray();
 
 if (!empty($wayfConfig['footer']['format']) && $wayfConfig['footer']['format'] === 'markdown') {
     $converter = new CommonMarkConverter();
@@ -88,7 +88,7 @@ $idps = null;
 if (!empty($_POST['q'])) {
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusMultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']));
+    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusmultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $idps = json_decode(curl_exec($ch));
@@ -96,7 +96,7 @@ if (!empty($_POST['q'])) {
 }
 
 $globalConfig = Configuration::getInstance();
-$t = new Template($globalConfig, 'campusMultiauth:selectsource.php');
+$t = new Template($globalConfig, 'campusmultiauth:selectsource.php');
 
 array_key_exists('wrongUserPass', $_REQUEST) ? $t->data['wrongUserPass'] = true : $t->data['wrongUserPass'] = false;
 $t->data['authstate'] = $authStateId;
@@ -112,6 +112,25 @@ $t->data['cookie_institution_img'] = Campusidp::getCookie(Campusidp::COOKIE_INST
 $t->data['cookie_component_index'] = Campusidp::getCookie(Campusidp::COOKIE_COMPONENT_INDEX);
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
+$t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function($config, $index) {
+    return $config['name'] === 'searchbox' ? $index : null;
+}, $wayfConfig['components'], array_keys($wayfConfig['components'])))));
+$currentLanguage = $t->getTranslator()->getLanguage()->getLanguage();
+$t->data['searchbox_placeholders'] = json_encode(array_map(function($config) use ($currentLanguage) {
+    if ($config['name'] !== 'searchbox') {
+        return null;
+    }
+    if (isset($config['placeholder'][$currentLanguage])) {
+        return $config['placeholder'][$currentLanguage];
+    }
+    if (!empty($config['placeholder']) && is_array($config['placeholder'])) {
+        return reset($config['placeholder']);
+    }
+    if (!empty($config['placeholder'])) {
+        return $config['placeholder'];
+    }
+    return null;
+}, $wayfConfig['components']));
 
 $t->show();
 exit();

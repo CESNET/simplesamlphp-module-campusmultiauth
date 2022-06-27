@@ -8,12 +8,12 @@
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
             <div class="message message--common message--common-error" role="alert">
                 <p class="message__desc">
-                    {{ '{campusMultiauth:wrong_username_or_password}'|trans }}
+                    {{ '{campusmultiauth:wrong_username_or_password}'|trans }}
                 </p>
             </div>
         {% else %}
             <div id="wrong_user_pass" class="alert alert-danger" role="alert">
-                {{ '{campusMultiauth:wrong_username_or_password}'|trans }}
+                {{ '{campusmultiauth:wrong_username_or_password}'|trans }}
             </div>
         {% endif %}
     {% endif %}
@@ -31,7 +31,7 @@
             {% endif %}>{% if attribute(configuration.username_label, currentLanguage) is defined %}{{ attribute(configuration.username_label, currentLanguage) }}
             {% elseif configuration.username_label is defined and configuration.username_label is iterable and configuration.username_label is not empty %}{{ configuration.username_label | first }}
             {% elseif configuration.username_label is defined and configuration.username_label is not iterable %}{{ configuration.username_label }}
-            {% else %}{{ '{campusMultiauth:username_label}'|trans }}
+            {% else %}{{ '{campusmultiauth:username_label}'|trans }}
             {% endif %}</label>
         <br>
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
@@ -50,7 +50,7 @@
                    type="text" name="username"{% if cookie_username is not null %} value="{{ cookie_username }}"{% endif %} placeholder="{% if attribute(configuration.username_placeholder, currentLanguage) is defined %}{{ attribute(configuration.username_placeholder, currentLanguage) }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is iterable and configuration.username_placeholder is not empty %}{{ configuration.username_placeholder | first }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is not iterable %}{{ configuration.username_placeholder }}
-                {% else %}{{ '{campusMultiauth:username_placeholder}'|trans }}
+                {% else %}{{ '{campusmultiauth:username_placeholder}'|trans }}
                 {% endif %}">
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
             </span>
@@ -69,7 +69,7 @@
             {% endif %}>{% if attribute(configuration.password_label, currentLanguage) is defined %}{{ attribute(configuration.password_label, currentLanguage) }}
             {% elseif configuration.password_label is defined and configuration.password_label is iterable and configuration.password_label is not empty %}{{ configuration.password_label | first }}
             {% elseif configuration.password_label is defined and configuration.password_label is not iterable %}{{ configuration.password_label }}
-            {% else %}{{ '{campusMultiauth:password_label}'|trans }}
+            {% else %}{{ '{campusmultiauth:password_label}'|trans }}
             {% endif %}</label>
         <br>
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
@@ -90,34 +90,28 @@
                    type="password" name="password" autocomplete="current-password"{% if cookie_password is not null %} value="{{ cookie_password }}"{% endif %} placeholder="{% if attribute(configuration.password_placeholder, currentLanguage) is defined %}{{ attribute(configuration.password_placeholder, currentLanguage) }}
                 {% elseif configuration.password_placeholder is defined and configuration.password_placeholder is iterable and configuration.password_placeholder is not empty %}{{ configuration.password_placeholder | first }}
                 {% elseif configuration.password_placeholder is defined and configuration.password_placeholder is not iterable %}{{ configuration.password_placeholder }}
-                {% else %}{{ '{campusMultiauth:password_placeholder}'|trans }}
+                {% else %}{{ '{campusmultiauth:password_placeholder}'|trans }}
                 {% endif %}">
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-                <button id="toggle-password-jvs" class="btn-icon icon icon-eye color-{{ configuration.priority }}" type="button"></button>
+                <button id="toggle-password" class="btn-icon icon icon-eye color-{{ configuration.priority }}" type="button"></button>
             </span>
         {% else %}
-            {% if configuration.priority == 'primary' %}
-                <button id="toggle-password" class="btn border border-2 border-dark rounded-end" type="button">
+                <button id="toggle-password" class="btn border border-2 {% if configuration.priority == 'primary' %}border-dark{% else %}border-muted{% endif %} rounded-end" type="button">
                     <i class="fas fa-eye"></i>
                 </button>
-            {% else %}
-                <button id="toggle-password" class="btn border border-2 border-muted rounded-end" type="button">
-                    <i class="fas fa-eye"></i>
-                </button>
-            {% endif %}
         </div>
         {% endif %}
     </div>
 
     <div class="margin-bottom-24 text-left">
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-            <label class="inp-item inp-item--checkbox{" for="remember_me">
+            <label class="inp-item inp-item--checkbox" for="remember_me">
                 <input id="remember_me" type="checkbox" name="remember_me" value="Yes">
-                <span>{{ '{campusMultiauth:remember}'|trans }}</span>
+                <span>{{ '{campusmultiauth:remember}'|trans }}</span>
             </label>
         {% else %}
             <input type="checkbox" class="form-check-input border{% if configuration.priority == 'primary' %} border-dark{% else %} border-muted{% endif %}" id="remember_me" name="remember_me" value="Yes">
-            <label class="form-check-label margin-left-12{% if configuration.priority == 'primary' %} text-dark{% else %} text-muted{% endif %}" for="remember_me">{{ '{campusMultiauth:remember}'|trans }}</label>
+            <label class="form-check-label margin-left-12{% if configuration.priority == 'primary' %} text-dark{% else %} text-muted{% endif %}" for="remember_me">{{ '{campusmultiauth:remember}'|trans }}</label>
         {% endif %}
     </div>
 
@@ -125,41 +119,15 @@
         {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
             <button id="submit_button" class="btn {% if wayf_config.muni_faculty is defined %}btn-{{ wayf_config.muni_faculty }}{% else %}btn-primary {% endif %}{% if configuration.priority == 'secondary' %}btn-border{% endif %} btn-lg" type="submit">
                 <span>
-                    <span class="font-muni">{{ '{campusMultiauth:login}'|trans }}</span>
+                    <span class="font-muni">{{ '{campusmultiauth:login}'|trans }}</span>
                 </span>
             </button>
         {% else %}
             <button id="submit_button" class="btn btn-{{ configuration.priority }} btn-lg" type="submit">
-                {{ '{campusMultiauth:login}'|trans }}
+                {{ '{campusmultiauth:login}'|trans }}
             </button>
         {% endif %}
     </div>
     <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
     <input type="hidden" id="source" name="source" value="{{ user_pass_source_name }}" />
 </form>
-
-{% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs'  %}
-    <script>
-        const togglePassword = document.querySelector("#toggle-password-jvs");
-        const password = document.querySelector("#password");
-
-        togglePassword.addEventListener("click", function () {
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-
-            this.classList.toggle("icon-eye-slash");
-        });
-    </script>
-{% else %}
-    <script>
-        const togglePassword = document.querySelector("#toggle-password");
-        const password = document.querySelector("#password");
-
-        togglePassword.addEventListener("click", function () {
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-
-            this.classList.toggle("icon-eye-slash");
-        });
-    </script>
-{% endif %}
