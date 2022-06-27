@@ -2,6 +2,17 @@
 
 Thanks to this module, you can use a saml:SP authentication source together with another authentication source providing basic auth (discovery service and login form are displayed on a single page).
 
+## Theme configuration
+
+For proper function, this modules requires the usage of the included theme called `campus`. Modify `config/config.php` to include these lines:
+
+```
+'theme.use' => 'campusmultiauth:campus',
+'usenewui' => true,
+```
+
+You may also try to use a different Bootstrap 5 based theme, but compatibility is not guaranteed.
+
 ## Authsources configuration
 
 To achieve this, you need to define and configure an authentication source in your authsources.php file. An example configuration is shown below:

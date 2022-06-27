@@ -48,12 +48,18 @@ html, body {
     margin-bottom: 10px;
 }
 
-.wrap-jvs {
+.framework_muni .wrap {
     margin: 0 24px 0 24px;
 }
 
-.btn-individual-identity-jvs {
+.btn-individual-identity {
     width: 100%;
+}
+
+.framework_bootstrap5 .btn-individual-identity {
+    text-align: left;
+    padding: 0;
+    margin-bottom: 12px;
 }
 
 .btn-more-options {
@@ -61,34 +67,12 @@ html, body {
     margin-top: -24px;
 }
 
-.btn-individual-identity {
-    width: 100%;
-    text-align: left;
-    padding: 0;
-    margin-bottom: 12px;
-}
-
 .desktop-language {
     display: none;
 }
 
-#layout {
-    width: 40%;
-    padding: 3% 1% 3%;
-    margin: 2em auto;
-    background: #fff;
-    border: 1px solid #fff;
-    text-align: left;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 1rem 3rem 0.5rem;
-}
-
 #external {
     margin-bottom: 24px;
-}
-
-.header-text-jvs {
-    margin: 24px 0 0 24px;
-    text-align: left;
 }
 
 .header-text {
@@ -96,14 +80,17 @@ html, body {
     text-align: left;
 }
 
-.header-img-jvs {
-    width: 170px;
-    margin: 0 auto 0 24px;
+.framework_muni .header-text {
+    margin: 24px 0 0 24px;
 }
 
 .header-img {
     width: 170px;
     margin: 0 auto 0 36px;
+}
+
+.framework_muni .header-img {
+    margin-left: 24px;
 }
 
 .hrline {
@@ -149,7 +136,7 @@ html, body {
     margin-left: 24px;
 }
 
-.layout {
+#layout {
     width: 100%;
     text-align: center;
 }
@@ -257,21 +244,24 @@ html, body {
     padding-right: 0;
 }
 
-.selectize-input.items.not-full:after {
+.framework_bootstrap5 .selectize-input.items.not-full:after {
     content:"\f002";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    line-height: 3.3;
-    display: block;
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    padding-right: 11px;
+    top: 6px;
+    right: 12px;
     text-rendering: auto;
     font-variant: normal;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
-    border-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    margin: auto 0;
+    width: auto;
+    height: auto;
+}
+
+.framework_muni .selectize-control.single .selectize-input::after {
+    display: none;
 }
 
 .input-height {
@@ -304,7 +294,7 @@ html, body {
     padding: 0 18px 0 36px;
 }
 
-.footer-jvs {
+.framework_muni .footer {
     padding: 0 12px 0 6px;
 }
 
@@ -332,7 +322,7 @@ html, body {
     margin: 0 36px 0 36px;
 }
 
-#content-jvs {
+.framework_muni #content {
     margin: 0 24px 0 24px;
     border: 1px solid #757575;
 }
@@ -384,23 +374,16 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-    .wrap-jvs {
-        margin: 0 0 36px 20px;
-    }
-
     .wrap {
         margin: 0 11px 36px 13px;
     }
 
-    .wrap-col {
-        padding: 0 36px 0 36px;
+    .framework_muni .wrap {
+        margin: 0 0 36px 20px;
     }
 
-    .window-jvs {
-        display: inline-block;
-        margin-bottom: 72px;
-        width: 90%;
-        box-shadow: rgba(0, 0, 0, 0.15) 0 1rem 3rem 0.5rem;
+    .wrap-col {
+        padding: 0 36px 0 36px;
     }
 
     .window {
@@ -410,7 +393,7 @@ body {
         box-shadow: rgba(0, 0, 0, 0.15) 0 1rem 3rem 0.5rem;
     }
 
-    .header-text-jvs {
+    .framework_muni .header-text {
         margin: 72px 0 0 40px;
     }
 
@@ -430,14 +413,13 @@ body {
         height: 50px;
     }
 
-    .header-img-jvs {
+    .header-img {
         height: 50px;
         margin: 20px auto 0 10%;
     }
 
-    .header-img {
-        height: 50px;
-        margin: 20px auto 0 10%;
+    .framework_muni .header-img {
+        margin-left: 10%;
     }
 
     .header {
@@ -470,12 +452,12 @@ body {
         display: none;
     }
 
-    .footer-jvs {
-        padding: 0 12px 36px 5%;
-    }
-
     .footer {
         padding: 0 0 36px 36px;
+    }
+
+    .framework_muni .footer {
+        padding: 0 12px 36px 5%;
     }
 
     .mobile-language {
@@ -486,9 +468,8 @@ body {
         display: inline;
     }
 
-    #content-jvs {
+    .framework_muni #content {
         border: none;
-        margin: 0;
     }
 
     #content {
@@ -497,15 +478,11 @@ body {
 }
 
 @media screen and (min-width: 1024px) {
-    .window-jvs {
-        width: 921px;
-    }
-
     .window {
         width: 921px;
     }
 
-    .footer-jvs {
+    .framework_muni .footer {
         padding: 0 12px 72px 90px;
     }
 }

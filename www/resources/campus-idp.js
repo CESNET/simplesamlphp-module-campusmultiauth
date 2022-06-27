@@ -102,9 +102,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.idps-form-nojs-div').forEach(hideElement);
     document.querySelectorAll('.idps-form-div').forEach(showElement);
 
-    var indexes = JSON.parse(document.body.getAttribute('data-searchboxindexes'));
-    var placeholderTexts = JSON.parse(document.body.getAttribute('data-searchboxplaceholders'));
-    var defaultPlaceholder = document.body.getAttribute('data-searchboxdefault');
+    var indexes = JSON.parse(document.querySelector('meta[name="searchbox-indexes"]').content);
+    var placeholderTexts = JSON.parse(document.querySelector('meta[name="searchbox-placeholders"]').content);
+    var defaultPlaceholder = document.querySelector('meta[name="searchbox-default"]').content;
+    var is_muni_framework = document.body.classList.contains("framework_muni");
     indexes.forEach(function (index) {
         $("#searchbox-" + index).selectize({
             valueField: "idpentityid",
@@ -122,5 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
             score: selectizeScore,
             load: selectizeLoad,
         });
+        if (is_muni_framework) {
+            $("#searchbox-" + index + "-selectized").after('<span class="icon icon-search"></span>');
+            $("#searchbox-" + index + "-selectized").parent().addClass("inp-fix inp-icon inp-icon--after");
+        }
     });
 });

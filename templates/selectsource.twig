@@ -1,46 +1,77 @@
-{#{% extends "../modules/campusmultiauth/templates/base.twig" %}#}
 {% extends "base.twig" %}
 
-{% block content %}
-
-    {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-        <div class="grid">
-            <div class="grid__cell size--m--2-4 wrap-col">
+{% block preload %}
+    {% if muni_jvs %}
+        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusmultiauth/resources/selectize/css/selectize.css" />
     {% else %}
-        <div class="row">
-            <div class="col-md-6 wrap-col">
+        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusmultiauth/resources/font_awesome/css/all.css" />
+        <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusmultiauth/resources/selectize/css/selectize.bootstrap5.css" />
     {% endif %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="/{{baseurlpath}}module.php/campusmultiauth/resources/campus-idp.css" />
+    <meta name="searchbox-indexes" content="{{searchbox_indexes}}">
+    <meta name="searchbox-placeholders" content="{{searchbox_placeholders}}">
+    <meta name="searchbox-default" content="{{ '{campusmultiauth:searchbox_placeholder}'|trans }}">
+{% endblock %}
 
-            {% for component_configuration in wayf_config.components %}
-                {% if component_configuration.name == 'local_login' %}
-                    {{ include('local-login.twig', {configuration: component_configuration}) }}
-                {% elseif component_configuration.name == 'individual_identities' %}
-                    {{ include('individual-identities.twig', {configuration: component_configuration}) }}
-                {% elseif component_configuration.name == 'searchbox' %}
-                    {{ include('searchbox.twig', {configuration: component_configuration, component_index: loop.index0}) }}
-                {% endif %}
+{% block postload %}
+    {{ parent() }}
+    <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/jquery-3.6.0.min.js"></script>
+    <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/selectize/js/standalone/selectize.min.js"></script>
+    <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/campus-idp.js"></script>
+{% endblock %}
 
-                {% if component_configuration.end_col is defined and component_configuration.end_col %}
+{% block contentwrapper %}
+    <div class="window {% if muni_jvs %}framework_muni{% else %}framework_bootstrap5{% endif %}">
+        <h3 class="margin-bottom-12 header-text">
+            {{ '{campusmultiauth:login_title}'|trans }}
+        </h3>
+        <div id="content">
+            <div class="wrap">
+                {% block content %}
+                    <div class="{% if muni_jvs %}grid{% else %}row{% endif %}">
+                        <div class="{% if muni_jvs %}grid__cell size--m--2-4 wrap-col{% else %}col-md-6 wrap-col{% endif %}">
+
+                        {% for component_configuration in wayf_config.components %}
+                            {% if component_configuration.name == 'local_login' %}
+                                {% include '@campusmultiauth/includes/local-login.twig' with {'configuration': component_configuration} %}
+                            {% elseif component_configuration.name == 'individual_identities' %}
+                                {% include '@campusmultiauth/includes/individual-identities.twig' with {'configuration': component_configuration} %}
+                            {% elseif component_configuration.name == 'searchbox' %}
+                                {% include '@campusmultiauth/includes/searchbox.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
+                            {% endif %}
+
+                            {% if component_configuration.end_col is defined and component_configuration.end_col %}
+                                </div>
+                                <div class="{% if muni_jvs %}grid__cell size--m--2-4{% else %}col-md-6{% endif %} wrap-col">
+                            {% endif %}
+
+                            {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) %}
+                                <div class="hrline color-secondary">
+                                    <span>{{ '{campusmultiauth:or}'|trans }}</span>
+                                </div>
+                            {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
+                                <div class="hrline last-col-component color-secondary">
+                                    <span>{{ '{campusmultiauth:or}'|trans }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        </div>
                     </div>
-                    {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-                        <div class="grid__cell size--m--2-4 wrap-col">
-                    {% else %}
-                        <div class="col-md-6 wrap-col">
-                    {% endif %}
-                {% endif %}
-
-                {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) %}
-                    <div class="hrline color-secondary">
-                        <span>{{ '{campusmultiauth:or}'|trans }}</span>
-                    </div>
-                {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
-                    <div class="hrline last-col-component color-secondary">
-                        <span>{{ '{campusmultiauth:or}'|trans }}</span>
-                    </div>
-                {% endif %}
-            {% endfor %}
-
+                {% endblock %}
+            </div>
         </div>
+        {% if not muni_jvs %}
+            <div id="foot">
+              {% include "_footer.twig" %}
+            </div>
+        {% endif %}
     </div>
+{% endblock contentwrapper %}
 
+{% block footer %}
+  {% if muni_jvs %}
+    {{ parent() }}
+  {% endif %}
 {% endblock %}
