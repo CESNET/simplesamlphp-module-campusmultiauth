@@ -1,0 +1,43 @@
+{% if configuration.number_shown is not defined %}
+    {% set configuration = configuration|merge({'number_shown': 5}) %}
+{% endif %}
+
+{% if configuration.priority is not defined %}
+    {% set configuration = configuration|merge({'priority': 'secondary'}) %}
+{% endif %}
+
+<form id="external" class="text-left" action="{{ currentUrl }}" method="post" name="g">
+
+    <div class="text-bold margin-bottom-12 {% if muni_jvs %}color-{{ configuration.priority }}{% elseif configuration.priority == 'primary' %}text-dark{% else %}text-muted{% endif %}" >
+        {% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
+        {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
+        {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
+        {% else %}{{ '{campusmultiauth:individualIdentities_title}'|trans }}
+        {% endif %}
+    </div>
+
+    {% for idp in configuration.identities %}
+        {% if muni_jvs %}<div class="margin-bottom-12 {% if loop.index0 >= configuration.number_shown %}idp-hidden vhide{% endif %}">{% endif %}
+            <button class="btn-individual-identity btn {% if muni_jvs %}btn-primary btn-border color-{{ configuration.priority }} hover-none-{{ configuration.priority }}{% else %}btn-{{ configuration.priority }} btn-lg{% endif %}" type="submit" name="idpentityid" value="{{ idp.upstream_idp }}">
+                {% if muni_jvs %}<span class="no-uppercase color-{{ configuration.priority }} individual-identity-span-wrap">{% endif %}
+                    <img class="individual-identity-logo" {% if idp.background_color is defined %}style="background-color: {{ idp.background_color }}"{% endif %} src="{{ idp.logo }}" alt=""/>
+                    <span class="idp-text">{{ '{campusmultiauth:sign_in_with}'|trans }}{{ " " }}{% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}
+                        {% elseif idp.name is defined and idp.name is iterable and idp.name is not empty %}{{ idp.name | first }}
+                        {% else %}{{ idp.name }}
+                        {% endif %}</span>
+                {% if muni_jvs %}</span>{% endif %}
+            </button>
+        {% if muni_jvs %}</div>{% endif %}
+    {% endfor %}
+
+    <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
+    <input type="hidden" id="source" name="source" value="{{ sp_source_name }}" />
+</form>
+
+{% if configuration.identities|length > configuration.number_shown %}
+    <div class="text-center">
+        <button id="more-options" class="btn {% if muni_jvs %}btn-primary btn-s btn-white hover-none-primary{% else %}btn-outline-{{ configuration.priority }} btn-lg btn-more-options text-center border-0 text-decoration-underline{% endif %}" type="button">
+            <span class="no-uppercase padding-zero">{{ '{campusmultiauth:more_options}'|trans }}{% if muni_jvs %}<span class="btn-icon icon icon-angle-down"></span>{% else %} <i class="fas fa-arrow-down"></i>{% endif %}</span>
+        </button>
+    </div>
+{% endif %}

@@ -5,7 +5,7 @@
 <form id="userpass" action="{{ currentUrl }}" method="post" name="f">
 
     {% if wrongUserPass == true %}
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+        {% if muni_jvs %}
             <div class="message message--common message--common-error" role="alert">
                 <p class="message__desc">
                     {{ '{campusmultiauth:wrong_username_or_password}'|trans }}
@@ -19,66 +19,39 @@
     {% endif %}
 
     <div class="margin-bottom-24 text-left">
-        <label for="username"
-            {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-               class="color-{{ configuration.priority }}"
-            {% else %}
-                {% if configuration.priority == 'primary' %}
-                    class="form-label text-dark"
-                {% else %}
-                    class="form-label text-muted"
-                {% endif %}
-            {% endif %}>{% if attribute(configuration.username_label, currentLanguage) is defined %}{{ attribute(configuration.username_label, currentLanguage) }}
+        <label for="username" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}form-label text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
+            {% if attribute(configuration.username_label, currentLanguage) is defined %}{{ attribute(configuration.username_label, currentLanguage) }}
             {% elseif configuration.username_label is defined and configuration.username_label is iterable and configuration.username_label is not empty %}{{ configuration.username_label | first }}
             {% elseif configuration.username_label is defined and configuration.username_label is not iterable %}{{ configuration.username_label }}
             {% else %}{{ '{campusmultiauth:username_label}'|trans }}
-            {% endif %}</label>
+            {% endif %}
+        </label>
         <br>
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-            <span class="inp-fix">
-        {% endif %}
-            <input id="username"
-                {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-                   class="inp-text input-height border color-border-{{ configuration.priority }}"
-                {% else %}
-                    {% if configuration.priority == 'primary' %}
-                       class="form-control border-2 border-dark input-height"
-                    {% else %}
-                       class="form-control border-2 border-muted input-height"
-                    {% endif %}
-                {% endif %}
+        {% if muni_jvs %}<span class="inp-fix">{% endif %}
+            <input id="username" class="{% if muni_jvs %}inp-text input-height border color-border-{{ configuration.priority }}{% else %}input-height form-control border-2 border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}"
                    type="text" name="username"{% if cookie_username is not null %} value="{{ cookie_username }}"{% endif %} placeholder="{% if attribute(configuration.username_placeholder, currentLanguage) is defined %}{{ attribute(configuration.username_placeholder, currentLanguage) }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is iterable and configuration.username_placeholder is not empty %}{{ configuration.username_placeholder | first }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is not iterable %}{{ configuration.username_placeholder }}
                 {% else %}{{ '{campusmultiauth:username_placeholder}'|trans }}
                 {% endif %}">
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-            </span>
-        {% endif %}
+        {% if muni_jvs %}</span>{% endif %}
     </div>
     <div class="margin-bottom-24 text-left">
-        <label for="password"
-            {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-               class="color-{{ configuration.priority }}"
-            {% else %}
-                {% if configuration.priority == 'primary' %}
-                    class="form-label text-dark"
-                {% else %}
-                    class="form-label text-muted"
-                {% endif %}
-            {% endif %}>{% if attribute(configuration.password_label, currentLanguage) is defined %}{{ attribute(configuration.password_label, currentLanguage) }}
+        <label for="password" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}form-label text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
+            {% if attribute(configuration.password_label, currentLanguage) is defined %}{{ attribute(configuration.password_label, currentLanguage) }}
             {% elseif configuration.password_label is defined and configuration.password_label is iterable and configuration.password_label is not empty %}{{ configuration.password_label | first }}
             {% elseif configuration.password_label is defined and configuration.password_label is not iterable %}{{ configuration.password_label }}
             {% else %}{{ '{campusmultiauth:password_label}'|trans }}
-            {% endif %}</label>
+            {% endif %}
+        </label>
         <br>
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+        {% if muni_jvs %}
             <span class="inp-fix inp-icon inp-icon--after">
         {% else %}
             <div class="input-group">
         {% endif %}
             <input id="password"
-               {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+               {% if muni_jvs %}
                    class="inp-text input-height border color-border-{{ configuration.priority }}"
                {% else %}
                    {% if configuration.priority == 'primary' %}
@@ -92,31 +65,28 @@
                 {% elseif configuration.password_placeholder is defined and configuration.password_placeholder is not iterable %}{{ configuration.password_placeholder }}
                 {% else %}{{ '{campusmultiauth:password_placeholder}'|trans }}
                 {% endif %}">
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
-                <button id="toggle-password" class="btn-icon icon icon-eye color-{{ configuration.priority }}" type="button"></button>
+            <button id="toggle-password" class="{% if muni_jvs %}btn-icon icon icon-eye color-{{ configuration.priority }}{% else %}btn border border-2 border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %} rounded-end{% endif %}" type="button">{% if not muni_jvs %}<i class="fas fa-eye"></i>{% endif %}</button>
+        {% if muni_jvs %}
             </span>
         {% else %}
-                <button id="toggle-password" class="btn border border-2 {% if configuration.priority == 'primary' %}border-dark{% else %}border-muted{% endif %} rounded-end" type="button">
-                    <i class="fas fa-eye"></i>
-                </button>
-        </div>
+            </div>
         {% endif %}
     </div>
 
     <div class="margin-bottom-24 text-left">
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+        {% if muni_jvs %}
             <label class="inp-item inp-item--checkbox" for="remember_me">
                 <input id="remember_me" type="checkbox" name="remember_me" value="Yes">
                 <span>{{ '{campusmultiauth:remember}'|trans }}</span>
             </label>
         {% else %}
             <input type="checkbox" class="form-check-input border{% if configuration.priority == 'primary' %} border-dark{% else %} border-muted{% endif %}" id="remember_me" name="remember_me" value="Yes">
-            <label class="form-check-label margin-left-12{% if configuration.priority == 'primary' %} text-dark{% else %} text-muted{% endif %}" for="remember_me">{{ '{campusmultiauth:remember}'|trans }}</label>
+            <label class="form-check-label margin-left-12 text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}" for="remember_me">{{ '{campusmultiauth:remember}'|trans }}</label>
         {% endif %}
     </div>
 
     <div class="margin-bottom-24" id="submit">
-        {% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+        {% if muni_jvs %}
             <button id="submit_button" class="btn {% if wayf_config.muni_faculty is defined %}btn-{{ wayf_config.muni_faculty }}{% else %}btn-primary {% endif %}{% if configuration.priority == 'secondary' %}btn-border{% endif %} btn-lg" type="submit">
                 <span>
                     <span class="font-muni">{{ '{campusmultiauth:login}'|trans }}</span>

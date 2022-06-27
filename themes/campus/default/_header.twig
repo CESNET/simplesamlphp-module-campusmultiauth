@@ -2,7 +2,7 @@
     {% set wayf_config = wayf_config|merge({'languages': {'en': 'English'}}) %}
 {% endif %}
 
-{% if wayf_config.css_framework is defined and wayf_config.css_framework == 'muni_jvs' %}
+{% if muni_jvs %}
     <header class="header">
         <div class="header-container">
             <div class="language-bar-margin">
@@ -63,7 +63,7 @@
                     </nav>
                 </div>
             </div>
-            <img src="{% if wayf_config.logo is defined %}{{ wayf_config.logo }}{% endif %}" class="header-img-jvs" alt="{% if wayf_config.name is defined %}{{ wayf_config.name }}{% endif %}"/>
+            <img src="{% if wayf_config.logo is defined %}{{ wayf_config.logo }}{% endif %}" class="header-img" alt="{% if wayf_config.name is defined %}{{ wayf_config.name }}{% endif %}"/>
         </div>
     </header>
 {% elseif wayf_config is defined %}
