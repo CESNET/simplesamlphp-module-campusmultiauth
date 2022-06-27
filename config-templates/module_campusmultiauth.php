@@ -86,12 +86,12 @@ $config = [
         'format' => 'HTML',
         'sections' => [
             'cs' => [
-                0 => '<h5 style="text-decoration: underline; margin-top: 72px; margin-bottom: 24px;">Máte problém s přihlášením?</h5>',
-                1 => '<div style="margin-bottom: 36px;">Službu Autentizační brána zajišťuje Ústav výpočetní techniky.</div>',
+                0 => '<h5>Máte problém s přihlášením?</h5>',
+                1 => '<div>Službu Autentizační brána zajišťuje Ústav výpočetní techniky.</div>',
             ],
             'en' => [
-                0 => '<h5 style="text-decoration: underline; margin-top: 72px; margin-bottom: 24px;">Having trouble logging in?</h5>',
-                1 => '<div style="margin-bottom: 36px;">The Authentication Gateway service is provided by the Institute of Computer Science.</div>',
+                0 => '<h5>Having trouble logging in?</h5>',
+                1 => '<div>The Authentication Gateway service is provided by the Institute of Computer Science.</div>',
             ],
         ],
     ],
