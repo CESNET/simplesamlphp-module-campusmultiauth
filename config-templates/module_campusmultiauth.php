@@ -39,7 +39,7 @@ $config = [
             ],
             'include' => [
                 'upstream_idps' => [],
-                'tags' => [],
+                'tags' => ['edugain'],
                 'registration_authorities' => []
             ],
             'exclude' => [
@@ -61,25 +61,25 @@ $config = [
                         'en' => 'VUT en',
                         'cs' => 'VUT cs',
                     ],
-                    'logo' => 'https://ip-147-251-124-162.flt.cloud.muni.cz/logos/vut.png',
+                    'logo' => 'https://example.com/logos/vut.png',
                     'upstream_idp' => 'https://www.vutbr.cz/SSO/saml2/idp',
                     'background_color' => '#990000'
                 ],
                 1 => [
                     'name' => 'UTB',
-                    'logo' => 'https://ip-147-251-124-162.flt.cloud.muni.cz/logos/utb.png',
+                    'logo' => 'https://example.com/logos/utb.png',
                     'upstream_idp' => 'https://login.bbmri-eric.eu/idp/'
                 ],
                 2 => [
                     'name' => 'Linkedin',
-                    'logo' => 'https://ip-147-251-124-162.flt.cloud.muni.cz/logos/linkedin.png',
+                    'logo' => 'https://example.com/logos/linkedin.png',
                     'upstream_idp' => 'https://login.elixir-czech.org/linkedin-idp/'
                 ],
             ],
         ],
     ],
     'css_framework' => 'muni_jvs',
-    'logo' => 'https://ip-147-251-124-162.flt.cloud.muni.cz/logos/muni2.png',
+    'logo' => 'https://example.com/logos/muni2.png',
     'name' => 'MUNI',
     'muni_faculty' => 'econ',
     'footer' => [
