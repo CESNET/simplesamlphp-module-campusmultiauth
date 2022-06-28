@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block contentwrapper %}
-    <div class="window {% if muni_jvs %}framework_muni{% else %}framework_bootstrap5{% endif %}">
+    <div class="window {% if muni_jvs %}framework_muni{% else %}framework_bootstrap5 bg-light{% endif %}">
         <h3 class="margin-bottom-12 header-text">
             {{ '{campusmultiauth:login_title}'|trans }}
         </h3>
@@ -48,11 +48,11 @@
 
                             {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) %}
                                 <div class="hrline color-secondary">
-                                    <span>{{ '{campusmultiauth:or}'|trans }}</span>
+                                    <span{% if not muni_jvs %} class="bg-light"{% endif %}>{{ '{campusmultiauth:or}'|trans }}</span>
                                 </div>
                             {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
                                 <div class="hrline last-col-component color-secondary">
-                                    <span>{{ '{campusmultiauth:or}'|trans }}</span>
+                                    <span{% if not muni_jvs %} class="bg-light"{% endif %}>{{ '{campusmultiauth:or}'|trans }}</span>
                                 </div>
                             {% endif %}
                         {% endfor %}
