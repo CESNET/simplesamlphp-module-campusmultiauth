@@ -90,9 +90,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    var togglePassword = document.getElementById("toggle-password");
     var password = document.getElementById("password");
-    if (togglePassword) {
+    var togglePassword = document.getElementById("toggle-password");
+    if (password && togglePassword) {
+        password.addEventListener("keyup", function(event) {
+          var message = document.getElementById('capslock-warning');
+          var wrapper = document.getElementById('capslock-warning-wrapper');
+          var isCapsLock = event.getModifierState("CapsLock");
+          if (isCapsLock) {
+            showElement(message);
+          } else {
+            hideElement(message);
+          }
+          if (wrapper) {
+            wrapper.classList.toggle('warning', isCapsLock);
+          }
+        });
+
         togglePassword.addEventListener("click", function () {
             var type = password.getAttribute("type") === "password" ? "text" : "password";
             password.setAttribute("type", type);

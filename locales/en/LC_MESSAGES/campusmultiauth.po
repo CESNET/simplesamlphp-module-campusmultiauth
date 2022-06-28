@@ -62,4 +62,7 @@ msgid "{campusmultiauth:undefined}"
 msgstr "undefined"
 
 msgid "{campusmultiauth:localLogin_title}"
-msgstr "Přihlásit se uživatelským jménem a heslem"
+msgstr "Login with username and password"
+
+msgid "{campusmultiauth:localLogin_capslock}"
+msgstr "Warning! Caps lock is ON."

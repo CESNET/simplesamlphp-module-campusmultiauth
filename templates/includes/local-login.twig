@@ -55,7 +55,7 @@
         </label>
         <br>
         {% if muni_jvs %}
-            <span class="inp-fix inp-icon inp-icon--after">
+            <span class="inp-fix inp-icon inp-icon--after" id="capslock-warning-wrapper">
         {% else %}
             <div class="input-group">
         {% endif %}
@@ -75,6 +75,7 @@
                 {% else %}{{ '{campusmultiauth:password_placeholder}'|trans }}
                 {% endif %}">
             <button id="toggle-password" class="{% if muni_jvs %}btn-icon icon icon-eye color-{{ configuration.priority }}{% else %}btn border border-2 border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %} rounded-end{% endif %}" type="button">{% if not muni_jvs %}<i class="fas fa-eye"></i>{% endif %}</button>
+            {% if muni_jvs %}<span class="inp-info vhide" id="capslock-warning">{{ '{campusmultiauth:localLogin_capslock}'|trans }}</span>{% else %}<div class="invalid-feedback text-warning d-block d-none" id="capslock-warning">{{ '{campusmultiauth:localLogin_capslock}'|trans }}</div>{% endif %}
         {% if muni_jvs %}
             </span>
         {% else %}
