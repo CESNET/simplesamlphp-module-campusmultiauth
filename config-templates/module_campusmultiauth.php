@@ -47,6 +47,9 @@ $config = [
                 'tags' => [],
                 'registration_authorities' => []
             ],
+            'logos' => [
+                'https://idp2.ics.muni.cz/idp/shibboleth' => 'https://id.muni.cz/android-chrome-192x192.png',
+            ],
         ],
         [
             'name' => 'individual_identities',
