@@ -6,9 +6,9 @@ function showElement(element) {
     element.classList.remove('vhide', 'd-none');
 }
 
-function showMoreOptions() {
-    document.querySelectorAll('.idp-hidden').forEach(showElement);
-    hideElement(document.getElementById('more-options'));
+function showMoreOptions(showButton) {
+    document.getElementById(showButton.dataset.targetform).querySelectorAll('.idp-hidden').forEach(showElement);
+    hideElement(showButton);
 }
 
 function selectizeScore() {
@@ -83,9 +83,11 @@ function selectizeLoad(query, callback) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    var moreOptions = document.getElementById("more-options");
+    var moreOptions = document.querySelectorAll(".more-options");
     if (moreOptions) {
-        moreOptions.addEventListener("click", showMoreOptions);
+        moreOptions.forEach(function(showButton){
+            showButton.addEventListener("click", showMoreOptions.bind(null, showButton));
+        });
     }
 
     var togglePassword = document.getElementById("toggle-password");
