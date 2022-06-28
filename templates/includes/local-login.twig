@@ -74,17 +74,19 @@
         {% endif %}
     </div>
 
-    <div class="margin-bottom-24 text-left">
-        {% if muni_jvs %}
-            <label class="inp-item inp-item--checkbox" for="remember_me">
-                <input id="remember_me" type="checkbox" name="remember_me" value="Yes">
-                <span>{{ '{campusmultiauth:remember}'|trans }}</span>
-            </label>
-        {% else %}
-            <input type="checkbox" class="form-check-input border{% if configuration.priority == 'primary' %} border-dark{% else %} border-muted{% endif %}" id="remember_me" name="remember_me" value="Yes">
-            <label class="form-check-label margin-left-12 text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}" for="remember_me">{{ '{campusmultiauth:remember}'|trans }}</label>
-        {% endif %}
-    </div>
+    {% if rememberme_enabled %}
+        <div class="margin-bottom-24 text-left">
+            {% if muni_jvs %}
+                <label class="inp-item inp-item--checkbox" for="remember_me">
+                    <input id="remember_me" type="checkbox" name="remember_me" value="Yes">
+                    <span>{{ '{campusmultiauth:remember}'|trans }}</span>
+                </label>
+            {% else %}
+                <input type="checkbox" class="form-check-input border{% if configuration.priority == 'primary' %} border-dark{% else %} border-muted{% endif %}" id="remember_me" name="remember_me" value="Yes">
+                <label class="form-check-label margin-left-12 text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}" for="remember_me">{{ '{campusmultiauth:remember}'|trans }}</label>
+            {% endif %}
+        </div>
+    {% endif %}
 
     <div class="margin-bottom-24" id="submit">
         {% if muni_jvs %}
