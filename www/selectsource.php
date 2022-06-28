@@ -20,6 +20,8 @@ $state = State::loadState($authStateId, Campusidp::STAGEID_USERPASS);
 $metadataStorageHandler = MetaDataStorageHandler::getMetadataHandler();
 $metadata = $metadataStorageHandler->getList();
 
+$wayfConfig = Configuration::getConfig('module_campusmultiauth.php')->toArray();
+
 if (array_key_exists('aarc_idp_hint', $state)) {
     $parts = explode('?', urldecode($state['aarc_idp_hint']), 2);
 
@@ -41,10 +43,25 @@ if (array_key_exists('source', $_POST)) {
     if (array_key_exists('searchbox', $_POST)) {
         $state['saml:idp'] = $_POST['searchbox'];
 
-        Campusidp::setCookie(Campusidp::COOKIE_IDP_ENTITY_ID, $_POST['searchbox']);
-        Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_NAME, json_encode($metadata[$_POST['searchbox']]['name']));
-        Campusidp::setCookie(Campusidp::COOKIE_INSTITUTION_IMG, Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]));
-        Campusidp::setCookie(Campusidp::COOKIE_COMPONENT_INDEX, $_POST['componentIndex']);
+        if (!empty($metadata[$_POST['searchbox']]) &&
+            !empty($wayfConfig['components'][$_POST['componentIndex']]) &&
+            $wayfConfig['components'][$_POST['componentIndex']]['name'] === 'searchbox')
+        {
+            $chosenIdp = [];
+            $chosenIdp['entityid'] = $_POST['searchbox'];
+            $chosenIdp['name'] = $metadata[$_POST['searchbox']]['name'];
+            $chosenIdp['img'] = Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]);
+            $chosenIdp['index'] = $_POST['componentIndex'];
+
+            $prevIdps = Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null ? [] : json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));
+            $prevIdps[] = $chosenIdp;
+
+            while (strlen(base64_encode(gzdeflate(json_encode($prevIdps)))) > 4093) {
+                array_shift($prevIdps);
+            }
+
+            Campusidp::setCookie(Campusidp::COOKIE_PREVIOUS_IDPS, base64_encode(gzdeflate(json_encode($prevIdps))));
+        }
 
         Campusidp::delegateAuthentication($_POST['source'], $state);
     } elseif (array_key_exists('idpentityid', $_POST)) {
@@ -67,8 +84,6 @@ if (array_key_exists('source', $_POST)) {
         }
     }
 }
-
-$wayfConfig = Configuration::getConfig('module_campusmultiauth.php')->toArray();
 
 if (!empty($wayfConfig['footer']['format']) && $wayfConfig['footer']['format'] === 'markdown') {
     $converter = new CommonMarkConverter();
@@ -107,10 +122,7 @@ $t->data['idps'] = $idps;
 $t->data['no_js_display_index'] = !empty($_POST['componentIndex']) ? $_POST['componentIndex'] : null;
 $t->data['user_pass_source_name'] = $state[Campusidp::USER_PASS_SOURCE_NAME];
 $t->data['sp_source_name'] = $state[Campusidp::SP_SOURCE_NAME];
-$t->data['cookie_idpentityid'] = Campusidp::getCookie(Campusidp::COOKIE_IDP_ENTITY_ID);
-$t->data['cookie_institution_name'] = json_decode(Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_NAME), true);
-$t->data['cookie_institution_img'] = Campusidp::getCookie(Campusidp::COOKIE_INSTITUTION_IMG);
-$t->data['cookie_component_index'] = Campusidp::getCookie(Campusidp::COOKIE_COMPONENT_INDEX);
+$t->data['prev_idps'] = json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
 $t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function($config, $index) {

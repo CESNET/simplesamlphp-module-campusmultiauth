@@ -8,7 +8,7 @@
             <div class="language-bar-margin">
                 <div class="header__side">
                     {% if wayf_config.languages | length > 2 %}
-                        <nav class="menu-lang menu-lang--select menu-lang--select-dark" aria-label="{{ '{campusmultiauth:lang_selection}'|trans }}">
+                        <nav class="menu-lang menu-lang--select" aria-label="{{ '{campusmultiauth:lang_selection}'|trans }}">
                             <p class="menu-lang__selected">
                                 {% if attribute(wayf_config.languages, currentLanguage) is defined %}
                                     <a href="#" class="menu-lang__selected__link">

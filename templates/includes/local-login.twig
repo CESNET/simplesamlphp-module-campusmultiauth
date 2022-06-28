@@ -6,19 +6,20 @@
 
     {% if wrongUserPass == true %}
         {% if muni_jvs %}
-            <div class="message message--common message--common-error" role="alert">
-                <p class="message__desc">
+            <div class="message message--error" role="alert">
+                <span class="message__icon icon icon-exclamation-triangle"></span>
+                <p class="message__desc red">
                     {{ '{campusmultiauth:wrong_username_or_password}'|trans }}
                 </p>
             </div>
         {% else %}
-            <div id="wrong_user_pass" class="alert alert-danger" role="alert">
+            <div id="wrong_user_pass" class="alert alert-danger bg-white" role="alert">
                 {{ '{campusmultiauth:wrong_username_or_password}'|trans }}
             </div>
         {% endif %}
     {% endif %}
 
-    <div class="margin-bottom-24 text-left">
+    <div class="margin-bottom-24 text-left{% if wrongUserPass and muni_jvs %} error{% endif %}">
         <label for="username" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}form-label text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
             {% if attribute(configuration.username_label, currentLanguage) is defined %}{{ attribute(configuration.username_label, currentLanguage) }}
             {% elseif configuration.username_label is defined and configuration.username_label is iterable and configuration.username_label is not empty %}{{ configuration.username_label | first }}
@@ -28,7 +29,7 @@
         </label>
         <br>
         {% if muni_jvs %}<span class="inp-fix">{% endif %}
-            <input id="username" class="{% if muni_jvs %}inp-text input-height border color-border-{{ configuration.priority }}{% else %}input-height form-control border-2 border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}"
+            <input id="username" class="{% if muni_jvs %}inp-text input-height border color-border-{{ configuration.priority }}{% else %}input-height form-control border-2{% if wrongUserPass %} is-invalid{% else %} border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}{% endif %}"
                    type="text" name="username"{% if cookie_username is not null %} value="{{ cookie_username }}"{% endif %} placeholder="{% if attribute(configuration.username_placeholder, currentLanguage) is defined %}{{ attribute(configuration.username_placeholder, currentLanguage) }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is iterable and configuration.username_placeholder is not empty %}{{ configuration.username_placeholder | first }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is not iterable %}{{ configuration.username_placeholder }}
@@ -36,7 +37,7 @@
                 {% endif %}">
         {% if muni_jvs %}</span>{% endif %}
     </div>
-    <div class="margin-bottom-24 text-left">
+    <div class="margin-bottom-24 text-left{% if wrongUserPass and muni_jvs %} error{% endif %}">
         <label for="password" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}form-label text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
             {% if attribute(configuration.password_label, currentLanguage) is defined %}{{ attribute(configuration.password_label, currentLanguage) }}
             {% elseif configuration.password_label is defined and configuration.password_label is iterable and configuration.password_label is not empty %}{{ configuration.password_label | first }}
@@ -55,9 +56,9 @@
                    class="inp-text input-height border color-border-{{ configuration.priority }}"
                {% else %}
                    {% if configuration.priority == 'primary' %}
-                       class="form-control border-2 border-dark input-height"
+                       class="form-control border-2 input-height{% if wrongUserPass %} is-invalid{% else %} border-dark{% endif %}"
                    {% else %}
-                       class="form-control border-2 border-muted input-height"
+                       class="form-control border-2 input-height{% if wrongUserPass %} is-invalid{% else %} border-muted{% endif %}"
                    {% endif %}
                {% endif %}
                    type="password" name="password" autocomplete="current-password"{% if cookie_password is not null %} value="{{ cookie_password }}"{% endif %} placeholder="{% if attribute(configuration.password_placeholder, currentLanguage) is defined %}{{ attribute(configuration.password_placeholder, currentLanguage) }}

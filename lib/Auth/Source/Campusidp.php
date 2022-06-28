@@ -24,11 +24,8 @@ class Campusidp extends Source
     public const SESSION_SOURCE = 'campusmultiauth:selectedSource';
     public const USER_PASS_SOURCE_NAME = 'userPassSourceName';
     public const SP_SOURCE_NAME = 'spSourceName';
+    public const COOKIE_PREVIOUS_IDPS = 'previous_idps';
     public const COOKIE_PREFIX = 'campusidp_';
-    public const COOKIE_IDP_ENTITY_ID = 'idpentityid';
-    public const COOKIE_INSTITUTION_NAME = 'institution_name';
-    public const COOKIE_INSTITUTION_IMG = 'institution_img';
-    public const COOKIE_COMPONENT_INDEX = 'component_index';
     public const COOKIE_USERNAME = 'username';
     public const COOKIE_PASSWORD = 'password';
 

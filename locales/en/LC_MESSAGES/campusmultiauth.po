@@ -57,3 +57,6 @@ msgstr "Wrong username or password."
 
 msgid "{campusmultiauth:search_button}"
 msgstr "Search"
+
+msgid "{campusmultiauth:undefined}"
+msgstr "undefined"
