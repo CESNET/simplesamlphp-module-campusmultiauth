@@ -62,7 +62,12 @@ html, body {
     margin-bottom: 12px;
 }
 
-.btn-more-options {
+.more-options {
+    border-bottom: 1px solid #0000dc;
+    margin-bottom: 24px;
+}
+
+.framework_bootstrap5 .more-options {
     width: 160px;
     margin-top: -24px;
 }
@@ -71,7 +76,7 @@ html, body {
     display: none;
 }
 
-#external {
+.external {
     margin-bottom: 24px;
 }
 
@@ -356,14 +361,9 @@ html, body {
     margin-bottom: 24px;
 }
 
-#idps-form-nojs {
+.idps-form-nojs {
     width: 100%;
     margin-top: 0;
-    margin-bottom: 24px;
-}
-
-#more-options {
-    border-bottom: 1px solid #0000dc;
     margin-bottom: 24px;
 }
 

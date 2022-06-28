@@ -36,7 +36,7 @@
                             {% if component_configuration.name == 'local_login' %}
                                 {% include '@campusmultiauth/includes/local-login.twig' with {'configuration': component_configuration} %}
                             {% elseif component_configuration.name == 'individual_identities' %}
-                                {% include '@campusmultiauth/includes/individual-identities.twig' with {'configuration': component_configuration} %}
+                                {% include '@campusmultiauth/includes/individual-identities.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
                             {% elseif component_configuration.name == 'searchbox' %}
                                 {% include '@campusmultiauth/includes/searchbox.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
                             {% endif %}

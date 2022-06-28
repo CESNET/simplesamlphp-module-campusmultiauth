@@ -73,7 +73,7 @@ The main part of the login page. The `components` option is designed as a list, 
 
 #### local_login
 
-This component represents a form with username and password. There are some options that can be configured.
+This component represents a form with username and password. It can be used only once. There are some options that can be configured.
 
 `username_label` - this is displayed as a label above input for the username. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
 
@@ -89,7 +89,7 @@ This component represents a form with username and password. There are some opti
 
 #### searchbox
 
-Thanks to searchbox you can search between all included identity providers.
+Thanks to searchbox you can search between all included identity providers. This components may be used multiple times.
 
 `title` - text displayed above the component. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
 
@@ -105,7 +105,7 @@ Thanks to searchbox you can search between all included identity providers.
 
 #### individual_identities
 
-Here you can specify some identity providers to display them as a list of buttons.
+Here you can specify some identity providers to display them as a list of buttons. This components may be used multiple times.
 
 `title` - text displayed above the component. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
 

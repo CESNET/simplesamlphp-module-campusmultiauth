@@ -3,15 +3,15 @@
 {% endif %}
 
 <div class="list-group text-left idps-form-div d-none vhide">
-    <form id="idps-form-{{ component_index }}" action="{{ currentUrl }}" method="post">
-        <label for="searchbox" class="text-bold {% if muni_jvs %}color-{{ configuration.priority }}{% else %}text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
+    <form action="{{ currentUrl }}" method="post">
+        <label id="searchbox-{{ component_index }}-label" for="searchbox" class="text-bold {% if muni_jvs %}color-{{ configuration.priority }}{% else %}text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
         {% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
             {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
             {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
             {% else %}{{ '{campusmultiauth:searchbox_title}'|trans }}
             {% endif %}
         </label>
-        <input type="text" name="searchbox" id="searchbox-{{ component_index }}" value="" class="
+        <input type="text" name="searchbox" aria-labelledby="searchbox-{{ component_index }}-label" id="searchbox-{{ component_index }}" value="" class="
             {% if muni_jvs %}
                 inp-text js-suggest searchbox-input input-height selectized color-border-{{ configuration.priority }}
             {% else %}
@@ -44,9 +44,9 @@
             {% endif %}
         {% endif %}
 
-        <input type="hidden" id="componentIndex" name="componentIndex" value="{{ component_index }}" />
-        <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
-        <input type="hidden" id="source" name="source" value="{{ sp_source_name }}" />
+        <input type="hidden" name="componentIndex" value="{{ component_index }}" />
+        <input type="hidden" name="authstate" value="{{ authstate }}" />
+        <input type="hidden" name="source" value="{{ sp_source_name }}" />
     </form>
 </div>
 
@@ -62,18 +62,18 @@
 
 {% if idps == null or component_index != no_js_display_index %}
     <div class="idps-form-nojs-div list-group text-left">
-        <label for="q" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}form-label text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
+        <label for="q-{{ component_index }}" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}form-label text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
         {% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
             {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
             {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
             {% else %}{{ '{campusmultiauth:searchbox_title}'|trans }}
             {% endif %}
         </label>
-        <form id="idps-form-nojs" class="form-inline" action="{{ currentUrl }}" method="post">
+        <form class="idps-form-nojs form-inline" action="{{ currentUrl }}" method="post">
         {% if muni_jvs %}
                 <p class="size--m--4-4 size--l--10-12">
                     <span class="inp-fix">
-                        <input id="q" class="inp-text" type="text" name="q" placeholder="{{ placeholder }}">
+                        <input id="q-{{ component_index }}" class="inp-text" type="text" name="q" placeholder="{{ placeholder }}">
                     </span>
                 </p>
                 <p>
@@ -83,14 +83,14 @@
                 </p>
         {% else %}
                 <div class="input-group">
-                    <input id="q" name="q" type="text" placeholder="{{ placeholder }}" class="form-control border border-2 border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %} input-height" aria-describedby="submit-search">
-                    <button id="submit-search" class="btn btn-{% if configuration.priority == 'primary' %}primary{% else %}secondary{% endif %}" type="submit">{{ '{campusmultiauth:search_button}'|trans }}</button>
+                    <input id="q-{{ component_index }}" name="q" type="text" placeholder="{{ placeholder }}" class="form-control border border-2 border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %} input-height" aria-describedby="submit-search-{{ component_index }}">
+                    <button id="submit-search-{{ component_index }}" class="btn btn-{% if configuration.priority == 'primary' %}primary{% else %}secondary{% endif %}" type="submit">{{ '{campusmultiauth:search_button}'|trans }}</button>
                 </div>
         {% endif %}
 
-            <input type="hidden" id="componentIndex" name="componentIndex" value="{{ component_index }}" />
-            <input type="hidden" id="currentLanguage" name="currentLanguage" value="{{ currentLanguage }}" />
-            <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
+            <input type="hidden" name="componentIndex" value="{{ component_index }}" />
+            <input type="hidden" name="currentLanguage" value="{{ currentLanguage }}" />
+            <input type="hidden" name="authstate" value="{{ authstate }}" />
         </form>
     </div>
 {% else %}
@@ -122,8 +122,8 @@
                 {% endif %}
             {% endfor %}
 
-            <input type="hidden" id="authstate" name="authstate" value="{{ authstate }}" />
-            <input type="hidden" id="source" name="source" value="{{ sp_source_name }}" />
+            <input type="hidden" name="authstate" value="{{ authstate }}" />
+            <input type="hidden" name="source" value="{{ sp_source_name }}" />
         </form>
     </div>
 {% endif %}
