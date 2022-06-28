@@ -8,13 +8,13 @@
 
 <form id="external-{{ component_index }}" class="external text-left" action="{{ currentUrl }}" method="post" name="g">
 
-    <div class="text-bold margin-bottom-12 {% if muni_jvs %}color-{{ configuration.priority }}{% elseif configuration.priority == 'primary' %}text-dark{% else %}text-muted{% endif %}" >
+    <h4 class="mb-3 {% if muni_jvs %}color-{{ configuration.priority }}{% elseif configuration.priority == 'primary' %}text-dark{% else %}text-muted{% endif %}" >
         {% if attribute(configuration.title, currentLanguage) is defined %}{{ attribute(configuration.title, currentLanguage) }}
         {% elseif configuration.title is defined and configuration.title is iterable and configuration.title is not empty %}{{ configuration.title | first }}
         {% elseif configuration.title is defined and configuration.title is not iterable %}{{ configuration.title }}
         {% else %}{{ '{campusmultiauth:individualIdentities_title}'|trans }}
         {% endif %}
-    </div>
+    </h4>
 
     {% for idp in configuration.identities %}
         <div class="{% if muni_jvs %}margin-bottom-12{% endif %}{% if loop.index0 >= configuration.number_shown %} idp-hidden d-none vhide{% endif %}">

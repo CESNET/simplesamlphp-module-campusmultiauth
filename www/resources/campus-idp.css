@@ -330,10 +330,6 @@ html, body {
     margin: 0 24px 0 24px;
 }
 
-#userpass_login_button {
-    margin-top: 30px;
-}
-
 .framework_muni #toggle-password {
     object-fit: contain;
     right: 0;
@@ -346,11 +342,6 @@ html, body {
 
 #submit_button {
     margin: 0;
-    width: 100%;
-}
-
-#userpass {
-    margin-top: 24px;
     width: 100%;
 }
 
@@ -375,6 +366,10 @@ body {
     text-align: left;
 }
 
+.wrap-col {
+    padding: 18px 0 0;
+}
+
 @media screen and (min-width: 768px) {
     .wrap {
         margin: 0 11px 36px 13px;
@@ -385,7 +380,7 @@ body {
     }
 
     .wrap-col {
-        padding: 0 36px 0 36px;
+        padding: 18px 36px 0;
     }
 
     .window {
@@ -396,7 +391,7 @@ body {
     }
 
     .framework_muni .header-text {
-        margin: 72px 0 0 36px;
+        margin: 72px 36px 36px;
     }
 
     .header-wrap {
@@ -498,9 +493,14 @@ body {
 }
 
 .border-muted {
-    color: #6c757d !important;
+    border-color: #6c757d !important;
 }
 
 .framework_muni #password {
     padding-right: 54px;
+}
+
+h4 {
+    font-size: var(--bs-body-font-size) !important;
+    font-weight: bold;
 }
