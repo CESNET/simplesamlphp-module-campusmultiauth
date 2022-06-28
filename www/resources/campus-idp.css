@@ -130,6 +130,10 @@ html, body {
     padding: 10px;
 }
 
+.framework_muni .individual-identity-logo {
+    border-right: 2px solid #757575;
+}
+
 .individual-identity-span-wrap.individual-identity-span-wrap {
     text-align: left;
     padding: 0;
