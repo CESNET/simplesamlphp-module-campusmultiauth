@@ -117,6 +117,8 @@ Here you can specify some identity providers to display them as a list of button
 
 `identities` - list of identity providers to display as buttons. Each identity provider has some configuration options available. For further information, see the [identities](#identities) section below.
 
+`logos` - optional map with keys of entity IDs and values of URLs to logos. This option can be used to override logos for some identity providers, which are expected to be used often but do not have a suitable (square) logo in their metadata.
+
 ##### identities
 
 Each identity is a map with the following possible options:

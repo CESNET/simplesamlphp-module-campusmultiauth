@@ -50,7 +50,8 @@ if (array_key_exists('source', $_POST)) {
             $chosenIdp = [];
             $chosenIdp['entityid'] = $_POST['searchbox'];
             $chosenIdp['name'] = $metadata[$_POST['searchbox']]['name'];
-            $chosenIdp['img'] = Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]);
+            $chosenIdp['img'] = $wayfConfig['components'][$_POST['componentIndex']]['logos'][$_POST['searchbox']]
+                ?? Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]);
             $chosenIdp['index'] = $_POST['componentIndex'];
 
             $prevIdps = Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null ? [] : json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));

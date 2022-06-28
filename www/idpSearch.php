@@ -124,11 +124,11 @@ $data['items'] = [];
 
 foreach ($filteredData as $entityid => $idpentry) {
     $item['idpentityid'] = $entityid;
-    $item['image'] = Campusidp::getMostSquareLikeImg($idpentry);
+    $item['image'] = $searchBox['logos'][$entityid] ?? Campusidp::getMostSquareLikeImg($idpentry);
 
     if (!empty($idpentry['name'][$_GET['language']])) {
         $item['text'] = $idpentry['name'][$_GET['language']];
-    } elseif (!empty($item['text'] = $idpentry['name']['en'])) {
+    } elseif (!empty($idpentry['name']['en'])) {
         $item['text'] = $idpentry['name']['en'];
     } elseif (reset($idpentry['name'])) {
         $item['text'] = reset($idpentry['name']);
