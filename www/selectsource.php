@@ -117,6 +117,7 @@ array_key_exists('wrongUserPass', $_REQUEST) ? $t->data['wrongUserPass'] = true 
 $t->data['authstate'] = $authStateId;
 $t->data['currentUrl'] = htmlentities($_SERVER['PHP_SELF']);
 $t->data['wayf_config'] = $wayfConfig;
+$t->data['rememberme_enabled'] = Configuration::getInstance()->getBoolean('session.rememberme.enable', false);
 $t->data['muni_jvs'] = ($wayfConfig['css_framework'] ?? 'bootstrap5') === 'muni_jvs';
 $t->data['idps'] = $idps;
 $t->data['no_js_display_index'] = !empty($_POST['componentIndex']) ? $_POST['componentIndex'] : null;

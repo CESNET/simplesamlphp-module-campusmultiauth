@@ -73,7 +73,7 @@ The main part of the login page. The `components` option is designed as a list, 
 
 #### local_login
 
-This component represents a form with username and password. It can be used only once. There are some options that can be configured.
+This component represents a form with username and password. It can be used only once. It's possible to show / hide the `remember_me` checkbox by configuring the `session.rememberme.enable` option in the `config.php` file. In the module configuration, there are following options:
 
 `username_label` - this is displayed as a label above input for the username. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
 
