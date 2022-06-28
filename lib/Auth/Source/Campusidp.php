@@ -13,6 +13,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Module\core\Auth\UserPassBase;
+use SimpleSAML\Error\UnserializableException;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 

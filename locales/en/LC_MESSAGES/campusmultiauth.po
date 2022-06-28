@@ -60,3 +60,6 @@ msgstr "Search"
 
 msgid "{campusmultiauth:undefined}"
 msgstr "undefined"
+
+msgid "{campusmultiauth:localLogin_title}"
+msgstr "Přihlásit se uživatelským jménem a heslem"
