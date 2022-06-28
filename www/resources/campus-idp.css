@@ -500,3 +500,7 @@ body {
 .border-muted {
     color: #6c757d !important;
 }
+
+.framework_muni #password {
+    padding-right: 54px;
+}
