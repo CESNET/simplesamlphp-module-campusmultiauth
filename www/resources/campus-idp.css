@@ -107,8 +107,11 @@ html, body {
 }
 
 .hrline span {
-    background-color: #FFFFFF;
     padding: 0 20px;
+}
+
+.framework_muni .hrline span {
+    background-color: #FFFFFF;
 }
 
 .individual-identity-logo-box {
@@ -230,10 +233,6 @@ html, body {
     background: #FFFFFF;
 }
 
-.padding-zero.padding-zero {
-    padding: 0 0 0 0;
-}
-
 .searchbox-result.searchbox-result {
     color: #000000;
     background-color: #FFFFFF;
@@ -242,11 +241,6 @@ html, body {
 
 .searchbox-result:hover.searchbox-result:hover {
     background-color: #EEEEEE;
-}
-
-.side-padding-zero.side-padding-zero {
-    padding-left: 0;
-    padding-right: 0;
 }
 
 .framework_bootstrap5 .selectize-input.items.not-full:after {
@@ -501,4 +495,8 @@ body {
     .header {
         margin-bottom: 200px;
     }
+}
+
+.border-muted {
+    color: #6c757d !important;
 }

@@ -25,8 +25,8 @@ function selectizeRenderOption(item, escape) {
 
     if (is_muni_framework) {
         return (
-            '<div class="box-vcards-list__item box-vcard--compact searchbox-result side-padding-zero">' +
-            '<div class="box-vcards-list__inner side-padding-zero">' +
+            '<div class="box-vcards-list__item box-vcard--compact searchbox-result u-pr-0 u-pl-0">' +
+            '<div class="box-vcards-list__inner u-pr-0 u-pl-0">' +
             '<p class="box-vcards-list__img center">' +
             '<img src="' + escapedImage + '" class="img-searchbox" alt=""/>' +
             '</p>' +
