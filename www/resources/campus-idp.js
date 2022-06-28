@@ -98,6 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
             password.setAttribute("type", type);
 
             this.classList.toggle("icon-eye-slash");
+            this.querySelector("i").classList.toggle("fa-eye");
+            this.querySelector("i").classList.toggle("fa-eye-slash");
         });
     }
 

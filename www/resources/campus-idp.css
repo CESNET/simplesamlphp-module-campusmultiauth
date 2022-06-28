@@ -81,12 +81,12 @@ html, body {
 }
 
 .header-text {
-    margin: 36px 0 0 36px;
+    margin: 36px;
     text-align: left;
 }
 
 .framework_muni .header-text {
-    margin: 24px 0 0 24px;
+    margin: 24px;
 }
 
 .header-img {
@@ -336,8 +336,8 @@ html, body {
 }
 
 .framework_muni #content {
-    margin: 0 24px 0 24px;
     border: 1px solid #757575;
+    margin: 0 24px 0 24px;
 }
 
 #userpass_login_button {
@@ -381,6 +381,10 @@ body {
     flex-direction: column;
 }
 
+.header-container {
+    text-align: left;
+}
+
 @media screen and (min-width: 768px) {
     .wrap {
         margin: 0 11px 36px 13px;
@@ -402,7 +406,7 @@ body {
     }
 
     .framework_muni .header-text {
-        margin: 72px 0 0 40px;
+        margin: 72px 0 0 36px;
     }
 
     .header-wrap {
@@ -419,6 +423,7 @@ body {
         flex-direction: column;
         flex-wrap: wrap-reverse;
         height: 50px;
+        text-align: center;
     }
 
     .header-img {
@@ -477,6 +482,7 @@ body {
     }
 
     .framework_muni #content {
+        margin: 0;
         border: none;
     }
 

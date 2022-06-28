@@ -128,7 +128,7 @@ $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
 $t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function($config, $index) {
     return $config['name'] === 'searchbox' ? $index : null;
-}, $wayfConfig['components'], array_keys($wayfConfig['components'])))));
+}, $wayfConfig['components'], array_keys($wayfConfig['components'])), function($a){return $a !== null;})));
 $currentLanguage = $t->getTranslator()->getLanguage()->getLanguage();
 $t->data['searchbox_placeholders'] = json_encode(array_map(function($config) use ($currentLanguage) {
     if ($config['name'] !== 'searchbox') {
