@@ -123,7 +123,6 @@ $t->data['idps'] = $idps;
 $t->data['no_js_display_index'] = !empty($_POST['componentIndex']) ? $_POST['componentIndex'] : null;
 $t->data['user_pass_source_name'] = $state[Campusidp::USER_PASS_SOURCE_NAME];
 $t->data['sp_source_name'] = $state[Campusidp::SP_SOURCE_NAME];
-$t->data['prev_idps'] = json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
 $t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function($config, $index) {
@@ -145,6 +144,12 @@ $t->data['searchbox_placeholders'] = json_encode(array_map(function($config) use
     }
     return null;
 }, $wayfConfig['components']));
+
+if (Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null) {
+    $t->data['prev_idps'] = [];
+} else {
+    $t->data['prev_idps'] = json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));
+}
 
 $t->show();
 exit();

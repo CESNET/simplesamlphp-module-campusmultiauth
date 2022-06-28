@@ -60,3 +60,6 @@ msgstr "Vyhledat"
 
 msgid "{campusmultiauth:undefined}"
 msgstr "neznámé"
+
+msgid "{campusmultiauth:localLogin_title}"
+msgstr "Login with username and password"
