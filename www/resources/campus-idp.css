@@ -361,7 +361,7 @@ html, body {
     margin-bottom: 24px;
 }
 
-#idps-form-nojs {
+.idps-form-nojs {
     width: 100%;
     margin-top: 0;
     margin-bottom: 24px;
