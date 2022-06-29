@@ -33,17 +33,25 @@
                                     <div class="box-vcards-list__content u-pb-0 u-pt-0 u-pr-0 u-pl-10">
                                         {% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}{% elseif idp.name is iterable and idp.name is not empty %}idp.name|first{% else %}{{ '{campusmultiauth:undefined}'|trans }}{% endif %}
                                     </div>
+                                    <div class="remove-option">
+                                        <span class="icon icon-times"></span>
+                                    </div>
                                 </div>
                             </button>
                         </div>
                     {% else %}
-                        <button class="list-group-item list-group-item-action d-flex align-items-center" type="submit">
-                            <span class="mb-0">
-                                <img src="{{ idp.img }}" class="img-searchbox" alt=""/>
-                            </span>
-                            <span class="margin-left-24">
-                                {% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}{% elseif idp.name is iterable and idp.name is not empty %}idp.name|first{% else %}{{ '{campusmultiauth:undefined}'|trans }}{% endif %}
-                            </span>
+                        <button class="list-group-item list-group-item-action d-flex align-items-center" type="submit" name="searchbox" value="{{ idp.entityid }}">
+                            <div class="full-width">
+                                <span class="mb-0">
+                                    <img src="{{ idp.img }}" class="img-searchbox" alt=""/>
+                                </span>
+                                <span class="margin-left-24">
+                                    {% if attribute(idp.name, currentLanguage) is defined %}{{ attribute(idp.name, currentLanguage) }}{% elseif idp.name is iterable and idp.name is not empty %}idp.name|first{% else %}{{ '{campusmultiauth:undefined}'|trans }}{% endif %}
+                                </span>
+                                <div class="remove-option">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
                         </button>
                     {% endif %}
                     {% set counter = counter + 1 %}
