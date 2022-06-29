@@ -2,6 +2,8 @@
     {% set configuration = configuration|merge({'priority': 'secondary'}) %}
 {% endif %}
 
+{% set counter = 0 %}
+
 <div class="list-group text-left idps-form-div d-none vhide">
     <form action="{{ currentUrl }}" method="post">
         <h4 id="searchbox-{{ component_index }}-label" class="{% if muni_jvs %}color-{{ configuration.priority }}{% else %}mb-3 text-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}">
@@ -20,7 +22,7 @@
 
         {% if prev_idps is not null %}
             {% for idp in prev_idps %}
-                {% if idp.index == component_index %}
+                {% if idp.index == component_index and counter < 2 %}
                     {% if muni_jvs %}
                         <div class="box-vcards-list__item box-vcard--compact searchbox-result u-pr-0 u-pl-0">
                             <button class="preferred-idp" type="submit">
@@ -44,6 +46,7 @@
                             </span>
                         </button>
                     {% endif %}
+                    {% set counter = counter + 1 %}
                 {% endif %}
             {% endfor %}
         {% endif %}
