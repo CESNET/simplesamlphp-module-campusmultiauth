@@ -25,7 +25,7 @@
                 {% if idp.index == component_index and counter < 2 %}
                     {% if muni_jvs %}
                         <div class="box-vcards-list__item box-vcard--compact searchbox-result u-pr-0 u-pl-0">
-                            <button class="preferred-idp" type="submit">
+                            <button class="preferred-idp" type="submit" name="searchbox" value="{{ idp.entityid }}">
                                 <div class="box-vcards-list__inner u-pr-0 u-pl-0">
                                     <p class="box-vcards-list__img center">
                                         <img src="{{ idp.img }}" class="img-searchbox"/>
