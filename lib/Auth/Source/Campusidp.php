@@ -217,6 +217,17 @@ class Campusidp extends Source
         }
     }
 
+    public static function isIdpInCookie($idps, $entityid)
+    {
+        foreach ($idps as $idp) {
+            if ($idp['entityid'] === $entityid) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function logout(&$state)
     {
         assert(is_array($state));

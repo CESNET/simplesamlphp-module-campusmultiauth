@@ -47,21 +47,27 @@ if (array_key_exists('source', $_POST)) {
             !empty($wayfConfig['components'][$_POST['componentIndex']]) &&
             $wayfConfig['components'][$_POST['componentIndex']]['name'] === 'searchbox')
         {
-            $chosenIdp = [];
-            $chosenIdp['entityid'] = $_POST['searchbox'];
-            $chosenIdp['name'] = $metadata[$_POST['searchbox']]['name'];
-            $chosenIdp['img'] = $wayfConfig['components'][$_POST['componentIndex']]['logos'][$_POST['searchbox']]
-                ?? Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]);
-            $chosenIdp['index'] = $_POST['componentIndex'];
+            $prevIdps = Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null ?
+                [] :
+                json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))), true);
 
-            $prevIdps = Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null ? [] : json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));
-            $prevIdps[] = $chosenIdp;
+            if (!Campusidp::isIdpInCookie($prevIdps, $_POST['searchbox'])) {
+                $chosenIdp = [];
+                $chosenIdp['entityid'] = $_POST['searchbox'];
+                $chosenIdp['name'] = $metadata[$_POST['searchbox']]['name'];
+                $chosenIdp['img'] = $wayfConfig['components'][$_POST['componentIndex']]['logos'][$_POST['searchbox']]
+                    ?? Campusidp::getMostSquareLikeImg($metadata[$_POST['searchbox']]);
+                $chosenIdp['index'] = $_POST['componentIndex'];
 
-            while (strlen(base64_encode(gzdeflate(json_encode($prevIdps)))) > 4093) {
-                array_shift($prevIdps);
+
+                $prevIdps[] = $chosenIdp;
+
+                while (strlen(base64_encode(gzdeflate(json_encode($prevIdps)))) > 4093) {
+                    array_shift($prevIdps);
+                }
+
+                Campusidp::setCookie(Campusidp::COOKIE_PREVIOUS_IDPS, base64_encode(gzdeflate(json_encode($prevIdps))));
             }
-
-            Campusidp::setCookie(Campusidp::COOKIE_PREVIOUS_IDPS, base64_encode(gzdeflate(json_encode($prevIdps))));
         }
 
         Campusidp::delegateAuthentication($_POST['source'], $state);
