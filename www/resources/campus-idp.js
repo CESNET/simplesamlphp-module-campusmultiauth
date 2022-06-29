@@ -117,6 +117,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    document.querySelectorAll('.remove-option').forEach(function (element) {
+        element.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            let button = this.parentElement.parentElement;
+
+            $.ajax({
+                url: "./removeCookie.php",
+                type: "POST",
+                data: {
+                    entityid: button.value
+                },
+            });
+
+            button.remove();
+        })
+    })
+
     document.querySelectorAll('.idps-form-nojs-div').forEach(hideElement);
     document.querySelectorAll('.idps-form-div').forEach(showElement);
 

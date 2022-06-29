@@ -89,6 +89,11 @@ html, body {
     margin: 24px;
 }
 
+.remove-option {
+    float: right;
+    margin-right: 10px;
+}
+
 .header-img {
     width: 170px;
     margin: 0 auto 0 36px;
