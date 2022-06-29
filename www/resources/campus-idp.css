@@ -372,7 +372,11 @@ body {
 }
 
 .wrap-col {
-    padding: 18px 0 0;
+    padding: 0 0 0;
+}
+
+.first-col {
+    padding-top: 24px;
 }
 
 @media screen and (min-width: 768px) {
