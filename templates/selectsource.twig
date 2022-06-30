@@ -27,7 +27,7 @@
             {{ '{campusmultiauth:login_title}'|trans }}
         </h3>
         <div id="content">
-            <div class="wrap">
+            <div class="wrap{% if not muni_jvs %} container{% endif %}">
                 {% block content %}
                     <div class="{% if muni_jvs %}grid{% else %}row{% endif %}">
                         <div class="{% if muni_jvs %}grid__cell size--m--2-4 wrap-col first-col{% else %}col-md-6 wrap-col{% endif %}">
