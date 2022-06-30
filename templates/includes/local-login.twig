@@ -37,7 +37,7 @@
         </label>
         <br>
         {% if muni_jvs %}<span class="inp-fix">{% endif %}
-            <input id="username" class="{% if muni_jvs %}inp-text input-height border color-border-{{ configuration.priority }}{% else %}input-height form-control border-2{% if wrongUserPass %} is-invalid{% else %} border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}{% endif %}"
+            <input id="username" class="{% if muni_jvs %}inp-text input-height border color-border-{{ configuration.priority }}{% else %}input-height form-control shadow-sm border-2{% if wrongUserPass %} is-invalid{% else %} border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}{% endif %}{% endif %}"
                    type="text" name="username"{% if cookie_username is not null %} value="{{ cookie_username }}"{% endif %} placeholder="{% if attribute(configuration.username_placeholder, currentLanguage) is defined %}{{ attribute(configuration.username_placeholder, currentLanguage) }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is iterable and configuration.username_placeholder is not empty %}{{ configuration.username_placeholder | first }}
                 {% elseif configuration.username_placeholder is defined and configuration.username_placeholder is not iterable %}{{ configuration.username_placeholder }}
@@ -64,9 +64,9 @@
                    class="inp-text input-height border color-border-{{ configuration.priority }}"
                {% else %}
                    {% if configuration.priority == 'primary' %}
-                       class="form-control border-2 input-height{% if wrongUserPass %} is-invalid{% else %} border-dark{% endif %}"
+                       class="form-control shadow-sm border-2 input-height{% if wrongUserPass %} is-invalid{% else %} border-dark{% endif %}"
                    {% else %}
-                       class="form-control border-2 input-height{% if wrongUserPass %} is-invalid{% else %} border-muted{% endif %}"
+                       class="form-control shadow-sm border-2 input-height{% if wrongUserPass %} is-invalid{% else %} border-muted{% endif %}"
                    {% endif %}
                {% endif %}
                    type="password" name="password" autocomplete="current-password"{% if cookie_password is not null %} value="{{ cookie_password }}"{% endif %} placeholder="{% if attribute(configuration.password_placeholder, currentLanguage) is defined %}{{ attribute(configuration.password_placeholder, currentLanguage) }}
@@ -105,7 +105,7 @@
                 </span>
             </button>
         {% else %}
-            <button id="submit_button" class="btn btn-{{ configuration.priority }} btn-lg" type="submit">
+            <button id="submit_button" class="btn btn-{{ configuration.priority }} btn-lg shadow-sm" type="submit">
                 {{ '{campusmultiauth:login}'|trans }}
             </button>
         {% endif %}
