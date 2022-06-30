@@ -17,7 +17,7 @@
             {% if muni_jvs %}
                 inp-text js-suggest searchbox-input input-height selectized color-border-{{ configuration.priority }}
             {% else %}
-                border border-2 input-height border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}
+                border border-2 input-height rounded border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}
             {% endif %}">
 
         {% if prev_idps is not null %}
