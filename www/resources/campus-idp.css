@@ -68,7 +68,6 @@ html, body {
 }
 
 .framework_bootstrap5 .more-options {
-    width: 160px;
     margin-top: -24px;
 }
 
@@ -303,7 +302,7 @@ html, body {
 }
 
 .footer {
-    padding: 0 18px 0 36px;
+    padding: 0 18px 36px 36px;
 }
 
 .framework_muni .footer {
@@ -482,6 +481,10 @@ body {
     .framework_muni #content {
         margin: 0;
         border: none;
+    }
+
+    .framework_bootstrap5 .more-options {
+        margin-top: -12px;
     }
 
     #content {
