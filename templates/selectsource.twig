@@ -30,7 +30,7 @@
             <div class="wrap{% if not muni_jvs %} container{% endif %}">
                 {% block content %}
                     <div class="{% if muni_jvs %}grid{% else %}row{% endif %}">
-                        <div class="{% if muni_jvs %}grid__cell size--m--2-4 wrap-col first-col{% else %}col-md-6 wrap-col{% endif %}">
+                        <div class="{% if muni_jvs %}grid__cell size--m--2-4 first-col{% else %}col-md-6{% endif %} wrap-col">
 
                         {% for component_configuration in wayf_config.components %}
                             {% if component_configuration.name == 'local_login' %}
