@@ -71,10 +71,6 @@ html, body {
     margin-top: -24px;
 }
 
-.desktop-language {
-    display: none;
-}
-
 .framework_muni .external {
     margin-bottom: 24px;
 }
@@ -98,12 +94,9 @@ html, body {
 }
 
 .header-img {
-    width: 170px;
-    margin: 0 auto 0 36px;
-}
-
-.framework_muni .header-img {
-    margin-left: 24px;
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 50px;
 }
 
 .hrline {
@@ -203,7 +196,7 @@ html, body {
     margin-left: 12px;
 }
 
-.language-bar-margin {
+.framework_muni .language-bar-margin {
     margin-top: 12px;
     margin-bottom: 12px;
 }
@@ -296,11 +289,6 @@ html, body {
     background-color: #EEEEEE;
 }
 
-.mobile-language {
-    margin: 12px 36px 12px 0;
-    text-align: right;
-}
-
 .footer {
     padding: 0 18px 36px 36px;
 }
@@ -370,10 +358,6 @@ body {
     flex-direction: column;
 }
 
-.header-container {
-    text-align: left;
-}
-
 .wrap-col {
     padding: 0 0 0;
 }
@@ -411,27 +395,6 @@ body {
         margin-right: 15%;
     }
 
-    .language-bar-margin {
-        margin: 10px 15% 0 auto;
-    }
-
-    .header-container {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap-reverse;
-        height: 50px;
-        text-align: center;
-    }
-
-    .header-img {
-        height: 50px;
-        margin: 20px auto 0 10%;
-    }
-
-    .framework_muni .header-img {
-        margin-left: 10%;
-    }
-
     .header {
         margin-bottom: 100px;
     }
@@ -440,20 +403,20 @@ body {
         border-left: 0;
     }
 
-    .size--m--2-4:not(:first-child) {
+    .framework_muni #content .size--m--2-4:not(:first-child) {
         border-left: 1px solid #757575;
     }
 
-    .size--m--2-4:not(:last-child) {
+    .framework_muni #content .size--m--2-4:not(:last-child) {
         border-right: 1px solid #757575;
         margin-right: -1px;
     }
 
-    .col-md-6:not(:first-child) {
+    .framework_bootstrap5 #content .col-md-6:not(:first-child) {
         border-left: 1px solid #757575;
     }
 
-    .col-md-6:not(:last-child) {
+    .framework_bootstrap5 #content .col-md-6:not(:last-child) {
         border-right: 1px solid #757575;
         margin-right: -1px;
     }
@@ -468,14 +431,6 @@ body {
 
     .framework_muni .footer {
         padding: 0 12px 36px 5%;
-    }
-
-    .mobile-language {
-        display: none;
-    }
-
-    .desktop-language {
-        display: inline;
     }
 
     .framework_muni #content {
@@ -519,4 +474,18 @@ body {
 h4 {
     font-size: var(--bs-body-font-size) !important;
     font-weight: bold;
+}
+
+.framework_muni .header .grid {
+    width: 100%;
+}
+
+@media screen and (min-width: 700px) {
+    .framework_muni .header .grid__cell:first-child {
+        text-align: right;
+    }
+
+    .framework_muni .header .grid__cell:last-child {
+        text-align: left;
+    }
 }
