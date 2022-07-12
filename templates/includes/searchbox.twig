@@ -24,8 +24,8 @@
             {% for idp in prev_idps %}
                 {% if idp.index == component_index and counter < 2 %}
                     {% if muni_jvs %}
-                        <div class="box-vcards-list__item box-vcard--compact searchbox-result u-pr-0 u-pl-0">
-                            <button class="preferred-idp" type="submit" name="searchbox" value="{{ idp.entityid }}">
+                        <div class="box-vcards-list__item box-vcard--compact searchbox-result u-pr-0 u-pl-0 remembered-institution">
+                            <button class="preferred-idp color-border-{{ configuration.priority }}" type="submit" name="searchbox" value="{{ idp.entityid }}">
                                 <div class="box-vcards-list__inner u-pr-0 u-pl-0">
                                     <p class="box-vcards-list__img center">
                                         <img src="{{ idp.img }}" class="img-searchbox"/>
@@ -40,7 +40,7 @@
                             </button>
                         </div>
                     {% else %}
-                        <button class="list-group-item list-group-item-action d-flex align-items-center" type="submit" name="searchbox" value="{{ idp.entityid }}">
+                        <button class="list-group-item list-group-item-action d-flex align-items-center rounded remembered-institution border-{% if configuration.priority == 'primary' %}dark{% else %}muted{% endif %}" type="submit" name="searchbox" value="{{ idp.entityid }}">
                             <div class="full-width">
                                 <span class="mb-0">
                                     <img src="{{ idp.img }}" class="img-searchbox" alt=""/>
