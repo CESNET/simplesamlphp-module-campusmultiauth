@@ -67,6 +67,14 @@ html, body {
     margin-bottom: 24px;
 }
 
+.remembered-institution {
+    margin-top: 12px !important;
+}
+
+.framework_bootstrap5 .list-group-item + .list-group-item {
+    border-top-width: 1px;
+}
+
 .framework_bootstrap5 .more-options {
     margin-top: -24px;
 }
