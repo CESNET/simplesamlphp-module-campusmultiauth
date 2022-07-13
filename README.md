@@ -43,7 +43,7 @@ Of course, both authsources must be defined in authsources.php file. When the co
 
 ## Login page configuration
 
-The second part of the configuration is setting up the login page itself. While doing that, it's highly recommended to follow our suggestions (***TODO link***). To configure the login page, you need to create a new configuration file `module_campusmultiauth.php`. In this module, there is an example configuration available at `config-templates/module_campusmultiauth.php`. In configuration file, there are following options available:
+The second part of the configuration is setting up the login page itself. While doing that, it's highly recommended to follow [our suggestions (Czech only)](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/wiki/Konfigura%C4%8Dn%C3%AD-doporu%C4%8Den%C3%AD). To configure the login page, you need to create a new configuration file `module_campusmultiauth.php`. In this module, there is an example configuration available at `config-templates/module_campusmultiauth.php`. In configuration file, there are following options available:
 
 `css_framework` - if set to `muni_jvs`, the login page displays in MUNI framework. Otherwise, Bootstrap 5 is used.
 
