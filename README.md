@@ -47,7 +47,7 @@ The second part of the configuration is setting up the login page itself. While 
 
 `css_framework` - if set to `muni_jvs`, the login page displays in MUNI framework. Otherwise, Bootstrap 5 is used.
 
-`muni_faculty` - relevant only if the `css_framework` is set to `muni_jvs`. The value can be set to a concrete faculty (see ***TODO*** link) which results in the change of framework's main colors (based on a chosen faculty).
+`muni_faculty` - relevant only if the `css_framework` is set to `muni_jvs`. The value can be set to a concrete faculty which results in the change of framework's main colors. You can find the list of faculties and their colors [here](https://sablony.muni.cz/muniweb/tpl/d-02-barvy.html).
 
 `logo` - URL to a main institution logo which is displayed in top of the login page.
 
@@ -95,9 +95,9 @@ Thanks to searchbox you can search between all included identity providers. This
 
 `placeholder` - text displayed as a placeholder in the searchbox. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
 
-`include` - if you want to display just part of identity providers available in the metadata, you can use this option. If not set, all identity providers from the metadata are included. Otherwise, included are only identity providers mentioned here. This option is a map with three possible keys: `upstream_idps`, `tags` and `registration_authorities`. If you want to include single IdP, you can add its identifier (e.g. entityID) to the `upstream_idps` list. In case you want to include a group of identity providers, you may tag some of them in the metarefresh module (***TODO link***) and then include them by adding their tag to the `tags` list. Every identity provider also has information about its registration authority (e.g. [http://www.eduid.cz/](http://www.eduid.cz/)). If you add some registration authority to the `registration_authorities` list, all identity providers from this authority will be included.
+`include` - if you want to display just part of identity providers available in the metadata, you can use this option. If not set, all identity providers from the metadata are included. Otherwise, included are only identity providers mentioned here. This option is a map with three possible keys: `upstream_idps`, `tags` and `registration_authorities`. If you want to include single IdP, you can add its identifier (e.g. entityID) to the `upstream_idps` list. In case you want to include a group of identity providers, you may tag some of them in the [module metarefresh](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md) and then include them by adding their tag to the `tags` list. Every identity provider also has information about its registration authority (e.g. [http://www.eduid.cz/](http://www.eduid.cz/)). If you add some registration authority to the `registration_authorities` list, all identity providers from this authority will be included.
 
-`exclude` - if you want to display just part of identity providers available in the metadata, you can use this option. Each identity provider mentioned here will be excluded from the included ones. This option is a map with three possible keys: `upstream_idps`, `tags` and `registration_authorities`. If you want to exclude single IdP, you can add its identifier (e.g. entityID) to the `upstream_idps` list. In case you want to exclude a group of identity providers, you may tag some of them in the metarefresh module (TODO link) and then exclude them by adding their tag to the `tags` list. Every identity provider also has information about its registration authority (e.g. [http://www.eduid.cz/](http://www.eduid.cz/)). If you add some registration authority to the `registration_authorities` list, all identity providers from this authority will be excluded.
+`exclude` - if you want to display just part of identity providers available in the metadata, you can use this option. Each identity provider mentioned here will be excluded from the included ones. This option is a map with three possible keys: `upstream_idps`, `tags` and `registration_authorities`. If you want to exclude single IdP, you can add its identifier (e.g. entityID) to the `upstream_idps` list. In case you want to exclude a group of identity providers, you may tag some of them in the [module metarefresh](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md) and then exclude them by adding their tag to the `tags` list. Every identity provider also has information about its registration authority (e.g. [http://www.eduid.cz/](http://www.eduid.cz/)). If you add some registration authority to the `registration_authorities` list, all identity providers from this authority will be excluded.
 
 `priority` - can be set to `primary`, default value is `secondary`. It should be primary if you want users to use this component if they are able to.
 
@@ -143,3 +143,12 @@ If you want to use non-SAML providers (e.g. OAuth or OIDC), you need to provide 
 ### Content security policy
 
 This module uses no third party CSS, JavaScript or fonts, everything is bundled. The only inline CSS is used when you configure `background_color` in the `individual_identities` component.
+
+## External frameworks
+
+This module uses some external frameworks / libraries. You can find a complete list of them here:
+
+- [Bootstrap](https://getbootstrap.com/)
+- [MUNI framework](https://sablony.muni.cz/muniweb/tpl/muni-framework.html)
+- [Selectize](https://selectize.dev/)
+- [Font Awesome](https://fontawesome.com/)
