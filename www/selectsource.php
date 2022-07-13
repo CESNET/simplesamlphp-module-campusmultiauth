@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
+use League\CommonMark\CommonMarkConverter;
 use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\BadRequest;
-use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module;
 use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
 use SimpleSAML\XHTML\Template;
-use League\CommonMark\CommonMarkConverter;
 
 if (!array_key_exists('AuthState', $_REQUEST) && !array_key_exists('authstate', $_POST)) {
     throw new BadRequest('Missing AuthState parameter.');
@@ -33,10 +34,10 @@ if (array_key_exists('aarc_idp_hint', $state)) {
 
 if (array_key_exists('idphint', $state)) {
     $parts = explode(',', $state['idphint']);
-        if (count($parts) == 1) {
-            $state['saml:idp'] = urldecode($parts[0]);
-            Campusidp::delegateAuthentication($state[Campusidp::SP_SOURCE_NAME], $state);
-        }
+    if (count($parts) === 1) {
+        $state['saml:idp'] = urldecode($parts[0]);
+        Campusidp::delegateAuthentication($state[Campusidp::SP_SOURCE_NAME], $state);
+    }
 }
 
 if (array_key_exists('source', $_POST)) {
@@ -45,11 +46,13 @@ if (array_key_exists('source', $_POST)) {
 
         if (!empty($metadata[$_POST['searchbox']]) &&
             !empty($wayfConfig['components'][$_POST['componentIndex']]) &&
-            $wayfConfig['components'][$_POST['componentIndex']]['name'] === 'searchbox')
-        {
+            $wayfConfig['components'][$_POST['componentIndex']]['name'] === 'searchbox') {
             $prevIdps = Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null ?
                 [] :
-                json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))), true);
+                json_decode(
+                    gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS), true)),
+                    true
+                );
 
             if (!Campusidp::isIdpInCookie($prevIdps, $_POST['searchbox'])) {
                 $chosenIdp = [];
@@ -110,7 +113,13 @@ $idps = null;
 if (!empty($_POST['q'])) {
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, Module::getModuleURL('campusmultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']));
+    curl_setopt(
+        $ch,
+        CURLOPT_URL,
+        Module::getModuleURL(
+            'campusmultiauth/idpSearch.php?q=' . $_POST['q'] . '&index=' . $_POST['componentIndex'] . '&language=' . $_POST['currentLanguage']
+        )
+    );
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     $idps = json_decode(curl_exec($ch));
@@ -132,11 +141,15 @@ $t->data['user_pass_source_name'] = $state[Campusidp::USER_PASS_SOURCE_NAME];
 $t->data['sp_source_name'] = $state[Campusidp::SP_SOURCE_NAME];
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
-$t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function($config, $index) {
+$t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function ($config, $index) {
     return $config['name'] === 'searchbox' ? $index : null;
-}, $wayfConfig['components'], array_keys($wayfConfig['components'])), function($a){return $a !== null;})));
-$currentLanguage = $t->getTranslator()->getLanguage()->getLanguage();
-$t->data['searchbox_placeholders'] = json_encode(array_map(function($config) use ($currentLanguage) {
+}, $wayfConfig['components'], array_keys($wayfConfig['components'])), function ($a) {
+    return $a !== null;
+})));
+$currentLanguage = $t->getTranslator()
+    ->getLanguage()
+    ->getLanguage();
+$t->data['searchbox_placeholders'] = json_encode(array_map(function ($config) use ($currentLanguage) {
     if ($config['name'] !== 'searchbox') {
         return null;
     }
@@ -155,7 +168,9 @@ $t->data['searchbox_placeholders'] = json_encode(array_map(function($config) use
 if (Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null) {
     $t->data['prev_idps'] = [];
 } else {
-    $t->data['prev_idps'] = json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))));
+    $t->data['prev_idps'] = json_decode(
+        gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS), true))
+    );
 }
 
 $t->show();

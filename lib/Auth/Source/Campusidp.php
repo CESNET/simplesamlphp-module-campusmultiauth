@@ -10,30 +10,39 @@ use SimpleSAML\Auth\Source;
 use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Logger;
+use SimpleSAML\Error\UnserializableException;
 use SimpleSAML\Module;
 use SimpleSAML\Module\core\Auth\UserPassBase;
-use SimpleSAML\Error\UnserializableException;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 
 class Campusidp extends Source
 {
     public const AUTHID = '\SimpleSAML\Module\campusidp\Auth\Source\Campusidp.AuthId';
+
     public const STAGEID_USERPASS = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
+
     public const SOURCESID = '\SimpleSAML\Module\campusidp\Auth\Source\Campusidp.SourceId';
+
     public const SESSION_SOURCE = 'campusmultiauth:selectedSource';
+
     public const USER_PASS_SOURCE_NAME = 'userPassSourceName';
+
     public const SP_SOURCE_NAME = 'spSourceName';
+
     public const COOKIE_PREVIOUS_IDPS = 'previous_idps';
+
     public const COOKIE_PREFIX = 'campusidp_';
+
     public const COOKIE_USERNAME = 'username';
+
     public const COOKIE_PASSWORD = 'password';
 
     private $sources;
-    private $userPassSourceName;
-    private $spSourceName;
 
+    private $userPassSourceName;
+
+    private $spSourceName;
 
     public function __construct($info, $config)
     {
@@ -98,7 +107,9 @@ class Campusidp extends Source
          * saved state array as a parameter to the login form
          */
         $url = Module::getModuleURL('campusmultiauth/selectsource.php');
-        $params = ['AuthState' => $id];
+        $params = [
+            'AuthState' => $id,
+        ];
 
         Utils\HTTP::redirectTrustedURL($url, $params);
 
@@ -109,27 +120,22 @@ class Campusidp extends Source
     public static function delegateAuthentication($authId, $state)
     {
         $as = Auth\Source::getById($authId);
-        $valid_sources = array_map(
-            function ($src) {
-                return $src['source'];
-            },
-            $state[self::SOURCESID]
-        );
+        $valid_sources = array_map(function ($src) {
+            return $src['source'];
+        }, $state[self::SOURCESID]);
         if ($as === null || !in_array($authId, $valid_sources, true)) {
             throw new Exception('Invalid authentication source: ' . $authId);
         }
 
         // Save the selected authentication source for the logout process.
         $session = Session::getSessionFromRequest();
-        $session->setData(
-            self::SESSION_SOURCE,
-            $state[self::AUTHID],
-            $authId,
-            Session::DATA_TIMEOUT_SESSION_END
-        );
+        $session->setData(self::SESSION_SOURCE, $state[self::AUTHID], $authId, Session::DATA_TIMEOUT_SESSION_END);
 
         try {
-            if (!empty($_POST['username']) && !empty($_POST['password']) && is_subclass_of($as, '\SimpleSAML\Module\core\Auth\UserPassBase')) {
+            if (!empty($_POST['username']) && !empty($_POST['password']) && is_subclass_of(
+                $as,
+                '\SimpleSAML\Module\core\Auth\UserPassBase'
+            )) {
                 $state[UserPassBase::AUTHID] = $authId;
 
                 try {
@@ -144,7 +150,7 @@ class Campusidp extends Source
                         $url = Module::getModuleURL('campusmultiauth/selectsource.php');
                         $params = [
                             'AuthState' => $id,
-                            'wrongUserPass' => true
+                            'wrongUserPass' => true,
                         ];
 
                         Utils\HTTP::redirectTrustedURL($url, $params);
@@ -152,7 +158,6 @@ class Campusidp extends Source
                         throw $e;
                     }
                 }
-
             } else {
                 $as->authenticate($state);
             }
@@ -170,9 +175,8 @@ class Campusidp extends Source
         $prefixedName = self::COOKIE_PREFIX . $name;
         if (array_key_exists($prefixedName, $_COOKIE)) {
             return $_COOKIE[$prefixedName];
-        } else {
-            return null;
         }
+        return null;
     }
 
     public static function setCookie($name, $value)
@@ -183,7 +187,7 @@ class Campusidp extends Source
             // we save the cookies for 90 days
             'lifetime' => (60 * 60 * 24 * 90),
             // the base path for cookies. This should be the installation directory for SimpleSAMLphp
-            'path'     => Configuration::getInstance()->getBasePath(),
+            'path' => Configuration::getInstance()->getBasePath(),
             'httponly' => false,
         ];
 
@@ -193,7 +197,7 @@ class Campusidp extends Source
     public static function getMostSquareLikeImg($idpentry)
     {
         if (!empty($idpentry['UIInfo']['Logo'])) {
-            if (1 === count($idpentry['UIInfo']['Logo'])) {
+            if (count($idpentry['UIInfo']['Logo']) === 1) {
                 $item['image'] = $idpentry['UIInfo']['Logo'][0]['url'];
             } else {
                 $logoSizeRatio = 1; // impossible value
@@ -212,9 +216,8 @@ class Campusidp extends Source
             }
 
             return $item['image'];
-        } else {
-            return '';
         }
+        return '';
     }
 
     public static function isIdpInCookie($idps, $entityid)

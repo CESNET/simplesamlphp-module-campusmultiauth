@@ -1,7 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 use SimpleSAML\Configuration;
-use SimpleSAML\Logger;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
 
@@ -101,7 +102,9 @@ foreach ($metadata as $entityid => $idpentry) {
         }
     }
 
-    if (!in_array($idpentry, $filteredData) && !empty($idpentry['description']) && is_array($idpentry['description'])) {
+    if (!in_array($idpentry, $filteredData, true) && !empty($idpentry['description']) && is_array(
+        $idpentry['description']
+    )) {
         foreach ($idpentry['description'] as $key => $value) {
             if (str_contains($transliterator->transliterate($value), $transliterator->transliterate($searchTerm))) {
                 $filteredData[$entityid] = $idpentry;
@@ -110,7 +113,7 @@ foreach ($metadata as $entityid => $idpentry) {
         }
     }
 
-    if (!in_array($idpentry, $filteredData) && !empty($idpentry['url']) && is_array($idpentry['url'])) {
+    if (!in_array($idpentry, $filteredData, true) && !empty($idpentry['url']) && is_array($idpentry['url'])) {
         foreach ($idpentry['url'] as $key => $value) {
             if (str_contains(strtolower($value), strtolower($searchTerm))) {
                 $filteredData[$entityid] = $idpentry;
