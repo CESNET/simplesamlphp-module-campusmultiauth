@@ -1,0 +1,36 @@
+# 1.0.0 (2022-07-14)
+
+
+### Bug Fixes
+
+* add default-enable file ([fcde40b](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/fcde40bfe9073953c11693c13eb179acd0a21279))
+* Adds container as wrapper for row in bootstrap ([4c4664b](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/4c4664bbba60cc5b52e194fe567ecbc16f148934))
+* Adds support for UserPassBase subclasses ([938b9e2](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/938b9e212706ce9162ca660b55b16fbb4de01a89))
+* assets related to selectize ([3663ab0](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/3663ab05a987354b5137776736459efdc1130e0d))
+* Configurable name of SP authsource ([aa87b93](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/aa87b93788f207a3c8684d6eb046d4809cad4e94))
+* correct placement of show password button in Edge ([0c7b4f3](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/0c7b4f39a3481ee82ed4151fc7f9c88333fc3f66))
+* Do not remember same idp twice ([a4fbef7](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/a4fbef7542a498d5632005e2c3ce695170dd6503))
+* fix module name to campusmultiauth ([ff9ff1b](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/ff9ff1b8feb34f9bf20508e24469a50ae219ae02))
+* high padding between cols ([d88a287](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/d88a2872107e63d49c2c2f2b711b2af4dc33bb36))
+* language bar layout ([40a3a56](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/40a3a569f8e3c45dd8101d1fe45c5e6c1e187260))
+* make individual identities repeatable ([5dec0e4](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/5dec0e42c78df24211bd0c713d5d1187965d9bee))
+* make language selection work ([c8afee9](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/c8afee98fe623d399d62424ecd0ce1dd316aca7c))
+* make searchbox repeatable ([17c70ae](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/17c70aed4d295c04489432be2a3d25fb7b95ad2a))
+* margins ([b020ebb](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/b020ebbe5b6901aed101501fcbd7f8905d551964))
+* margins, rounded corners ([ce8bffd](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/ce8bffd3050644b5b4ee1b52df7a66e39ce9ce9d))
+* minor visual fixes ([2d99583](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/2d9958381ceee6f3cd6dd397ded3fdffbc639a7f))
+* Previous idp sends entityid ([1ea5683](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/1ea5683c21e49ba2ebd661fe777d31927270de29))
+* README update missing parts ([30b5530](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/30b55307c65395ba137a5d1aab31fba27f7a9afa))
+* Remembered institutions ([8a5a47c](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/8a5a47ca07ddf725de5ee1deb32dbe561cbd6669))
+* rename wayf.php to module_campusmultiauth.php ([43a05fc](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/43a05fc13b3e97466ccb14efa81965e00fedef8d))
+* shadows ([e978a35](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/e978a35ba77b35f367ac0e58607cf88cefbfd529))
+* show max two previously used identities ([9cace7f](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/9cace7fa952ca5d9616eb999295e6d7e98121863))
+* smaller font in buttons ([735cf9e](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/735cf9e3610247c22901d856e00d3a5be3b28d67))
+* styling of individual identities ([e08dac4](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/e08dac421b1691d00e77c25521f0de433c701072))
+
+
+### Features
+
+* caps lock warning ([06f09b9](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/06f09b923cf2a6727e8b990c5543168ab308dd41))
+* logos option for searchbox ([afb1296](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/afb129685d900cf20f1a102e310a3dd5c6d03d14))
+* previous selections delete ([3ea9d72](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/3ea9d72d6106ac7b6ef5fbb211b9dcfc55b01517))
