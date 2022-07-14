@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * An example configuration of the login page
  */
@@ -12,40 +14,40 @@ $config = [
             'priority' => 'primary',
             'username_label' => [
                 'cs' => 'UČO',
-                'en' => 'Personal ID (učo)'
+                'en' => 'Personal ID (učo)',
             ],
             'username_placeholder' => [
                 'cs' => 'UČO',
-                'en' => 'Personal ID'
+                'en' => 'Personal ID',
             ],
             'password_label' => [
                 'cs' => 'Primární heslo',
-                'en' => 'Primary password'
+                'en' => 'Primary password',
             ],
             'password_placeholder' => [
                 'cs' => 'Heslo',
-                'en' => 'Password'
+                'en' => 'Password',
             ],
         ],
         [
             'name' => 'searchbox',
             'title' => [
                 'cs' => 'Přihlášení přes jinou instituci',
-                'en' => 'Log in via another institution'
+                'en' => 'Log in via another institution',
             ],
             'placeholder' => [
                 'cs' => 'Vyhledejte např. CEITEC',
-                'en' => 'Search e.g. CEITEC'
+                'en' => 'Search e.g. CEITEC',
             ],
             'include' => [
                 'upstream_idps' => [],
                 'tags' => ['edugain'],
-                'registration_authorities' => []
+                'registration_authorities' => [],
             ],
             'exclude' => [
                 'upstream_idps' => [],
                 'tags' => [],
-                'registration_authorities' => []
+                'registration_authorities' => [],
             ],
             'logos' => [
                 'https://idp2.ics.muni.cz/idp/shibboleth' => 'https://id.muni.cz/android-chrome-192x192.png',
@@ -55,7 +57,7 @@ $config = [
             'name' => 'individual_identities',
             'title' => [
                 'cs' => 'Přihlášení přes cizí identitu',
-                'en' => 'Log in via institution or social network'
+                'en' => 'Log in via institution or social network',
             ],
             'number_shown' => 3,
             'identities' => [
@@ -66,17 +68,17 @@ $config = [
                     ],
                     'logo' => 'https://example.com/logos/vut.png',
                     'upstream_idp' => 'https://www.vutbr.cz/SSO/saml2/idp',
-                    'background_color' => '#990000'
+                    'background_color' => '#990000',
                 ],
                 1 => [
                     'name' => 'UTB',
                     'logo' => 'https://example.com/logos/utb.png',
-                    'upstream_idp' => 'https://login.bbmri-eric.eu/idp/'
+                    'upstream_idp' => 'https://login.bbmri-eric.eu/idp/',
                 ],
                 2 => [
                     'name' => 'Linkedin',
                     'logo' => 'https://example.com/logos/linkedin.png',
-                    'upstream_idp' => 'https://login.elixir-czech.org/linkedin-idp/'
+                    'upstream_idp' => 'https://login.elixir-czech.org/linkedin-idp/',
                 ],
             ],
         ],

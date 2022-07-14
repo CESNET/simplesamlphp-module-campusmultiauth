@@ -63,7 +63,7 @@ The second part of the configuration is setting up the login page itself. While 
 
 Footer defines the bottom of the login page. If it is not set, the footer is empty. To allow you to adapt the footer to your organisation's look, the `footer` option is designed as a map with the following possible options:
 
-`sections` - list of sections. Each section represents a column in the footer's grid. It means that, in case of Bootstrap 5, the count of sections ***must*** divide 12. If you decide to use MUNI framework, the count of sections ***must*** divide 4. Each section then contains string with HTML, Markdown or simple text, based on the `format` option. If you want to add localization, you can define `sections` as a map with language codes as keys. Values are then lists of sections with localized texts. In that case, you ***must*** define sections for ***all*** supported languages.
+`sections` - list of sections. Each section represents a column in the footer's grid. It means that, in case of Bootstrap 5, the count of sections **_must_** divide 12. If you decide to use MUNI framework, the count of sections **_must_** divide 4. Each section then contains string with HTML, Markdown or simple text, based on the `format` option. If you want to add localization, you can define `sections` as a map with language codes as keys. Values are then lists of sections with localized texts. In that case, you **_must_** define sections for **_all_** supported languages.
 
 `format` - defines the format of sections. You can set it to `HTML` or `markdown`. If not set, the sections are printed as a simple text.
 
@@ -75,13 +75,13 @@ The main part of the login page. The `components` option is designed as a list, 
 
 This component represents a form with username and password. It can be used only once. It's possible to show / hide the `remember_me` checkbox by configuring the `session.rememberme.enable` option in the `config.php` file. In the module configuration, there are following options:
 
-`username_label` - this is displayed as a label above input for the username. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`username_label` - this is displayed as a label above input for the username. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
-`username_placeholder` - this is displayed as a placeholder in the input for the username. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`username_placeholder` - this is displayed as a placeholder in the input for the username. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
-`password_label` - this is displayed as a label above input for the password. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`password_label` - this is displayed as a label above input for the password. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
-`password_placeholder` - this is displayed as a placeholder in the input for the password. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`password_placeholder` - this is displayed as a placeholder in the input for the password. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
 `priority` - can be set to `primary`, default value is `secondary`. It should be primary if you want users to use this component if they are able to.
 
@@ -91,9 +91,9 @@ This component represents a form with username and password. It can be used only
 
 Thanks to searchbox you can search between all included identity providers. This components may be used multiple times.
 
-`title` - text displayed above the component. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`title` - text displayed above the component. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
-`placeholder` - text displayed as a placeholder in the searchbox. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`placeholder` - text displayed as a placeholder in the searchbox. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
 `include` - if you want to display just part of identity providers available in the metadata, you can use this option. If not set, all identity providers from the metadata are included. Otherwise, included are only identity providers mentioned here. This option is a map with three possible keys: `upstream_idps`, `tags` and `registration_authorities`. If you want to include single IdP, you can add its identifier (e.g. entityID) to the `upstream_idps` list. In case you want to include a group of identity providers, you may tag some of them in the [module metarefresh](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md) and then include them by adding their tag to the `tags` list. Every identity provider also has information about its registration authority (e.g. [http://www.eduid.cz/](http://www.eduid.cz/)). If you add some registration authority to the `registration_authorities` list, all identity providers from this authority will be included.
 
@@ -107,7 +107,7 @@ Thanks to searchbox you can search between all included identity providers. This
 
 Here you can specify some identity providers to display them as a list of buttons. This components may be used multiple times.
 
-`title` - text displayed above the component. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead. If not set at all, it displays a default value.
+`title` - text displayed above the component. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
 `priority` - can be set to `primary`, default value is `secondary`. It should be primary if you want users to use this component if they are able to.
 
@@ -125,7 +125,7 @@ Each identity is a map with the following possible options:
 
 `upstream_idp` - identity provider's identifier (e.g. entityid)
 
-`name` - identity provider's name, displayed as a text inside the button. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the ***first one*** is used instead.
+`name` - identity provider's name, displayed as a text inside the button. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead.
 
 `logo` - identity provider's logo, displayed on a left side of the button as a square.
 
@@ -136,9 +136,10 @@ Each identity is a map with the following possible options:
 The easiest way is to use [docker-campusidp](https://github.com/cesnet/docker-campusidp), which includes this module together with SimpleSAMLphp and PHP-FPM.
 
 If you want to use non-SAML providers (e.g. OAuth or OIDC), you need to provide a bridge. There are multiple ways possible:
-* deploy a proxy (e.g. [SATOSA](https://github.com/IdentityPython/SATOSA)) which translates other authentication protocols to SAML
-* use SimpleSAMLphp's [OIDC module](https://github.com/simplesamlphp/simplesamlphp-module-oidc/) for OIDC (e.g. Google)
-* use [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2) for OAuth (LinkedIn, ORCid, GitHub...)
+
+- deploy a proxy (e.g. [SATOSA](https://github.com/IdentityPython/SATOSA)) which translates other authentication protocols to SAML
+- use SimpleSAMLphp's [OIDC module](https://github.com/simplesamlphp/simplesamlphp-module-oidc/) for OIDC (e.g. Google)
+- use [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2) for OAuth (LinkedIn, ORCid, GitHub...)
 
 ### Content security policy
 

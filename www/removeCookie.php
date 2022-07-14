@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use SimpleSAML\Module\campusmultiauth\Auth\Source\Campusidp;
-use SimpleSAML\Logger;
 
 $prevIdps = Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS) === null ?
     [] :
-    json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS))), true);
+    json_decode(gzinflate(base64_decode(Campusidp::getCookie(Campusidp::COOKIE_PREVIOUS_IDPS), true)), true);
 
 $entityid = $_POST['entityid'];
 
