@@ -1,6 +1,6 @@
 # simplesamlphp-module-campusmultiauth
 
-Thanks to this module, you can use a saml:SP authentication source together with another authentication source providing basic auth (discovery service and login form are displayed on a single page). This module also supports [aarc_idp_hint](https://zenodo.org/record/4596667/files/AARC-G061-A_specification_for_IdP_hinting.pdf), so you can even skip the login page and be redirected to the targeted identity provider.
+Thanks to this module, you can use a saml:SP authentication source together with another authentication source providing basic auth (discovery service and login form are displayed on a single page).
 
 ## Theme configuration
 
@@ -83,6 +83,8 @@ This component represents a form with username and password. It can be used only
 
 `password_placeholder` - this is displayed as a placeholder in the input for the password. If you want to add localization, you can write the value as a map with language codes as keys and localized strings as values. If current language is not found in keys, the **_first one_** is used instead. If not set at all, it displays a default value.
 
+`entityid` - entityid of the identity provider. Needed for idp hinting.
+
 `priority` - can be set to `primary`, default value is `secondary`. It should be primary if you want users to use this component if they are able to.
 
 `end_col` - on a desktop, components are divided to two columns. If you want this component to be the last one in the first column, set this option to `true`.
@@ -130,6 +132,18 @@ Each identity is a map with the following possible options:
 `logo` - identity provider's logo, displayed on a left side of the button as a square.
 
 `background_color` - background around the logo. Defined as a [CSS color value](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
+
+## Hinting
+
+To help the user choose the right institution to log in, this module supports following standards:
+
+### [aarc_idp_hint](https://zenodo.org/record/4596667/files/AARC-G061-A_specification_for_IdP_hinting.pdf)
+
+A service provider can choose which identity provider should user use, he/she then skips the login page and is redirected to the targeted identity provider.
+
+### [idphint](https://aarc-project.eu/wp-content/uploads/2019/04/AARC-G049-A_specification_for_IdP_hinting-v6.pdf)
+
+A service provider can choose which identity provider(s) should user use. If there is only one option, the user is redirected directly to the identity provider. Otherwise, user chooses from identity providers sent in idphint parameter.
 
 ## Deployment
 

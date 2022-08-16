@@ -34,9 +34,43 @@ if (array_key_exists('aarc_idp_hint', $state)) {
 
 if (array_key_exists('idphint', $state)) {
     $parts = explode(',', $state['idphint']);
+
     if (count($parts) === 1) {
         $state['saml:idp'] = urldecode($parts[0]);
         Campusidp::delegateAuthentication($state[Campusidp::SP_SOURCE_NAME], $state);
+    } else {
+        $idphint = [];
+        foreach ($parts as $part) {
+            $idphint[] = urldecode($part);
+        }
+
+        if (count($idphint) <= Campusidp::IDP_HINT_BUTTONS_LIMIT) {
+            $ch = curl_init();
+
+            curl_setopt(
+                $ch,
+                CURLOPT_URL,
+                Module::getModuleURL('campusmultiauth/idpSearch.php?idphint=' . json_encode($idphint))
+            );
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $idpsAsConfigItems = json_decode(curl_exec($ch));
+            curl_close($ch);
+
+            $hintComponentConfig = [];
+            $hintComponentConfig['name'] = 'individual_identities';
+            $hintComponentConfig['priority'] = 'primary';
+            $hintComponentConfig['title'] = '';
+            $hintComponentConfig['number_shown'] = Campusidp::IDP_HINT_BUTTONS_LIMIT;
+
+            for ($i = 0; $i < count($idpsAsConfigItems->items); $i++) {
+                $hintComponentConfig['identities'][$i] = [
+                    'name' => $idpsAsConfigItems->items[$i]->text,
+                    'logo' => $idpsAsConfigItems->items[$i]->image,
+                    'upstream_idp' => $idpsAsConfigItems->items[$i]->idpentityid,
+                ];
+            }
+        }
     }
 }
 
@@ -141,6 +175,27 @@ $t->data['user_pass_source_name'] = $state[Campusidp::USER_PASS_SOURCE_NAME];
 $t->data['sp_source_name'] = $state[Campusidp::SP_SOURCE_NAME];
 $t->data['cookie_username'] = Campusidp::getCookie(Campusidp::COOKIE_USERNAME);
 $t->data['cookie_password'] = Campusidp::getCookie(Campusidp::COOKIE_PASSWORD);
+
+if (!empty($idphint)) {
+    $t->data['idphint'] = $idphint;
+
+    if (empty($hintComponentConfig)) {
+        $searchboxesToDisplay = Campusidp::findSearchboxesToDisplay($idphint, $wayfConfig);
+        $individualIdentitiesToDisplay = Campusidp::findIndividualIdentitiesToDisplay($idphint, $wayfConfig);
+
+        $t->data['searchboxes_to_display'] = $searchboxesToDisplay;
+        $t->data['individual_identities_to_display'] = $individualIdentitiesToDisplay;
+        $t->data['or_positions'] = Campusidp::getOrPositions(
+            $searchboxesToDisplay,
+            $individualIdentitiesToDisplay,
+            $idphint,
+            $wayfConfig
+        );
+    } else {
+        $t->data['hint_component_config'] = $hintComponentConfig;
+    }
+}
+
 $t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function ($config, $index) {
     return $config['name'] === 'searchbox' ? $index : null;
 }, $wayfConfig['components'], array_keys($wayfConfig['components'])), function ($a) {
