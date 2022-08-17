@@ -168,7 +168,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			create: false,
 			maxItems: 1,
 			myIndex: index,
-			idphint: JSON.parse(document.querySelector('meta[name="idphint"]').content),
+			idphint: JSON.parse(
+				document.querySelector('meta[name="idphint"]').content
+			),
 			loadThrottle: 250,
 			placeholder: placeholderTexts[index] ?? defaultPlaceholder,
 			render: {
