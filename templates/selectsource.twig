@@ -18,6 +18,9 @@
     {{ parent() }}
     <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/jquery-3.6.0.min.js"></script>
     <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/selectize/js/standalone/selectize.min.js"></script>
+
+    <meta name="idphint" value="{% if idphint is defined %}{{ idphint | json_encode | raw }}{% endif %}">
+
     <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/campus-idp.js"></script>
 {% endblock %}
 
@@ -31,32 +34,34 @@
                 {% block content %}
                     <div class="{% if muni_jvs %}grid{% else %}row{% endif %}">
                         <div class="{% if muni_jvs %}grid__cell size--m--2-4 first-col{% else %}col-md-6{% endif %} wrap-col">
+                            {% if hint_component_config is defined and hint_component_config.name == 'individual_identities' %}
+                                {% include '@campusmultiauth/includes/individual-identities.twig' with {'configuration': hint_component_config, 'component_index': 0} %}
+                            {% else %}
+                                {% for component_configuration in wayf_config.components %}
+                                    {% if component_configuration.name == 'local_login' and (idphint is not defined or component_configuration.entityid in idphint) %}
+                                        {% include '@campusmultiauth/includes/local-login.twig' with {'configuration': component_configuration} %}
+                                    {% elseif component_configuration.name == 'individual_identities' and (individual_identities_to_display is not defined or loop.index0 in individual_identities_to_display) %}
+                                        {% include '@campusmultiauth/includes/individual-identities.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
+                                    {% elseif component_configuration.name == 'searchbox' and (searchboxes_to_display is not defined or loop.index0 in searchboxes_to_display) %}
+                                        {% include '@campusmultiauth/includes/searchbox.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
+                                    {% endif %}
 
-                        {% for component_configuration in wayf_config.components %}
-                            {% if component_configuration.name == 'local_login' %}
-                                {% include '@campusmultiauth/includes/local-login.twig' with {'configuration': component_configuration} %}
-                            {% elseif component_configuration.name == 'individual_identities' %}
-                                {% include '@campusmultiauth/includes/individual-identities.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
-                            {% elseif component_configuration.name == 'searchbox' %}
-                                {% include '@campusmultiauth/includes/searchbox.twig' with {'configuration': component_configuration, 'component_index': loop.index0} %}
+                                    {% if component_configuration.end_col is defined and component_configuration.end_col %}
+                                        </div>
+                                        <div class="{% if muni_jvs %}grid__cell size--m--2-4{% else %}col-md-6{% endif %} wrap-col">
+                                    {% endif %}
+
+                                    {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) and (or_positions is not defined or loop.index0 in or_positions) %}
+                                        <div class="hrline color-secondary">
+                                            <span{% if not muni_jvs %} class="bg-light"{% endif %}>{{ '{campusmultiauth:or}'|trans }}</span>
+                                        </div>
+                                    {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
+                                        <div class="hrline last-col-component color-secondary">
+                                            <span{% if not muni_jvs %} class="bg-light"{% endif %}>{{ '{campusmultiauth:or}'|trans }}</span>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
-
-                            {% if component_configuration.end_col is defined and component_configuration.end_col %}
-                                </div>
-                                <div class="{% if muni_jvs %}grid__cell size--m--2-4{% else %}col-md-6{% endif %} wrap-col">
-                            {% endif %}
-
-                            {% if not loop.last and (component_configuration.end_col is not defined or component_configuration.end_col != true) %}
-                                <div class="hrline color-secondary">
-                                    <span{% if not muni_jvs %} class="bg-light"{% endif %}>{{ '{campusmultiauth:or}'|trans }}</span>
-                                </div>
-                            {% elseif not loop.last and (component_configuration.end_col is defined and component_configuration.end_col == true) %}
-                                <div class="hrline last-col-component color-secondary">
-                                    <span{% if not muni_jvs %} class="bg-light"{% endif %}>{{ '{campusmultiauth:or}'|trans }}</span>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-
                         </div>
                     </div>
                 {% endblock %}

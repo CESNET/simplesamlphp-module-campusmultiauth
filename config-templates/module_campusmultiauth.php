@@ -28,6 +28,7 @@ $config = [
                 'cs' => 'Heslo',
                 'en' => 'Password',
             ],
+            'entityid' => 'https://idp2.ics.muni.cz/idp/shibboleth',
         ],
         [
             'name' => 'searchbox',

@@ -15,6 +15,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Module\core\Auth\UserPassBase;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Transliterator;
 
 class Campusidp extends Source
 {
@@ -37,6 +38,8 @@ class Campusidp extends Source
     public const COOKIE_USERNAME = 'username';
 
     public const COOKIE_PASSWORD = 'password';
+
+    public const IDP_HINT_BUTTONS_LIMIT = 5;
 
     private $sources;
 
@@ -229,6 +232,157 @@ class Campusidp extends Source
         }
 
         return false;
+    }
+
+    public static function findSearchboxesToDisplay($hintedIdps, $config)
+    {
+        $result = [];
+
+        for ($i = 0; $i < count($config['components']); $i++) {
+            if ($config['components'][$i]['name'] === 'searchbox') {
+                $ch = curl_init();
+
+                curl_setopt(
+                    $ch,
+                    CURLOPT_URL,
+                    Module::getModuleURL(
+                        'campusmultiauth/idpSearch.php?idphint=' . json_encode(
+                            $hintedIdps
+                        ) . '&skipMatching=true' . '&index=' . $i
+                    )
+                );
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                $idps = json_decode(curl_exec($ch));
+
+                curl_close($ch);
+
+                if (!empty($idps->items)) {
+                    $result[] = $i;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    public static function findIndividualIdentitiesToDisplay($hintedIdps, $config)
+    {
+        $result = [];
+
+        for ($i = 0; $i < count($config['components']); $i++) {
+            if ($config['components'][$i]['name'] === 'individual_identities') {
+                $componentToDisplay = false;
+
+                foreach ($config['components'][$i]['identities'] as $identity) {
+                    if (in_array($identity['upstream_idp'], $hintedIdps, true)) {
+                        $componentToDisplay = true;
+                        break;
+                    }
+                }
+
+                if ($componentToDisplay) {
+                    $result[] = $i;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    public static function getOrPositions($searchboxesToDisplay, $individualIdentitiesToDisplay, $idphint, $config)
+    {
+        $result = [];
+
+        $componentsToDisplay = [];
+        $endColComponent = -1;
+
+        for ($i = 0; $i < count($config['components']); $i++) {
+            if ($config['components'][$i]['name'] === 'local_login' && in_array(
+                $config['components'][$i]['entityid'],
+                $idphint,
+                true
+            )) {
+                $componentsToDisplay[] = $i;
+            }
+
+            if (!empty($config['components'][$i]['end_col']) && $config['components'][$i]['end_col'] === true) {
+                $endColComponent = $i;
+            }
+        }
+
+        $componentsToDisplay = array_merge($componentsToDisplay, $searchboxesToDisplay, $individualIdentitiesToDisplay);
+
+        foreach ($componentsToDisplay as $index1) {
+            if ($index1 <= $endColComponent) {
+                foreach ($componentsToDisplay as $index2) {
+                    if ($index1 < $index2 && $index2 <= $endColComponent) {
+                        $result[] = $index1;
+                        break;
+                    }
+                }
+            } else {
+                foreach ($componentsToDisplay as $index2) {
+                    if ($index1 < $index2) {
+                        $result[] = $index1;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    public static function getIdpsMatchedBySearchTerm($metadata, $searchTerm)
+    {
+        $filteredMetadata = [];
+
+        $transliterator = Transliterator::createFromRules(
+            ':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: Lower(); :: NFC;',
+            Transliterator::FORWARD
+        );
+
+        foreach ($metadata as $entityid => $idpentry) {
+            if (!empty($idpentry['name']) && is_array($idpentry['name'])) {
+                foreach ($idpentry['name'] as $key => $value) {
+                    if (str_contains(
+                        $transliterator->transliterate($value),
+                        $transliterator->transliterate($searchTerm)
+                    )) {
+                        $filteredMetadata[$entityid] = $idpentry;
+                        break;
+                    }
+                }
+            }
+
+            if (!in_array($idpentry, $filteredMetadata, true) && !empty($idpentry['description']) && is_array(
+                $idpentry['description']
+            )) {
+                foreach ($idpentry['description'] as $key => $value) {
+                    if (str_contains(
+                        $transliterator->transliterate($value),
+                        $transliterator->transliterate($searchTerm)
+                    )) {
+                        $filteredMetadata[$entityid] = $idpentry;
+                        break;
+                    }
+                }
+            }
+
+            if (!in_array($idpentry, $filteredMetadata, true) && !empty($idpentry['url']) && is_array(
+                $idpentry['url']
+            )) {
+                foreach ($idpentry['url'] as $key => $value) {
+                    if (str_contains(strtolower($value), strtolower($searchTerm))) {
+                        $filteredMetadata[$entityid] = $idpentry;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $filteredMetadata;
     }
 
     public function logout(&$state)

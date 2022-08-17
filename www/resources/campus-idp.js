@@ -77,6 +77,7 @@ function selectizeLoad(query, callback) {
 		data: {
 			q: query,
 			index: this.settings.myIndex,
+			idphint: this.settings.idphint,
 			language: document.documentElement.getAttribute("lang"),
 			page_limit: 10,
 		},
@@ -167,6 +168,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			create: false,
 			maxItems: 1,
 			myIndex: index,
+			idphint: JSON.parse(
+				document.querySelector('meta[name="idphint"]').content
+			),
 			loadThrottle: 250,
 			placeholder: placeholderTexts[index] ?? defaultPlaceholder,
 			render: {
