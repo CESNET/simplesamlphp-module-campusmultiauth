@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.0.0...v1.1.0) (2022-08-17)
+
+
+### Features
+
+* multivalue idphint ([b493a07](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/b493a0759bdfcdf1595793efc5fea0da068035e6))
+
 # 1.0.0 (2022-07-14)
 
 
