@@ -1,3 +1,6 @@
+{% if muni_jvs is not defined %}
+    {% set muni_jvs = false %}
+{% endif %}
 {% spaceless %}
 <!DOCTYPE html>
 <html lang="{{ currentLanguage }}" xml:lang="{{ currentLanguage }}">
