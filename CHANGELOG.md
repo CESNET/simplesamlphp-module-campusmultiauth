@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.1.0...v1.1.1) (2022-08-19)
+
+
+### Bug Fixes
+
+* make template functional on other pages than this module's ([e315d10](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/e315d10044c24fea6cdda59ec15ee48f6291dde9))
+* skip IdPs without tags ([765007a](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/765007abb3f8b89264dea71679c0562b6b1c34f1))
+
 # [1.1.0](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.0.0...v1.1.0) (2022-08-17)
 
 
