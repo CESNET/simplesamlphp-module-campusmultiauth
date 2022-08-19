@@ -43,7 +43,7 @@ if (!empty($_GET['idphint']) && !isset($_GET['index'])) {
         foreach ($metadata as $entityid => $idpentry) {
             if (!empty($searchBox['include']['tags'])) {
                 foreach ($searchBox['include']['tags'] as $tag) {
-                    if ($tag === $idpentry['tag']) {
+                    if (!empty($idpentry['tag']) && $tag === $idpentry['tag']) {
                         $filteredMetadata[$entityid] = $idpentry;
                         break;
                     }
@@ -75,7 +75,7 @@ if (!empty($_GET['idphint']) && !isset($_GET['index'])) {
     foreach ($metadata as $entityid => $idpentry) {
         if (!empty($searchBox['exclude']['tags'])) {
             foreach ($searchBox['exclude']['tags'] as $tag) {
-                if ($tag === $idpentry['tag']) {
+                if (!empty($idpentry['tag']) && $tag === $idpentry['tag']) {
                     unset($metadata[$entityid]);
                     break;
                 }
