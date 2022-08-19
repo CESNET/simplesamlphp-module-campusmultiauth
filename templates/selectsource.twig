@@ -19,7 +19,7 @@
     <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/jquery-3.6.0.min.js"></script>
     <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/selectize/js/standalone/selectize.min.js"></script>
 
-    <meta name="idphint" value="{% if idphint is defined %}{{ idphint | json_encode | raw }}{% endif %}">
+    <meta name="idphint" value="{% if idphint is defined %}{{ idphint | json_encode }}{% endif %}">
 
     <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/campus-idp.js"></script>
 {% endblock %}
