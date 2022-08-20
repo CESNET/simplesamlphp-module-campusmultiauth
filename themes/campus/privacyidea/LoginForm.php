@@ -181,14 +181,14 @@ if ($this->data['errorCode'] !== null) {
 
 <?php
 if (!empty($this->data['links'])) {
-    echo '<ul class="links">';
-    foreach ($this->data['links'] as $l) {
-        echo '<li><a href="' . htmlspecialchars($l['href'], ENT_QUOTES) . '">' . htmlspecialchars(
-            $this->t($l['text'])
-        ) . '</a></li>';
-    }
-    echo '</ul>';
-}
+                echo '<ul class="links">';
+                foreach ($this->data['links'] as $l) {
+                    echo '<li><a href="' . htmlspecialchars($l['href'], ENT_QUOTES) . '">' . htmlspecialchars(
+                        $this->t($l['text'])
+                    ) . '</a></li>';
+                }
+                echo '</ul>';
+            }
 ?>
 
     <script src="<?php echo htmlspecialchars(Module::getModuleUrl('privacyidea/js/pi-webauthn.js'), ENT_QUOTES); ?>">
