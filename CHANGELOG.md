@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.2.0...v1.2.1) (2022-08-20)
+
+
+### Bug Fixes
+
+* correct meta tag for idphint ([62fd934](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/62fd9341a891b634a9b636342b8ec81b3d69c6af))
+
 # [1.2.0](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.1.2...v1.2.0) (2022-08-20)
 
 
