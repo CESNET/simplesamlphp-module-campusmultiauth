@@ -66,3 +66,9 @@ msgstr "Přihlášení uživatelským jménem a heslem"
 
 msgid "{campusmultiauth:localLogin_capslock}"
 msgstr "Pozor, máte zapnutý Caps lock."
+
+msgid "{campusmultiauth:close}"
+msgstr "zavřít"
+
+msgid "{campusmultiauth:otp_help}"
+msgstr "Vložte jednorázový kód, například z TOTP aplikace."

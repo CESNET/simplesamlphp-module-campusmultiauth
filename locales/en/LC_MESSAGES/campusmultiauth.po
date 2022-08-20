@@ -66,3 +66,9 @@ msgstr "Login with username and password"
 
 msgid "{campusmultiauth:localLogin_capslock}"
 msgstr "Warning! Caps lock is ON."
+
+msgid "{campusmultiauth:close}"
+msgstr "close"
+
+msgid "{campusmultiauth:otp_help}"
+msgstr "Enter a one time code, e.g. from a TOTP app."
