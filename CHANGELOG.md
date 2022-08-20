@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.1.2...v1.2.0) (2022-08-20)
+
+
+### Features
+
+* template for privacyidea ([f85ec6e](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/f85ec6e360c3728795a42f806d410de81ed6bc8d))
+
 ## [1.1.2](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.1.1...v1.1.2) (2022-08-19)
 
 
