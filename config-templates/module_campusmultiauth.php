@@ -105,4 +105,14 @@ $config = [
         'cs' => 'Čeština',
         'en' => 'English',
     ],
+    'timeout_dialog' => [
+        'ldap.hostname' => '',
+        'ldap.username' => '',
+        'ldap.password' => '',
+        'ldap.basedn' => '',
+        'ldap.timeout' => 0,
+        //    'refresh.dialog.timeout' => 5 * 60,
+        //    'identifier.attr.name' => 'OIDCClientID',
+        //    'url.attr.name' => 'rploginurl',
+    ],
 ];

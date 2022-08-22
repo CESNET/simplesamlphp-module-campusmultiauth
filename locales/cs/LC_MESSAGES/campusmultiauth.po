@@ -72,3 +72,9 @@ msgstr "zavřít"
 
 msgid "{campusmultiauth:otp_help}"
 msgstr "Vložte jednorázový kód, například z TOTP aplikace."
+
+msgid "{campusmultiauth:timeout_dialog}"
+msgstr "Z důvodu neaktivity je nutné stránku obnovit."
+
+msgid "{campusmultiauth:refresh}"
+msgstr "obnovit"

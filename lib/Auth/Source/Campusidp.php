@@ -11,8 +11,10 @@ use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Error\UnserializableException;
+use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Module\core\Auth\UserPassBase;
+use SimpleSAML\Module\ldap\Auth\Ldap;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use Transliterator;
@@ -383,6 +385,69 @@ class Campusidp extends Source
         }
 
         return $filteredMetadata;
+    }
+
+    /**
+     * @deprecated
+     */
+    public static function useLoginURL($state, $config, $restartUrl)
+    {
+        $queryVarsStr = parse_url($state['saml:RelayState'], PHP_URL_QUERY);
+        if ($queryVarsStr) {
+            parse_str($queryVarsStr, $queryVars);
+
+            if (!empty($queryVars['client_id'])) {
+                $OIDCClientID = $queryVars['client_id'];
+                $OIDCLoginURL = self::getLoginURL($config, $OIDCClientID);
+                if ($OIDCLoginURL) {
+                    $restartUrl = $OIDCLoginURL;
+                }
+            }
+        }
+
+        return $restartUrl;
+    }
+
+    /**
+     * @deprecated
+     */
+    public static function getLoginURL($config, $clientId)
+    {
+        $hostname = $config->getString('ldap.hostname');
+        $port = $config->getInteger('ldap.port', 389);
+        $enable_tls = $config->getBoolean('ldap.enable_tls', false);
+        $debug = $config->getBoolean('ldap.debug', false);
+        $referrals = $config->getBoolean('ldap.referrals', true);
+        $timeout = $config->getInteger('ldap.timeout', 0);
+        $username = $config->getString('ldap.username', null);
+        $password = $config->getString('ldap.password', null);
+
+        try {
+            $ldap = new Ldap($hostname, $enable_tls, $debug, $timeout, $port, $referrals);
+        } catch (\Exception $e) {
+            Logger::warning($e->getMessage());
+
+            return null;
+        }
+        $ldap->bind($username, $password);
+
+        $identifierAttrName = $config->getString('identifier.attr.name', 'OIDCClientID');
+        $urlAttrName = $config->getString('url.attr.name', 'rploginurl');
+
+        $base = $config->getString('ldap.basedn');
+        $filter = '(&(objectClass=perunFacility)(' . $identifierAttrName . '=' . $clientId . '))';
+
+        try {
+            $entries = $ldap->searchformultiple([$base], $filter, [$urlAttrName], [], true, false);
+        } catch (\Exception $e) {
+            $entries = [];
+        }
+
+        if (count($entries) < 1 || empty($entries[0][$urlAttrName])) {
+            return null;
+        }
+
+        return $entries[0][$urlAttrName][0];
     }
 
     public function logout(&$state)

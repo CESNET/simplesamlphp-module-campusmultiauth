@@ -353,6 +353,10 @@ body {
   width: 100%;
 }
 
+#refresh-required-dialog {
+  text-align: center;
+}
+
 .idps-form-div {
   margin-top: 0;
   margin-bottom: 24px;

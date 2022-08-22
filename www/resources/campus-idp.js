@@ -1,3 +1,5 @@
+import dialogPolyfill from "dialog-polyfill";
+
 function hideElement(element) {
 	element.classList.add("vhide", "d-none");
 }
@@ -91,6 +93,15 @@ function selectizeLoad(query, callback) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+	// show dialog after the specified timeout to refresh the page
+	const dialog = document.getElementById("refresh-required-dialog");
+	if (dialog && dialog.dataset.timeout) {
+		dialogPolyfill.registerDialog(dialog);
+		setTimeout(() => {
+			dialog.showModal();
+		}, dialog.dataset.timeout * 1000);
+	}
+
 	var moreOptions = document.querySelectorAll(".more-options");
 	if (moreOptions) {
 		moreOptions.forEach(function (showButton) {
