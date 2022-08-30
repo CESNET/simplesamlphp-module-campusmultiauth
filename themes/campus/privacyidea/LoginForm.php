@@ -49,14 +49,14 @@ if ($this->data['errorCode'] !== null) {
                                     <h2><?php echo $this->t('{privacyidea:privacyidea:webauthn}'); ?></h2>
                                     <p id="message" role="alert"><?php
                                         $messageOverride = $this->data['messageOverride'] ?? null;
-                                        if ($messageOverride === null || is_string($messageOverride)) {
-                                            echo htmlspecialchars(
-                                                $messageOverride ?? $this->data['message'] ?? '',
-                                                ENT_QUOTES
-                                            );
-                                        } elseif (is_callable($messageOverride)) {
-                                            echo call_user_func($messageOverride, $this->data['message'] ?? '');
-                                        }
+                                    if ($messageOverride === null || is_string($messageOverride)) {
+                                        echo htmlspecialchars(
+                                            $messageOverride ?? $this->data['message'] ?? '',
+                                            ENT_QUOTES
+                                        );
+                                    } elseif (is_callable($messageOverride)) {
+                                        echo call_user_func($messageOverride, $this->data['message'] ?? '');
+                                    }
                                     ?></p>
                                     <p>
                                         <button id="useWebAuthnButton" name="useWebAuthnButton" class="btn btn-primary btn-s" type="button">
@@ -75,8 +75,8 @@ if ($this->data['errorCode'] !== null) {
                                             <label for="otp" class="sr-only"><?php echo $this->t('{privacyidea:privacyidea:otp}'); ?></label>
                                             <span class="inp-fix">
                                                 <input id="otp" name="otp" tabindex="1" value="" class="text inp-text" autocomplete="one-time-code" type="number" inputmode="numeric" pattern="[0-9]{6,}" required placeholder="<?php echo htmlspecialchars($otpHint, ENT_QUOTES); ?>"<?php if ($this->data['noAlternatives']) {
-                                        echo ' autofocus';
-                                    } ?> />
+                                                    echo ' autofocus';
+                                                } ?> />
                                             </span>
                                         </p>
                                         <p>
@@ -119,14 +119,16 @@ if ($this->data['errorCode'] !== null) {
                                        value="<?php echo htmlspecialchars($this->data['message'] ?? '', ENT_QUOTES); ?>"/>
 
                                 <?php
-                                    // If enrollToken load QR Code
-                                    if (isset($this->data['tokenQR'])) {
-                                        echo htmlspecialchars($this->t('{privacyidea:privacyidea:scan_token_qr}')); ?>
+                                // If enrollToken load QR Code
+                                if (isset($this->data['tokenQR'])) {
+                                    echo htmlspecialchars(
+                                        $this->t('{privacyidea:privacyidea:scan_token_qr}')
+                                    ); ?>
                                     <div class="tokenQR">
                                         <?php echo '<img src="' . $this->data['tokenQR'] . '" />'; ?>
                                     </div>
                                     <?php
-                                    }
+                                }
 ?>
                             </div>
 
@@ -181,14 +183,14 @@ if ($this->data['errorCode'] !== null) {
 
 <?php
 if (!empty($this->data['links'])) {
-                echo '<ul class="links">';
-                foreach ($this->data['links'] as $l) {
-                    echo '<li><a href="' . htmlspecialchars($l['href'], ENT_QUOTES) . '">' . htmlspecialchars(
-                        $this->t($l['text'])
-                    ) . '</a></li>';
-                }
-                echo '</ul>';
-            }
+    echo '<ul class="links">';
+    foreach ($this->data['links'] as $l) {
+        echo '<li><a href="' . htmlspecialchars($l['href'], ENT_QUOTES) . '">' . htmlspecialchars(
+            $this->t($l['text'])
+        ) . '</a></li>';
+    }
+    echo '</ul>';
+}
 ?>
 
     <script src="<?php echo htmlspecialchars(Module::getModuleUrl('privacyidea/js/pi-webauthn.js'), ENT_QUOTES); ?>">
