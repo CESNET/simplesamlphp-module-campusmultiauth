@@ -31,6 +31,9 @@
       "SimpleSAML\\Module\\campusmultiauth\\": "lib/"
     }
   },
+  "suggest": {
+    "simplesamlphp/simplesamlphp-module-ldap": "Required for timeout dialog with mitreID support"
+  },
   "require-dev": {
     "symplify/easy-coding-standard": "^11.0"
   }
