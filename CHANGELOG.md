@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.2.1...v1.3.0) (2022-09-05)
+
+
+### Features
+
+* timeout dialog ([0090982](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/commit/0090982ee22bca1a111b2b941a0f375c279db7b2))
+
 ## [1.2.1](https://github.com/CESNET/simplesamlphp-module-campusmultiauth/compare/v1.2.0...v1.2.1) (2022-08-20)
 
 
