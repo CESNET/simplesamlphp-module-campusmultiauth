@@ -160,6 +160,54 @@ if (!empty($_POST['q'])) {
     curl_close($ch);
 }
 
+// <timeout dialog>
+$timeoutDialogConfig =
+    Configuration::getConfig('module_campusmultiauth.php')->getConfigItem('timeout_dialog');
+
+if (!empty($timeoutDialogConfig)) {
+    $restartUrl = '#';
+
+    if (isset($state['SPMetadata']['RelayState'])) {
+        $rsUrl = filter_var(
+            $state['SPMetadata']['RelayState'],
+            FILTER_VALIDATE_URL,
+            FILTER_FLAG_SCHEME_REQUIRED | FILTER_FLAG_HOST_REQUIRED
+        );
+        if ($rsUrl !== false) {
+            $restartUrl = $rsUrl;
+        }
+    }
+
+    if (isset($state['saml:RelayState'])) {
+        $rsUrl = filter_var(
+            $state['saml:RelayState'],
+            FILTER_VALIDATE_URL,
+            FILTER_FLAG_SCHEME_REQUIRED | FILTER_FLAG_HOST_REQUIRED
+        );
+
+        if ($rsUrl !== false) {
+            $rs = parse_url($rsUrl);
+            $sp = $state['SPMetadata']['AssertionConsumerService'];
+            if (is_array($sp) && isset($sp[0])) {
+                $sp = $sp[0];
+            }
+            if (is_array($sp) && isset($sp['Location'])) {
+                $sp = $sp['Location'];
+            }
+            if (is_string($sp)) {
+                $sp = parse_url($sp);
+                if ($rs['scheme'] === $sp['scheme'] && $rs['host'] === $sp['host']) {
+                    $restartUrl = $rsUrl;
+                }
+            }
+
+            // use login URL instead of redirecting to OIDC
+            $restartUrl = Campusidp::useLoginURL($state, $timeoutDialogConfig, $restartUrl);
+        }
+    }
+}
+// </timeout dialog>
+
 $globalConfig = Configuration::getInstance();
 $t = new Template($globalConfig, 'campusmultiauth:selectsource.php');
 
@@ -194,6 +242,11 @@ if (!empty($idphint)) {
     } else {
         $t->data['hint_component_config'] = $hintComponentConfig;
     }
+}
+
+if (isset($restartUrl)) {
+    $t->data['restart_url'] = $restartUrl;
+    $t->data['refresh_dialog_timeout'] = $timeoutDialogConfig->getInteger('refresh.dialog.timeout', 5 * 60);
 }
 
 $t->data['searchbox_indexes'] = json_encode(array_values(array_filter(array_map(function ($config, $index) {

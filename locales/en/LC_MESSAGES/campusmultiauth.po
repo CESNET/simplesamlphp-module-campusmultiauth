@@ -72,3 +72,9 @@ msgstr "close"
 
 msgid "{campusmultiauth:otp_help}"
 msgstr "Enter a one time code, e.g. from a TOTP app."
+
+msgid "{campusmultiauth:timeout_dialog}"
+msgstr "Because of inactivity, it is needed to refresh the page."
+
+msgid "{campusmultiauth:refresh}"
+msgstr "refresh"

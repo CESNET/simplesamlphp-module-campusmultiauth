@@ -30,6 +30,9 @@
       {% endblock contentwrapper %}
       <div id="push"></div>
     </div>{# layout #}
+    {% if restart_url is defined %}
+        {% block timeoutDialog %}{% include '@campusmultiauth/includes/timeout-dialog.twig' %}{% endblock %}
+    {% endif %}
     <div id="foot">
       {% block footer %}{% include "_footer.twig" %}{% endblock %}
     </div>

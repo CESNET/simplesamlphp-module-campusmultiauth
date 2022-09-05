@@ -22,7 +22,7 @@
     {% if idphint is not defined %}{% set idphint = [] %}{% endif %}
     <meta name="idphint" content="{{ idphint | json_encode }}">
 
-    <script src="/{{baseurlpath}}module.php/campusmultiauth/resources/campus-idp.js"></script>
+    <script type="module" src="/{{baseurlpath}}module.php/campusmultiauth/resources/campus-idp.js"></script>
 {% endblock %}
 
 {% block contentwrapper %}
