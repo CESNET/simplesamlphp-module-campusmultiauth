@@ -1,5 +1,7 @@
 # simplesamlphp-module-campusmultiauth
 
+**REPOSITORY HAS BEEN MOVED TO: https://gitlab.ics.muni.cz/perun-proxy-aai/simplesamlphp/simplesamlphp-module-campusmultiauth**
+
 Thanks to this module, you can use a saml:SP authentication source together with another authentication source providing basic auth (discovery service and login form are displayed on a single page).
 
 ## Theme configuration
